@@ -1,0 +1,15 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Algoritmos para lenguajes libres de contexto}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Autómatas apiladores}{2}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}Versión normal}{2}{subsubsection.1.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.2}Versión alternativa}{4}{subsubsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.2}Autómatas apiladores vs gramáticas libres de contexto}{6}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}Desde CFG a PDA}{7}{subsubsection.1.2.1}%
+\contentsline {paragraph}{Caso base: $h=1$.}{7}{section*.21}%
+\contentsline {subsubsection}{\numberline {1.2.2}Desde PDA a CFG}{8}{subsubsection.1.2.2}%
+\contentsline {paragraph}{Demostración $\mathcal {L}(\mathcal {P}) = \mathcal {L}(\mathcal {G})$.}{8}{section*.24}%
+\contentsline {paragraph}{Paso 1.}{8}{section*.25}%
+\contentsline {paragraph}{Hipótesis de inducción (en el número de pasos $n$).}{9}{section*.26}%
+\contentsline {paragraph}{Caso base: $n=1$.}{9}{section*.27}%
+\contentsline {paragraph}{Caso inductivo.}{9}{section*.28}%
+\contentsline {paragraph}{Paso 2.}{10}{section*.29}%

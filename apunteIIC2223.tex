@@ -1,0 +1,228 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[letterpaper]{article}
+
+\usepackage[utf8]{inputenc} % Required for inputting international characters
+% \usepackage[T1]{fontenc} % Output font encoding for international characters
+\usepackage[margin=1in]{geometry}
+% \usepackage{mathpazo} % Palatino font
+\usepackage[spanish]{babel}\decimalpoint % Soporte para español
+\usepackage{graphicx} % Paquete para imágenes
+\usepackage{fancyhdr} % Paquete para customización de las páginas
+\usepackage{lastpage} % Saber última página
+\usepackage[hidelinks]{hyperref} % Links para títulos
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{xcolor}
+\usepackage{empheq}
+\usepackage{fancybox}
+\usepackage[labelfont=bf]{caption}
+\usepackage{array}
+\usepackage{float}
+\usepackage[most]{tcolorbox}
+\usepackage{bookmark}
+\usepackage{wrapfig}
+\usepackage{multicol}
+\usepackage{enumitem}
+
+\newtcolorbox{greenbox}{
+enhanced,
+boxrule=0pt,frame hidden,
+borderline west={4pt}{0pt}{green!75!black},
+colback=green!10!white,
+sharp corners
+}
+
+\newtcolorbox{redbox}{
+enhanced,
+boxrule=0pt,frame hidden,
+borderline west={4pt}{0pt}{red!75!black},
+colback=red!10!white,
+sharp corners
+}
+
+\newtcolorbox{bluebox}{
+enhanced,
+boxrule=0pt,frame hidden,
+borderline west={4pt}{0pt}{blue!75!black},
+colback=blue!10!white,
+sharp corners
+}
+
+{}\newtcbtheorem[auto counter,number within=section]{ejem}%
+  {Ejemplo}{
+      fonttitle=\bfseries\upshape, 
+    %   fontupper=\slshape,
+      arc=0mm, 
+      colback=gray!15!white,
+      breakable, 
+      enhanced jigsaw,
+      colframe=gray!75!black}
+      {ejemplo}
+
+\newtcbtheorem[auto counter]{theo}%
+{Teorema}{fonttitle=\bfseries\upshape, fontupper=\slshape,
+    arc=0mm, colback=white,colframe=black!85!white}{theorem}
+
+
+\pagestyle{fancy} % Definir estilo de páginas
+\fancyhf{}
+% \lhead{\textbf{\footnotesize\rightmark}}
+\rhead{\textbf{\footnotesize\leftmark}}
+\lfoot{\textbf{\footnotesize IIC2223}}
+\cfoot{\textbf{\footnotesize Teoría de Autómatas y Lenguajes Formales}}
+\rfoot{\textbf{\footnotesize Página: \thepage\ de \pageref{LastPage}}}
+\setlength{\shadowsize}{2pt}
+\setlength{\fboxsep}{5pt}
+\setlength\parindent{0pt}
+\setlength{\headheight}{13.07225pt}
+\bookmarksetup{numbered}
+\setlist[itemize]{leftmargin=*}
+\setlist[enumerate]{leftmargin=*}
+
+% Renombre de comandos
+\addto\captionsspanish{% Replace "english" with the language you use
+  \renewcommand{\contentsname}
+    {\LARGE Índice}
+}
+\addto\captionsspanish{% Replace "english" with the language you use
+  \renewcommand{\tablename}
+    {Tabla}
+}
+\renewcommand\arraystretch{1.5}
+\renewcommand{\labelitemi}{{\raisebox{.3\height}{\scalebox{0.6}{$\blacklozenge$}}}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Nuevos comandos
+\newcommand{\p}{\vspace{1em}}
+\empheqset{marginbox=\psframebox}
+\newcommand{\alignformula}[1]{
+    \begin{empheq}[box=\shadowbox*]{align*}
+        #1
+    \end{empheq}
+}
+\newcommand{\fig}[3]{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=#2]{#1}
+        \caption{#3}
+        \end{figure}
+}
+\newcommand{\img}[2]{
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=#2]{#1}
+        \end{figure}
+}
+\newcommand{\enlace}[3]{\textcolor{#3}{\textbf{\href{#1}{#2}}}}
+\newcommand{\ejemplo}[3]{\begin{ejem}{#1}{#2}#3\end{ejem}}
+\newcommand{\teorema}[3]{\vspace{0.5em}\begin{theo}{#1}{#2}#3\end{theo}\vspace{0.5em}}
+\newcommand{\li}[2]{\displaystyle{\lim_{#1 \to #2}}}
+\newcommand{\ca}[1]{\mathcal{#1}}
+
+\usepackage{etoolbox}
+\apptocmd{\lim}{\limits}{}{}
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{titlepage} % Suppresses displaying the page number on the title page and the subsequent page counts as page 1
+    \newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for horizontal lines, change thickness here
+
+    \center % Centre everything on the page
+
+    %------------------------------------------------
+    %	Headings
+    %------------------------------------------------
+
+    \textsc{\LARGE Pontificia Universidad Católica de Chile}\\[1.5cm] % Main heading such as the name of your university/college
+
+    \textsc{\Large Departamento de Ciencia de la Computación}\\[0.5cm] % Major heading such as course name
+
+    \textsc{\large Apunte IIC2223}\\[0.5cm] % Minor heading such as course title
+
+    %------------------------------------------------
+    %	Title
+    %------------------------------------------------
+
+    \HRule\\[0.5cm]
+
+    {\huge\bfseries Teoría de Autómatas y Lenguajes Formales}\\[0.4cm] % Title of your document
+
+    \HRule\\[1.5cm]
+
+    %------------------------------------------------
+    %	Author(s)
+    %------------------------------------------------
+
+    \begin{minipage}{0.4\textwidth}
+        \begin{flushleft}
+            \large
+            \textit{Autor}\\
+            Cristóbal \textsc{Rojas} % Your name
+        \end{flushleft}
+    \end{minipage}
+    ~
+    \begin{minipage}{0.4\textwidth}
+        \begin{flushright}
+            \large
+            \textit{En base a apuntes de}\\
+            Prof. Cristian \textsc{Riveros} % Supervisor's name
+        \end{flushright}
+    \end{minipage}
+
+    % If you don't want a supervisor, uncomment the two lines below and comment the code above
+    % {\large\textit{Autor}}\\
+    % Cristóbal \textsc{Rojas} % Your name
+
+    %------------------------------------------------
+    %	Date
+    %------------------------------------------------
+
+    \vfill\vfill\vfill % Position the date 3/4 down the remaining page
+
+    {\large\today} % Date, change the \today to a set date if you want to be precise
+
+    %------------------------------------------------
+    %	Logo
+    %------------------------------------------------
+
+    \vfill\vfill
+    \includegraphics[width=0.3\textwidth]{img/logo.png}\\[1cm] % Include a department/university logo - this will require the graphicx package
+
+    %----------------------------------------------------------------------------------------
+
+    \vfill % Push the date up 1/4 of the remaining page
+
+\end{titlepage}
+
+% \thispagestyle{empty}
+% \begin{redbox}
+%     \textbf{Advertencia:} Este no es un documento oficial del curso Cálculo I - MAT1610, el apunte puede presentar fallas y por ende generar error en sus cálculos. Debido a esto, el autor \textbf{no} se hace responsable de cualquier respuesta errónea que pueda dar en alguna prueba, por lo que es su obligación revisar si los contenidos mostrados aquí coinciden con el material oficial del curso. De cualquier manera, como lector está invitado a reportar cualquier falla para así mejorar este apunte cada vez más. Puede enviar un correo a \href{mailto:cristobalrojas@uc.cl}{cristobalrojas@uc.cl}. ¡Muchas gracias!
+% \end{redbox}
+
+% \newpage
+
+\thispagestyle{empty}
+\pdfbookmark[section]{\contentsname}{toc}
+\tableofcontents
+
+\newpage
+
+\include{cap5.tex}
+% \include{cap2.tex}
+% \include{cap3.tex}
+% \include{cap4.tex}
+% \include{cap5.tex}
+% \include{cap6.tex}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

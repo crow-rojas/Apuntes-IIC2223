@@ -1,0 +1,398 @@
+\section{Algoritmos para lenguajes libres de contexto}
+\subsection{Autómatas apiladores}
+\subsubsection{Versión normal}
+
+\fig{img/cap5/idea_automata.png}{0.7}{Idea de un autómata apilador}
+
+\paragraph*{Definición.} Un autómata apilador (\textit{PushDown Automata}, PDA) es una estructura:
+\alignformula{
+    \ca{P}=(Q,\Sigma,\Gamma,\Delta,q_0,\bot,F)
+}
+\begin{itemize}
+    \item $Q$ es un conjunto finito de \textbf{estados}.
+    \item $\Sigma$ es el alfabeto del \textbf{input}.
+    \item $q_0 \in Q$ es el estado \textbf{inicial}.
+    \item $F$ es el conjunto de estados \textbf{finales}.
+    \item $\Gamma$ es el alfabeto de \textbf{stack}.
+    \item $\bot \in \Gamma$ es el símbolo \textbf{inicial del stack} (fondo).
+    \item $\Delta \subseteq(Q \times(\Sigma \cup\{\epsilon\}) \times \Gamma) \times\left(Q \times \Gamma^*\right)$ es una relación finita de transición.
+\end{itemize}
+
+Intuitivamente, la transición:
+\alignformula{
+    \Big((p,a,A),(q,B_1B_2\cdots B_k)\Big) \in \Delta
+}
+si el autómata apilador está:
+\begin{itemize}
+    \item en el estado $p$, leyendo $a$, y en el tope del stack hay una $A$,
+\end{itemize}
+entonces:
+\begin{itemize}
+    \item cambia al estado $q$, y modifico el tope $A$ por $B_1B_2\cdots B_k$.
+\end{itemize}
+
+Intuitivamente, la transición \textbf{en vacío}:
+\alignformula{
+    \Big((p,\epsilon,A),(q,B_1B_2\cdots B_k)\Big) \in \Delta
+}
+si el autómata apilador está:
+\begin{itemize}
+    \item en el estado $p$, \textit{sin lectura de una letra}, y en el tope del stack hay una $A$,
+\end{itemize}
+entonces:
+\begin{itemize}
+    \item cambia al estado $q$, y modifico el tope $A$ por $B_1B_2\cdots B_k$.
+\end{itemize}
+
+\ejemplo{}{}{
+    $$
+        \ca{P}=(Q,\Sigma,\Gamma,\Delta,q_0,\bot,\{q_f\})
+    $$
+    \begin{itemize}
+        \item $Q=\{q_0,q_1,q_f\}$, $\Sigma = \{a,b\}$, $\Gamma = \{A,\bot\}$ y $\Delta$:
+              $$
+                  \begin{array}{ll}
+                      \left(q_0, a, \perp, q_0, A \perp\right)         & q_0 \perp \stackrel{a}{\rightarrow} q_0 A \perp \\
+                      \left(q_0, a, A, q_0, A A\right)                 & q_0 A \stackrel{a}{\rightarrow} q_0 A A         \\
+                      \left(q_0, b, A, q_1, \epsilon\right)            & q_0 A \stackrel{b}{\rightarrow} q_1             \\
+                      \left(q_1, b, A, q_1, \epsilon\right)            & q_1 A \stackrel{b}{\rightarrow} q_1             \\
+                      \left(q_1, \epsilon, \perp, q_f, \epsilon\right) & q_1 \perp \stackrel{\epsilon}{\rightarrow} q_f
+                  \end{array}
+              $$
+    \end{itemize}
+
+    \img{img/cap5/ejemplo1.png}{0.65}
+}
+
+\paragraph*{Notación.} Dada una palabra $A_1A_2\ldots A_k \in \Gamma^+$ decimos que:
+\begin{itemize}
+    \item $A_1 A_2 \ldots A_k$ es un stack (contenido),
+    \item $A_1$ es el \textbf{tope} del stack y
+    \item $A_2 \ldots A_k$ es la \textbf{cola} del stack.
+\end{itemize}
+
+\paragraph*{Definición.} Una \textbf{configuración} de $\ca{P}$ es una tupla $(q\cdot \gamma, w) \in (Q\cdot \Gamma^*, \Sigma^*)$ tal que:
+\begin{itemize}
+    \item $q$ es el estado actual.
+    \item $\gamma$ es el contenido del stack.
+    \item $w$ es el contenido del input.
+\end{itemize}
+Decimos que una configuración:
+\alignformula{
+    (q\cdot \gamma, w) \in (Q\cdot \Gamma^*, \Sigma^*)
+}
+\begin{itemize}
+    \item es \textbf{inicial} si $q\cdot \gamma = q_0\cdot \bot$.
+    \item es \textbf{final} si $q\cdot \gamma = q_f\cdot \epsilon$ con $q_f \in F$ y $w=\epsilon$.
+\end{itemize}
+
+\paragraph*{Definición.} Se define la relación $\vdash_{\ca{P}}$ de \textbf{siguiente-paso} entre configuraciones de $\ca{P}$:
+\alignformula{
+    \left(q_1 \cdot \gamma_1, w_1\right) \quad \vdash_{\mathcal{P}} \quad\left(q_2 \cdot \gamma_2, w_2\right)
+}
+si, y sólo si, existe una transición $\left(q_1, a, A, q_2, \alpha\right) \in \Delta \text { y } \gamma \in \Gamma^*$ tal que:
+\begin{itemize}
+    \item $w_1 = a \cdot w_2$
+    \item $\gamma_1 = A\cdot \gamma$
+    \item $\gamma_2 = \alpha \cdot \gamma$
+\end{itemize}
+
+Se define $\vdash_{\ca{P}}^*$ como la clausura \textbf{refleja} y \textbf{transitiva} de $\vdash_\ca{P}$. En otras palabras:
+\alignformula{
+    \begin{gathered}
+        \left(q_1 \gamma_1, w_1\right) \vdash_{\mathcal{P}}^*\left(q_2 \gamma_2, w_2\right) \text { si uno puede ir de }\left(q_1 \gamma_1, w_1\right) \text { a }\left(q_2 \gamma_2, w_2\right) \\
+        \text { en } 0 \text { o más pasos. }
+    \end{gathered}
+}
+\ejemplo{}{}{
+    Para la palabra $w=aaabbb$, tenemos la ejecución:
+    \img{img/cap5/ejemplo2.png}{0.7}
+}
+
+\paragraph*{Definiciones.} $\cal{P}$ \textbf{acepta} $w$ si, y sólo si, $\left(q_0 \perp, w\right) \vdash_{\mathcal{P}}^*\left(q_f, \epsilon\right)$ para algún $q_f \in F$.
+
+\hspace{70pt} El \textbf{lenguaje aceptado} por $\ca{P}$ se define como:
+\alignformula{
+    \ca{L}(\ca{P})=\{w\in \Sigma^*\| \ \ca{P} \text{ acepta } w\}
+}
+\ejemplo{}{}{
+    El lenguaje aceptado por el PDA utilizado en los ejemplos anteriores es $\ca{L}(\ca{P})=\{a^nb^n\ | \ n \ge 0\}$.
+}
+
+\subsubsection{Versión alternativa}
+Esta definición de autómata apilador es poco común pero trae algunas ventajas:
+\begin{itemize}
+    \item Es un modelo que ayuda a entender mejor los algoritmos de evaluación para gramáticas.
+    \item Es un modelo menos estándar pero mucho más sencillo.
+    \item Al profe Cristian le gustó y lo encontró interesante.
+\end{itemize}
+
+\paragraph*{Definición.} Un \textbf{PDA alternativo} es una estructura:
+\alignformula{
+    \ca{D}=(Q,\Sigma,\Delta,q_0,F)
+}
+\begin{itemize}
+    \item $Q$ es un conjunto finito de \textbf{estados}.
+    \item $\Sigma$ es el alfabeto del \textbf{input}.
+    \item $q_0 \in Q$ es el estado \textbf{inicial}.
+    \item $F$ es el conjunto de estados \textbf{finales}.
+    \item $\Delta \subseteq Q^+ \times (\Sigma \cup \{\epsilon\})\times Q^*$ es una \textbf{relación finita de transición}.
+\end{itemize}
+Intuitivamente, la transición:
+\alignformula{
+    \Big( (A_1\ldots A_i), a, B_1 \ldots B_j \Big) \in \Delta
+}
+si el autómata apilador tiene:
+\begin{itemize}
+    \item $A_1\ldots A_i$ en el tope del stack y leyendo $a$,
+\end{itemize}
+entonces:
+\begin{itemize}
+    \item cambia el tope $A_1\ldots A_i$ por $B_1\ldots B_j$.
+\end{itemize}
+
+En este tipo de autómata apilador, \textbf{no hay diferencia} entre estados y alfabeto del stack.
+
+\paragraph*{Definición.} Una \textbf{configuración} de $\ca{D}$ es una tupla
+\alignformula{
+    (q_1\ldots q_k, w) \in (Q^+,\Sigma^*)
+}
+tal que:
+\begin{itemize}
+    \item $q_1\ldots q_k$ es el contenido del stack con $q_1$ el tope del stack.
+    \item $w$ es el contenidod el input.
+\end{itemize}
+Decimos que una configuración:
+\begin{itemize}
+    \item $(q_0,w)$ es \textbf{inicial}.
+    \item $(Q_f,\epsilon)$ es \textbf{final} si $q_f \in F$.
+\end{itemize}
+
+\paragraph*{Definición.} Se define la relación $\vdash_{\ca{D}}$ de \textbf{siguiente-paso} entre configuraciones de $\ca{D}$:
+\alignformula{
+    \left( \gamma_1, w_1\right) \quad \vdash_{\mathcal{D}} \quad\left(\gamma_2, w_2\right)
+}
+si, y sólo si, existe una transición $\left(\alpha, a, \beta\right) \in \Delta \text { y } \gamma \in \Gamma^*$ tal que:
+\begin{itemize}
+    \item $w_1 = a \cdot w_2$
+    \item $\gamma_1 = \alpha\cdot \gamma$
+    \item $\gamma_2 = \beta \cdot \gamma$
+\end{itemize}
+
+Se define $\vdash_{\ca{D}}^*$ como la clausura \textbf{refleja} y \textbf{transitiva} de $\vdash_\ca{D}$.
+
+\paragraph*{Definiciones.} $\ca{D}$ \textbf{acepta} $w$ si, y sólo si, $(q_0,w) \vdash_\ca{D}^* (q_f,\epsilon)$ para algún $q_f \in F$. Además, el \textbf{lenguaje aceptado} por $\ca{D}$ se define como:
+\alignformula{
+    \ca{L}(\ca{D})=\{w\in \Sigma^*\| \ \ca{D} \text{ acepta } w\}
+}
+
+\newpage
+\ejemplo{}{}{
+    $$
+        \ca{D}=(Q,\{a,b\},\Delta,q_0,F)
+    $$
+    \begin{itemize}
+        \item $Q=\{\bot, q_0, q_1, q_f\}$ y $\Delta$:
+              \img{img/cap5/ejemplo4.png}{0.6}
+    \end{itemize}
+    $$
+        \ca{L}(\ca{D})=\{a^nb^n \ |\ n\ge 1\}
+    $$
+}
+
+\teorema{}{}{
+    Para todo autómata apilador $\ca{P}$ existe un autómata apilador alternativo $\ca{D}$, y viceversa, tal que:
+    $$
+        \ca{L}(\ca{P}) = \ca{L}(\ca{D})
+    $$
+}
+El teorema anterior nos dice que podemos usar ambos modelos de manera \textbf{equivalente}.
+
+\subsection{Autómatas apiladores vs gramáticas libres de contexto}
+¿En qué se parecen CFG a PDA?
+\fig{img/cap5/cfg_vs_pda.png}{0.3}{Gramáticas vs Autómatas apiladores}
+
+\teorema{}{}{
+    Todo \textbf{lenguaje libre de contexto} puede ser descrito equivalentemente por:
+    \begin{itemize}
+        \item Una gramática libre de contexto (\textbf{CFG}).
+        \item Un autómata apilador (\textbf{PDA}).
+    \end{itemize}
+}
+
+\subsubsection{Desde CFG a PDA}
+Partimos enunciado un teorema:
+\teorema{}{}{
+    Para toda gramática libre de contexto $\ca{G}$, existe un \textbf{autómata apilador alternativo} $\ca{D}$, tal que:
+    $$
+        \ca{L}(\ca{G}) = \ca{L}(\ca{D})
+    $$
+}
+
+\paragraph*{Construcción $\ca{D}$ desde $\ca{G}$.} Sea $\ca{G}=(V,\Sigma,P,S)$ una CFG. Construimos un PDA alternativo $\ca{D}$ que acepta $\ca{L}(\ca{G})$:
+\alignformula{
+    \ca{D}=\Big( V \cup \Sigma \cup \{q_0,q_f\}, \Sigma, \Delta, q_0, \{q_f\} \Big)
+}
+La relación de transición $\Delta$ se define como:
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lllll}
+        $\Delta$ & $=$ & $\{ (q_0, \epsilon, S \cdot q_f) \}$               & $\cup$ &                     \\
+                 &     & $\{ (X,\epsilon,\gamma)\ | \ X\to \gamma \in P \}$ & $\cup$ & \textbf{(Expandir)} \\
+                 &     & $\{ (a,a,\epsilon) \ | \ a \in \Sigma \}$          &        & \textbf{(Reducir)}  \\
+                 &     &                                                    &        &
+    \end{tabular}
+\end{table}
+\paragraph*{Demostración $\ca{L}(\ca{G}) = \ca{L}(\ca{D})$.} Debemos demostrar dos direcciones: $\ca{L}(\ca{G}) \subseteq \ca{L}(\ca{D})$ y $\ca{L}(\ca{D}) \subseteq \ca{L}(\ca{G})$.
+
+\paragraph*{Demostración $\ca{L}(\ca{G}) \subseteq \ca{L}(\ca{D})$.} Para cada $w \in \ca{L}(\ca{G})$ debemos encontrar una ejecución de aceptación de $\ca{D}$ sobre $w$. ¿Cómo encontramos esta ejecución? La idea es que para cada árbol de derivación $\ca{T}$ de $\ca{G}$ sobre $w$, construimos una ejecución de $\ca{D}$ sobre $w$ que recorre el árbol $\ca{T}$ \textbf{en profundidad} (DFS). Por tanto, debemos usar \textbf{inducción} sobre la altura del árbol $\ca{T}$.
+
+\paragraph*{Hipótesis de inducción.} Para todo árbol de derivación $\ca{T}$ de $\ca{G}$ con \textbf{altura} $h$ tal que:
+\begin{itemize}
+    \item la raíz de $\ca{T}$ es $X$, y
+    \item $\ca{T}$ produce la palabra $w$
+\end{itemize}
+entonces $(X\cdot\gamma, w) \vdash_\ca{D}^* (\gamma, \epsilon)$ para todo $\gamma \in Q^+$.
+
+\paragraph{Caso base: $h=1$.} Si $\ca{T}$ tiene altura $1$, entonces:
+\begin{itemize}
+    \item $\ca{T}$ produce la palabra $w=a$ para algún $a\in \Sigma$ y
+    \item $\ca{T}$ consiste de un nodo $X$ y un hijo $a$ con $X \to a$.
+\end{itemize}
+Entonces para todo $\gamma \in Q^+$:
+$$
+    (X \cdot \gamma, a) \vdash_\mathcal{D} (a \cdot \gamma, a) \vdash_\mathcal{D}(\gamma, \epsilon)
+$$
+es una ejecución de $\ca{D}$ sobre $a$.
+
+\paragraph*{Caso inductivo: $h=n$.} Suponemos que el árbol de derivación $\ca{T}$ de $\ca{G}$ tiene \textbf{altura} $n$ tal que:
+\begin{itemize}
+    \item la raíz de $\ca{T}$ es $X$, y
+    \item $\ca{T}$ produce la palabra $w$.
+\end{itemize}
+\textbf{Sin pérdida de generalidad}, suponga que $\ca{T}$ es de la forma:
+\img{img/cap5/dem1.png}{0.5}
+donde $w = u\cdot v$ y $X\to YZ$. Por HI, se tiene que para todo $\gamma_1, \gamma_2 \in Q^+$:
+$$
+    \begin{aligned}
+        \left(Y \cdot \gamma_1, u\right) & \vdash_{\mathcal{D}}^*\left(\gamma_1, \epsilon\right) \\
+        \left(Z \cdot \gamma_2, v\right) & \vdash_{\mathcal{D}}^*\left(\gamma_2, \epsilon\right)
+    \end{aligned}
+$$
+Para $\gamma \in Q^+$ \textbf{construimos} la siguiente ejecución de $\ca{D}$ sobre $w=uv$:
+$$
+    (X \cdot \gamma, u v) \vdash_{\mathcal{D}}(Y Z \cdot \gamma, u v) \vdash_{\mathcal{D}}^*(Z \cdot \gamma, v) \vdash_{\mathcal{D}}^*(\gamma, \epsilon)
+$$
+\hfill $\blacksquare$
+
+La demostración de $\ca{L}(\ca{D}) \subseteq \ca{L}(\ca{G})$ se deja como ejercicio propuesto al lector.
+
+% \paragraph*{Demostración $\ca{L}(\ca{D}) \subseteq \ca{L}(\ca{G})$.} Para cada $w \in \ca{L}(\ca{D})$ debemos encontrar un árbol de derivación de $\ca{G}$ para $w$. ¿Cómo encontramos un árbol de derivación para $w$? La idea es que si tenemos una ejecución de $\ca{D}$ sobre $w$ de la forma:
+% $$
+%     \left(X \cdot q_f, w\right) \vdash_{\mathcal{D}}^*\left(q_f, \epsilon\right)
+% $$
+% entonces $X \underset{\mathcal{G}}{\stackrel{\star}{\Rightarrow}} w$. Por tanto, podemos usar \textbf{inducción} en la cantidad de pasos de la ejecución.
+
+% \paragraph{Hipótesis de inducción.} Para toda ejecución de $\ca{D}$ sobre $w$ de largo $k$ de la forma:
+% $$
+%     \left(X \cdot q_f, w\right)=\left(\gamma_0, w_0\right) \vdash_\mathcal{D}\left(\gamma_1, w_1\right) \vdash_\mathcal{D} \cdots \vdash_\mathcal{D}\left(\gamma_k, w_k\right)=\left(q_f, \epsilon\right)
+% $$
+% entonces $X \underset{\mathcal{G}}{\stackrel{\star}{\Rightarrow}} w$.
+
+\subsubsection{Desde PDA a CFG}
+Partimos enunciando el siguiente teorema:
+\teorema{}{}{
+    Para todo autómata apilador $\ca{P}$, existe una gramática libre de contexto $\ca{G}$ tal que:
+    $$
+        \ca{L}(\ca{P}) = \ca{L}(\ca{G})
+    $$
+}
+\paragraph{Demostración $\ca{L}(\ca{P}) = \ca{L}(\ca{G})$.} Sea $\ca{P}=(Q,\Sigma,\Gamma,\Delta,q_0,\bot,F)$ un PDA (normal). Los pasos a seguir son:
+\begin{enumerate}
+    \item Convertir $\ca{P}$ a un PDA $\ca{P}'$ con \textbf{UN solo estado}.
+    \item Convertir $\ca{P}'$ a una gramática libre de contexto $\ca{G}$.
+\end{enumerate}
+
+\paragraph{Paso 1.} Sea $\ca{P}=(Q,\Sigma,\Gamma,\Delta,q_0,\bot,F)$ un PDA. Podemos analizar:
+\begin{itemize}
+    \item ¿Por qué NO necesitamos la información de los estados?
+    \item ¿Cómo guardamos la información de los estados en el stack?
+\end{itemize}
+
+Esto conlleva a la siguiente pregunta: \textit{Si el PDA está en el estado $p$ y en el tope del stack hay una $A$, ¿a cuál estado llegaré al remover $A$ del stack?} \medbreak
+
+La solución a esta pregunta es que podemos \textbf{adivinar} (no-determinismo) el estado que vamos a llegar cuando removamos $A$ del stack. \medbreak
+
+\textbf{Sin pérdida de generalidad}, podemos asumir que
+\begin{enumerate}
+    \item Todas las transiciones son de la forma:
+          $$
+              q A \stackrel{c}{\rightarrow} p B_1 B_2 \quad \text{o} \quad q A \stackrel{c}{\rightarrow} p \epsilon
+          $$
+          con $c \in (\Sigma \cup \{e\})$.
+    \item Existe $q_f \in Q$ tal que si $w \in \ca{L}(\ca{P})$ entonces:
+          $$
+              \left(q_0 \bot, w\right) \vdash_{\mathcal{D}}^*\left(q_f, \epsilon\right)
+          $$
+\end{enumerate}
+Estos dos puntos nos aseguran  que siempre llegamos al \textbf{mismo estado} $q_f$. Luego, construimos el autómata apilador $\ca{P}'$ con \textbf{un solo estado}:
+$$
+    \mathcal{P}^{\prime}=\left(\{q\}, \Sigma, \Gamma^{\prime}, \Delta^{\prime},\{q\}, \perp^{\prime},\{q\}\right)
+$$
+\begin{itemize}
+    \item $\Gamma'= Q\times \gamma \times Q$.
+
+          \textit{``$(p, A, q) \in \Gamma'$ si desde $p$ leyendo $A$ en el tope del stack llegamos a $q$ al hacer pop de $A$''.}
+
+    \item $\bot' = (q_0,\bot, q_f)$.
+
+          \textit{``El autómata parte en $q_0$ y al hacer pop de $\bot$ llegará a $q_f$''.}
+
+    \item Si $p A \stackrel{c}{\rightarrow} p^{\prime} B_1 B_2 \in \Delta$ con $c \in (\Sigma \cup \{\epsilon\})$, entonces \textbf{para todo} $p_1,p_2 \in Q$:
+          $$
+              q\left(p, A, p_2\right) \stackrel{c}{\rightarrow} q\left(p^{\prime}, B_1, p_1\right)\left(p_1, B_2, p_2\right) \in \Delta^{\prime}
+          $$
+
+    \item Si $p A \stackrel{c}{\rightarrow} p^{\prime}\in \Delta$ con $c \in (\Sigma \cup \{\epsilon\})$, entonces:
+          $$
+              q\left(p, A, p^{\prime}\right) \stackrel{c}{\rightarrow} q \in \Delta^{\prime}
+          $$
+\end{itemize}
+
+\paragraph{Hipótesis de inducción (en el número de pasos $n$).} Para todo $p,p' \in Q$, $A \in \Gamma$ y $w \in \Sigma^*$ se cumple que:
+$$
+    (p A, w) \vdash_{\mathcal{P}}^n\left(p^{\prime}, \epsilon\right) \quad \text { si, y solo si, } \quad\left(q\left(p, A, p^{\prime}\right), w\right) \vdash_{\mathcal{P}^{\prime}}^n(q, \epsilon)
+$$
+donde $\vdash_\ca{P}^n$ es la relación de \textbf{siguiente-paso} de $\ca{P}$ $n$-veces. \medbreak
+
+Si demostramos esta hipótesis, habremos demostrado que $\ca{L}(\ca{P}) = \ca{L}(\ca{P'})$. ¿Por qué?
+
+\paragraph{Caso base: $n=1$.} Para todo $p,p' \in Q$, y $A \in \Gamma$ se cumple que:
+$$
+    (p A, c) \vdash_\mathcal{P}\left(p^{\prime}, \epsilon\right) \quad \text { si, y solo si, } \quad\left(q\left(p, A, p^{\prime}\right), c\right) \vdash_{\mathcal{P}^{\prime}}(q, \epsilon)
+$$
+para todo $c \in (\Sigma \cup \{\epsilon\})$.
+
+\paragraph{Caso inductivo.} \textbf{Sin pérdida de generalidad}, suponga que $pA \overset{a}{\to} p_1A_1A_2$ y $w=auv$, entonces
+
+$$
+(p A, \underbrace{a u v}_w) \vdash_{\mathcal{P}}^n\left(p^{\prime}, \epsilon\right) \text { ssi }(p A, a u v) \vdash_{\mathcal{P}}\left(p_1 A_1 A_2, u v\right) \vdash_{\mathcal{P}}^i\left(p_2 A_2, v\right) \vdash_{\mathcal{P}}^j\left(p^{\prime}, \epsilon\right)
+$$
+\begin{align*}
+    &\text{ssi }  \left(p_1 A_1, u\right) \vdash_{\mathcal{P}}^i\left(p_2, \epsilon\right) \text { y } \quad\left(p_2 A_2, v\right) \vdash_{\mathcal{P}}^j\left(p^{\prime}, \epsilon\right) \\
+&\text {ssi }  \left(q\left(p_1, A_1, p_2\right), u\right) \vdash_{\mathcal{P}^{\prime}}^i(q, \epsilon) \text { y } \quad\left(q\left(p_2, A_2, p^{\prime}\right), v\right) \vdash_{\mathcal{P}^{\prime}}^j(q, \epsilon) \\
+&\text {ssi }  \left.\left(q\left(p, A, p^{\prime}\right), auv\right) \vdash_{\mathcal{P}}\left(q\left(p_1, A_1, p_2\right)\left(p_2, A_2, q\right)\right), u v\right) \vdash_{\mathcal{P}}^{i+j}(q, \epsilon)
+\end{align*}
+
+\hfill $\blacksquare$
+
+\paragraph{Paso 2.} Sea $\ca{P}=(\{q\},\Sigma,\Gamma,\Delta,q,\bot,\{q\})$ un PDA con \textbf{UN solo estado}. Contruimos la gramática:
+$$
+    \ca{G} = (V, \Sigma, P, \bot)
+$$
+\begin{itemize}
+    \item $V=\gamma$.
+    \item Si $qA \overset{\epsilon}{\to} q\alpha \in \Delta$ entonces $A \to \alpha \in P$
+    \item Si $qA \overset{a}{\to} q\alpha \in \Delta$ entonces $A \to a\alpha \in P$
+\end{itemize}
+La demostración de este paso queda como ejercicio propuesto al lector.
