@@ -140,7 +140,7 @@ Esta definición de autómata apilador es poco común pero trae algunas ventajas
 \end{itemize}
 Intuitivamente, la transición:
 \alignformula{
-    \Big( (A_1\ldots A_i), a, B_1 \ldots B_j \Big) \in \Delta
+    \Big( A_1\ldots A_i, a, B_1 \ldots B_j \Big) \in \Delta
 }
 si el autómata apilador tiene:
 \begin{itemize}
@@ -376,12 +376,12 @@ para todo $c \in (\Sigma \cup \{\epsilon\})$.
 \paragraph{Caso inductivo.} \textbf{Sin pérdida de generalidad}, suponga que $pA \overset{a}{\to} p_1A_1A_2$ y $w=auv$, entonces
 
 $$
-(p A, \underbrace{a u v}_w) \vdash_{\mathcal{P}}^n\left(p^{\prime}, \epsilon\right) \text { ssi }(p A, a u v) \vdash_{\mathcal{P}}\left(p_1 A_1 A_2, u v\right) \vdash_{\mathcal{P}}^i\left(p_2 A_2, v\right) \vdash_{\mathcal{P}}^j\left(p^{\prime}, \epsilon\right)
+    (p A, \underbrace{a u v}_w) \vdash_{\mathcal{P}}^n\left(p^{\prime}, \epsilon\right) \text { ssi }(p A, a u v) \vdash_{\mathcal{P}}\left(p_1 A_1 A_2, u v\right) \vdash_{\mathcal{P}}^i\left(p_2 A_2, v\right) \vdash_{\mathcal{P}}^j\left(p^{\prime}, \epsilon\right)
 $$
 \begin{align*}
-    &\text{ssi }  \left(p_1 A_1, u\right) \vdash_{\mathcal{P}}^i\left(p_2, \epsilon\right) \text { y } \quad\left(p_2 A_2, v\right) \vdash_{\mathcal{P}}^j\left(p^{\prime}, \epsilon\right) \\
-&\text {ssi }  \left(q\left(p_1, A_1, p_2\right), u\right) \vdash_{\mathcal{P}^{\prime}}^i(q, \epsilon) \text { y } \quad\left(q\left(p_2, A_2, p^{\prime}\right), v\right) \vdash_{\mathcal{P}^{\prime}}^j(q, \epsilon) \\
-&\text {ssi }  \left.\left(q\left(p, A, p^{\prime}\right), auv\right) \vdash_{\mathcal{P}}\left(q\left(p_1, A_1, p_2\right)\left(p_2, A_2, q\right)\right), u v\right) \vdash_{\mathcal{P}}^{i+j}(q, \epsilon)
+     & \text{ssi }  \left(p_1 A_1, u\right) \vdash_{\mathcal{P}}^i\left(p_2, \epsilon\right) \text { y } \quad\left(p_2 A_2, v\right) \vdash_{\mathcal{P}}^j\left(p^{\prime}, \epsilon\right)                                  \\
+     & \text {ssi }  \left(q\left(p_1, A_1, p_2\right), u\right) \vdash_{\mathcal{P}^{\prime}}^i(q, \epsilon) \text { y } \quad\left(q\left(p_2, A_2, p^{\prime}\right), v\right) \vdash_{\mathcal{P}^{\prime}}^j(q, \epsilon) \\
+     & \text {ssi }  \left.\left(q\left(p, A, p^{\prime}\right), auv\right) \vdash_{\mathcal{P}}\left(q\left(p_1, A_1, p_2\right)\left(p_2, A_2, q\right)\right), u v\right) \vdash_{\mathcal{P}}^{i+j}(q, \epsilon)
 \end{align*}
 
 \hfill $\blacksquare$

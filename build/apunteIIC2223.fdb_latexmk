@@ -1,9 +1,9 @@
 # Fdb version 3
-["pdflatex"] 1668649739 "c:/Users/crist/GitHub/2022-2/Apuntes Autómatas/apunteIIC2223.tex" "build/apunteIIC2223.pdf" "apunteIIC2223" 1668649743
+["pdflatex"] 1668650521 "c:/Users/crist/GitHub/2022-2/Apuntes Autómatas/apunteIIC2223.tex" "build/apunteIIC2223.pdf" "apunteIIC2223" 1668650524
   "apunteIIC2223.tex" 1668641664 7654 2522982be6240234d9beb2cadda18d1d ""
-  "build/apunteIIC2223.aux" 1668649742 3961 1d4a2e4525ebe050a12966c4b9f2d442 "pdflatex"
-  "build/apunteIIC2223.toc" 1668649742 1212 18cad4c78820766ab86ae73a1302b6ae "pdflatex"
-  "build/cap5.aux" 1668649742 3112 94570b2951bea6c360103c5ee60ff522 "pdflatex"
+  "build/apunteIIC2223.aux" 1668650524 3961 1d4a2e4525ebe050a12966c4b9f2d442 "pdflatex"
+  "build/apunteIIC2223.toc" 1668650524 1212 18cad4c78820766ab86ae73a1302b6ae "pdflatex"
+  "build/cap5.aux" 1668650524 3112 94570b2951bea6c360103c5ee60ff522 "pdflatex"
   "c:/Users/crist/GitHub/2022-2/Apuntes Autómatas/apunteIIC2223.tex" 1668641664 7654 2522982be6240234d9beb2cadda18d1d ""
   "c:/texlive/2022/texmf-dist/fonts/map/fontname/texfonts.map" 1668483657 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2022/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1668482269 1004 54797486969f23fa377b128694d548df ""
@@ -215,7 +215,7 @@
   "c:/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1668487512 4645761 4123604570e0c45243886bbbed7ce94b ""
   "c:/texlive/2022/texmf-var/web2c/pdftex/pdflatex.fmt" 1668487601 3063466 07080ff358842bb0dd36dfcd4ccef040 ""
   "c:/texlive/2022/texmf.cnf" 1668487486 713 e69b156964470283e0530f5060668171 ""
-  "cap5.tex" 1668649738 18940 bbdab5be8882f66b231398a839de8af6 ""
+  "cap5.tex" 1668650520 18989 de3e983b0aebe706608d8ef81085f935 ""
   "img/cap5/cfg_vs_pda.png" 1668640041 38670 d891b49db9d8952634a0c3811b90ecab ""
   "img/cap5/dem1.png" 1668646996 9848 768e82ce224fb6b9f607f5133c7fbf90 ""
   "img/cap5/ejemplo1.png" 1668634984 21431 de167ca289db976d80d5b4d5d8f1761b ""
