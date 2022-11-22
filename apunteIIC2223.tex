@@ -27,6 +27,11 @@
 \usepackage{wrapfig}
 \usepackage{multicol}
 \usepackage{enumitem}
+\usepackage[noend]{algorithm2e}
+\usepackage{setspace}
+\usepackage{stmaryrd}
+
+\definecolor{autogray}{RGB}{235,235,235}
 
 \newtcolorbox{greenbox}{
 enhanced,
@@ -57,7 +62,7 @@ sharp corners
       fonttitle=\bfseries\upshape, 
     %   fontupper=\slshape,
       arc=0mm, 
-      colback=gray!15!white,
+      colback=autogray,
       breakable, 
       enhanced jigsaw,
       colframe=gray!75!black}
@@ -119,10 +124,14 @@ sharp corners
         \end{figure}
 }
 \newcommand{\enlace}[3]{\textcolor{#3}{\textbf{\href{#1}{#2}}}}
-\newcommand{\ejemplo}[3]{\begin{ejem}{#1}{#2}#3\end{ejem}}
-\newcommand{\teorema}[3]{\vspace{0.5em}\begin{theo}{#1}{#2}#3\end{theo}\vspace{0.5em}}
+\newcommand{\ejemplo}[3]{\vspace{5pt}\begin{ejem}{#1}{#2}#3\end{ejem}\vspace{5pt}}
+\newcommand{\teorema}[3]{\vspace{5pt}\begin{theo}{#1}{#2}#3\end{theo}\vspace{5pt}}
 \newcommand{\li}[2]{\displaystyle{\lim_{#1 \to #2}}}
 \newcommand{\ca}[1]{\mathcal{#1}}
+\newcommand{\first}{\texttt{first}}
+\newcommand{\follow}{\texttt{follow}}
+\newcommand{\gll}{\text{LL}}
+\newcommand{\overunder}[3]{\underset{#2}{\overset{#3}{#1}} }
 
 \usepackage{etoolbox}
 \apptocmd{\lim}{\limits}{}{}
@@ -216,12 +225,12 @@ sharp corners
 
 \newpage
 
+\include{cap1.tex}
+\include{cap2.tex}
+\include{cap3.tex}
+\include{cap4.tex}
 \include{cap5.tex}
-% \include{cap2.tex}
-% \include{cap3.tex}
-% \include{cap4.tex}
-% \include{cap5.tex}
-% \include{cap6.tex}
+\include{cap6.tex}
 
 %----------------------------------------------------------------------------------------
 

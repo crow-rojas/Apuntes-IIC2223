@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.11.15)  16 NOV 2022 23:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.11.15)  21 NOV 2022 22:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -758,37 +758,94 @@ Package: enumitem 2019/06/20 v3.9 Customized lists
 \enit@inbox=\box133
 \enit@count@id=\count350
 \enitdp@description=\count351
+) (c:/texlive/2022/texmf-dist/tex/latex/algorithm2e/algorithm2e.sty
+Package: algorithm2e 2017/07/18 v5.2 algorithms environments
+\c@AlgoLine=\count352
+ (c:/texlive/2022/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
 )
-\c@tcb@cnt@ejem=\count352
-\c@tcb@cnt@theo=\count353
+\algocf@hangindent=\skip71
+ (c:/texlive/2022/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
+Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
+\c@checkoddpage=\count353
+) (c:/texlive/2022/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+) (c:/texlive/2022/texmf-dist/tex/latex/relsize/relsize.sty
+Package: relsize 2013/03/29 ver 4.1
+)
+\skiptotal=\skip72
+\skiplinenumber=\skip73
+\skiprule=\skip74
+\skiphlne=\skip75
+\skiptext=\skip76
+\skiplength=\skip77
+\algomargin=\skip78
+\skipalgocfslide=\skip79
+\algowidth=\dimen321
+\inoutsize=\dimen322
+\inoutindent=\dimen323
+\interspacetitleruled=\dimen324
+\interspacealgoruled=\dimen325
+\interspacetitleboxruled=\dimen326
+\algocf@ruledwidth=\skip80
+\algocf@inoutbox=\box134
+\algocf@inputbox=\box135
+\AlCapSkip=\skip81
+\AlCapHSkip=\skip82
+\algoskipindent=\skip83
+\algocf@nlbox=\box136
+\algocf@hangingbox=\box137
+\algocf@untilbox=\box138
+\algocf@skipuntil=\skip84
+\algocf@capbox=\box139
+\algocf@lcaptionbox=\skip85
+\algoheightruledefault=\skip86
+\algoheightrule=\skip87
+\algotitleheightruledefault=\skip88
+\algotitleheightrule=\skip89
+\c@algocfline=\count354
+\c@algocfproc=\count355
+\c@algocf=\count356
+\algocf@algoframe=\box140
+\algocf@algobox=\box141
+) (c:/texlive/2022/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2011/12/19 v6.7a set line spacing
+) (c:/texlive/2022/texmf-dist/tex/latex/stmaryrd/stmaryrd.sty
+Package: stmaryrd 1994/03/03 St Mary's Road symbol package
+\symstmry=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `stmry' in version `bold'
+(Font)                  U/stmry/m/n --> U/stmry/b/n on input line 89.
+)
+\c@tcb@cnt@ejem=\count357
+\c@tcb@cnt@theo=\count358
  (c:/texlive/2022/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-10-26 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count354
-\l__pdf_internal_box=\box134
+\l__color_backend_stack_int=\count359
+\l__pdf_internal_box=\box142
 ) (build/apunteIIC2223.aux
-LaTeX Info: Redefining \. on input line 23.
-LaTeX Info: Redefining \% on input line 23.
- (build/cap5.aux))
+LaTeX Info: Redefining \. on input line 24.
+LaTeX Info: Redefining \% on input line 24.
+ (build/cap1.aux) (build/cap2.aux) (build/cap3.aux) (build/cap4.aux) (build/cap5.aux) (build/cap6.aux))
 \openout1 = `apunteIIC2223.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 130.
-LaTeX Font Info:    ... okay on input line 130.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 139.
+LaTeX Font Info:    ... okay on input line 139.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -824,20 +881,20 @@ LaTeX Font Info:    ... okay on input line 130.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \. on input line 130.
-LaTeX Info: Redefining \% on input line 130.
+LaTeX Info: Redefining \. on input line 139.
+LaTeX Info: Redefining \% on input line 139.
 (c:/texlive/2022/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count355
-\scratchdimen=\dimen321
-\scratchbox=\box135
-\nofMPsegments=\count356
-\nofMParguments=\count357
+\scratchcounter=\count360
+\scratchdimen=\dimen327
+\scratchbox=\box143
+\nofMPsegments=\count361
+\nofMParguments=\count362
 \everyMPshowfont=\toks50
-\MPscratchCnt=\count358
-\MPscratchDim=\dimen322
-\MPnumerator=\count359
-\makeMPintoPDFobject=\count360
+\MPscratchCnt=\count363
+\MPscratchDim=\dimen328
+\MPnumerator=\count364
+\makeMPintoPDFobject=\count365
 \everyMPtoPDFconversion=\toks51
 ) (c:/texlive/2022/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -847,26 +904,28 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             https://www.ctan.org/pkg/pageslts
-(lastpage)             ! on input line 130.
-Package hyperref Info: Link coloring OFF on input line 130.
+(lastpage)             ! on input line 139.
+Package hyperref Info: Link coloring OFF on input line 139.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count361
-LaTeX Font Info:    Trying to load font information for U+msa on input line 171.
+\c@lstlisting=\count366
+LaTeX Font Info:    Trying to load font information for U+msa on input line 180.
  (c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 171.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 180.
  (c:/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+LaTeX Font Info:    Trying to load font information for U+stmry on input line 180.
+ (c:/texlive/2022/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
 <img/logo.png, id=43, 803.0pt x 804.00375pt>
 File: img/logo.png Graphic file (type png)
 <use img/logo.png>
-Package pdftex.def Info: img/logo.png  used on input line 198.
+Package pdftex.def Info: img/logo.png  used on input line 207.
 (pdftex.def)             Requested size: 140.92793pt x 141.09534pt.
  [1
 
@@ -881,88 +940,254 @@ LaTeX Info: Redefining \% on input line 1.
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.217 \newpage
+l.226 \newpage
                [1]
+\openout2 = `cap1.aux'.
+
+ (./cap1.tex)
+LaTeX Info: Redefining \. on input line 228.
+LaTeX Info: Redefining \% on input line 228.
+ [2
+
+]
+\openout2 = `cap2.aux'.
+
+ (./cap2.tex)
+LaTeX Info: Redefining \. on input line 229.
+LaTeX Info: Redefining \% on input line 229.
+ [3
+
+
+
+]
+\openout2 = `cap3.aux'.
+
+ (./cap3.tex)
+LaTeX Info: Redefining \. on input line 230.
+LaTeX Info: Redefining \% on input line 230.
+ [4
+
+
+
+]
+\openout2 = `cap4.aux'.
+
+ (./cap4.tex)
+LaTeX Info: Redefining \. on input line 231.
+LaTeX Info: Redefining \% on input line 231.
+ [5
+
+
+
+]
 \openout2 = `cap5.aux'.
 
  (./cap5.tex
-<img/cap5/idea_automata.png, id=76, 445.665pt x 213.79875pt>
+<img/cap5/idea_automata.png, id=173, 445.665pt x 213.79875pt>
 File: img/cap5/idea_automata.png Graphic file (type png)
 <use img/cap5/idea_automata.png>
 Package pdftex.def Info: img/cap5/idea_automata.png  used on input line 5.
 (pdftex.def)             Requested size: 311.96336pt x 149.6581pt.
-<img/cap5/ejemplo1.png, id=77, 325.71687pt x 152.57pt>
+<img/cap5/ejemplo1.png, id=174, 325.71687pt x 152.57pt>
 File: img/cap5/ejemplo1.png Graphic file (type png)
 <use img/cap5/ejemplo1.png>
 Package pdftex.def Info: img/cap5/ejemplo1.png  used on input line 65.
 (pdftex.def)             Requested size: 211.71344pt x 99.16931pt.
 LaTeX Info: Redefining \. on input line 65.
 LaTeX Info: Redefining \% on input line 65.
- [2
+ [6
+
+
 
  <./img/cap5/idea_automata.png>]
-LaTeX Info: Redefining \. on input line 106.
-LaTeX Info: Redefining \% on input line 106.
- [3 <./img/cap5/ejemplo1.png>]
-<img/cap5/ejemplo2.png, id=107, 475.7775pt x 218.8175pt>
+LaTeX Info: Redefining \. on input line 95.
+LaTeX Info: Redefining \% on input line 95.
+ [7 <./img/cap5/ejemplo1.png>]
+<img/cap5/ejemplo2.png, id=202, 475.7775pt x 218.8175pt>
 File: img/cap5/ejemplo2.png Graphic file (type png)
 <use img/cap5/ejemplo2.png>
 Package pdftex.def Info: img/cap5/ejemplo2.png  used on input line 110.
 (pdftex.def)             Requested size: 333.04196pt x 153.17119pt.
-LaTeX Info: Redefining \. on input line 140.
-LaTeX Info: Redefining \% on input line 140.
- [4 <./img/cap5/ejemplo2.png>]
+LaTeX Info: Redefining \. on input line 133.
+LaTeX Info: Redefining \% on input line 133.
+ [8 <./img/cap5/ejemplo2.png>]
 LaTeX Info: Redefining \. on input line 189.
 LaTeX Info: Redefining \% on input line 189.
- [5]
-<img/cap5/ejemplo4.png, id=127, 426.59375pt x 199.74625pt>
+ [9]
+<img/cap5/ejemplo4.png, id=223, 426.59375pt x 199.74625pt>
 File: img/cap5/ejemplo4.png Graphic file (type png)
 <use img/cap5/ejemplo4.png>
 Package pdftex.def Info: img/cap5/ejemplo4.png  used on input line 201.
 (pdftex.def)             Requested size: 255.95822pt x 119.84866pt.
-<img/cap5/cfg_vs_pda.png, id=128, 698.61pt x 391.4625pt>
+<img/cap5/cfg_vs_pda.png, id=224, 698.61pt x 391.4625pt>
 File: img/cap5/cfg_vs_pda.png Graphic file (type png)
 <use img/cap5/cfg_vs_pda.png>
 Package pdftex.def Info: img/cap5/cfg_vs_pda.png  used on input line 213.
 (pdftex.def)             Requested size: 209.58461pt x 117.43965pt.
 LaTeX Info: Redefining \. on input line 223.
 LaTeX Info: Redefining \% on input line 223.
- [6 <./img/cap5/ejemplo4.png> <./img/cap5/cfg_vs_pda.png>]
-<img/cap5/dem1.png, id=144, 218.31563pt x 166.12062pt>
+ [10 <./img/cap5/ejemplo4.png> <./img/cap5/cfg_vs_pda.png>]
+<img/cap5/dem1.png, id=239, 218.31563pt x 166.12062pt>
 File: img/cap5/dem1.png Graphic file (type png)
 <use img/cap5/dem1.png>
 Package pdftex.def Info: img/cap5/dem1.png  used on input line 274.
 (pdftex.def)             Requested size: 109.15753pt x 83.0601pt.
 LaTeX Info: Redefining \. on input line 275.
 LaTeX Info: Redefining \% on input line 275.
- [7]
+ [11]
 LaTeX Info: Redefining \. on input line 336.
 LaTeX Info: Redefining \% on input line 336.
- [8 <./img/cap5/dem1.png>])
-LaTeX Info: Redefining \. on input line 219.
-LaTeX Info: Redefining \% on input line 219.
- [9]
-LaTeX Info: Redefining \. on input line 219.
-LaTeX Info: Redefining \% on input line 219.
- [10] 
+ [12 <./img/cap5/dem1.png>]
+LaTeX Info: Redefining \. on input line 400.
+LaTeX Info: Redefining \% on input line 400.
+ [13]
+<img/cap5/parsing.png, id=277, 845.40843pt x 626.34pt>
+File: img/cap5/parsing.png Graphic file (type png)
+<use img/cap5/parsing.png>
+Package pdftex.def Info: img/cap5/parsing.png  used on input line 403.
+(pdftex.def)             Requested size: 253.62448pt x 187.90344pt.
+LaTeX Info: Redefining \. on input line 417.
+LaTeX Info: Redefining \% on input line 417.
+ [14 <./img/cap5/parsing.png>]
+<img/cap5/ejemplo5.png, id=290, 326.72063pt x 211.79124pt>
+File: img/cap5/ejemplo5.png Graphic file (type png)
+<use img/cap5/ejemplo5.png>
+Package pdftex.def Info: img/cap5/ejemplo5.png  used on input line 432.
+(pdftex.def)             Requested size: 163.35991pt x 105.89536pt.
+LaTeX Info: Redefining \. on input line 468.
+LaTeX Info: Redefining \% on input line 468.
+ [15 <./img/cap5/ejemplo5.png>]
+LaTeX Info: Redefining \. on input line 507.
+LaTeX Info: Redefining \% on input line 507.
+ [16]
+<img/cap5/first_follow.png, id=311, 432.61626pt x 246.9225pt>
+File: img/cap5/first_follow.png Graphic file (type png)
+<use img/cap5/first_follow.png>
+Package pdftex.def Info: img/cap5/first_follow.png  used on input line 550.
+(pdftex.def)             Requested size: 216.3076pt x 123.46094pt.
+LaTeX Info: Redefining \. on input line 551.
+LaTeX Info: Redefining \% on input line 551.
+ [17]
+LaTeX Info: Redefining \. on input line 592.
+LaTeX Info: Redefining \% on input line 592.
+ [18 <./img/cap5/first_follow.png>]
+LaTeX Info: Redefining \. on input line 653.
+LaTeX Info: Redefining \% on input line 653.
+ [19]
+LaTeX Info: Redefining \. on input line 696.
+LaTeX Info: Redefining \% on input line 696.
+ [20]
+<img/cap5/ejemplo11.png, id=359, 724.20563pt x 249.93375pt>
+File: img/cap5/ejemplo11.png Graphic file (type png)
+<use img/cap5/ejemplo11.png>
+Package pdftex.def Info: img/cap5/ejemplo11.png  used on input line 728.
+(pdftex.def)             Requested size: 289.67711pt x 99.97173pt.
+<img/cap5/ejemplo12.png, id=360, 465.74pt x 203.25937pt>
+File: img/cap5/ejemplo12.png Graphic file (type png)
+<use img/cap5/ejemplo12.png>
+Package pdftex.def Info: img/cap5/ejemplo12.png  used on input line 737.
+(pdftex.def)             Requested size: 186.2927pt x 81.30229pt.
+LaTeX Info: Redefining \. on input line 737.
+LaTeX Info: Redefining \% on input line 737.
+ [21 <./img/cap5/ejemplo11.png>]
+<img/cap5/ejemplo13.png, id=373, 795.47188pt x 326.72063pt>
+File: img/cap5/ejemplo13.png Graphic file (type png)
+<use img/cap5/ejemplo13.png>
+Package pdftex.def Info: img/cap5/ejemplo13.png  used on input line 753.
+(pdftex.def)             Requested size: 238.6434pt x 98.01694pt.
+<img/cap5/ejemplo13_1.png, id=374, 567.62062pt x 168.63pt>
+File: img/cap5/ejemplo13_1.png Graphic file (type png)
+<use img/cap5/ejemplo13_1.png>
+Package pdftex.def Info: img/cap5/ejemplo13_1.png  used on input line 753.
+(pdftex.def)             Requested size: 170.28749pt x 50.58939pt.
+<img/cap5/ejemplo14.png, id=375, 784.9325pt x 274.02374pt>
+File: img/cap5/ejemplo14.png Graphic file (type png)
+<use img/cap5/ejemplo14.png>
+Package pdftex.def Info: img/cap5/ejemplo14.png  used on input line 757.
+(pdftex.def)             Requested size: 274.73048pt x 95.90974pt.
+<img/cap5/ejemplo15.png, id=376, 522.95375pt x 159.59625pt>
+File: img/cap5/ejemplo15.png Graphic file (type png)
+<use img/cap5/ejemplo15.png>
+Package pdftex.def Info: img/cap5/ejemplo15.png  used on input line 764.
+(pdftex.def)             Requested size: 183.03654pt x 55.85951pt.
+LaTeX Info: Redefining \. on input line 764.
+LaTeX Info: Redefining \% on input line 764.
+ [22 <./img/cap5/ejemplo12.png> <./img/cap5/ejemplo13.png> <./img/cap5/ejemplo13_1.png> <./img/cap5/ejemplo14.png>]
+<img/cap5/ejemplo16.png, id=392, 770.88pt x 256.96pt>
+File: img/cap5/ejemplo16.png Graphic file (type png)
+<use img/cap5/ejemplo16.png>
+Package pdftex.def Info: img/cap5/ejemplo16.png  used on input line 771.
+(pdftex.def)             Requested size: 269.81204pt x 89.93733pt.
+LaTeX Info: Redefining \. on input line 794.
+LaTeX Info: Redefining \% on input line 794.
+ [23 <./img/cap5/ejemplo15.png> <./img/cap5/ejemplo16.png>]
+LaTeX Info: Redefining \. on input line 847.
+LaTeX Info: Redefining \% on input line 847.
+ [24]
+LaTeX Info: Redefining \. on input line 906.
+LaTeX Info: Redefining \% on input line 906.
+ [25]
+<img/cap5/ejemplo19.png, id=427, 724.20563pt x 168.12813pt>
+File: img/cap5/ejemplo19.png Graphic file (type png)
+<use img/cap5/ejemplo19.png>
+Package pdftex.def Info: img/cap5/ejemplo19.png  used on input line 938.
+(pdftex.def)             Requested size: 289.67711pt x 67.25005pt.
+LaTeX Info: Redefining \. on input line 952.
+LaTeX Info: Redefining \% on input line 952.
+ [26 <./img/cap5/ejemplo19.png>]
+LaTeX Info: Redefining \. on input line 1029.
+LaTeX Info: Redefining \% on input line 1029.
+ [27]
+<img/cap5/parsing_llk.png, id=449, 560.0925pt x 438.63875pt>
+File: img/cap5/parsing_llk.png Graphic file (type png)
+<use img/cap5/parsing_llk.png>
+Package pdftex.def Info: img/cap5/parsing_llk.png  used on input line 1034.
+(pdftex.def)             Requested size: 224.03302pt x 175.45238pt.
+LaTeX Info: Redefining \. on input line 1045.
+LaTeX Info: Redefining \% on input line 1045.
+ [28 <./img/cap5/parsing_llk.png>]
+LaTeX Info: Redefining \. on input line 1100.
+LaTeX Info: Redefining \% on input line 1100.
+ [29]
+<img/cap5/ejemplo21.png, id=471, 708.6475pt x 472.76625pt>
+File: img/cap5/ejemplo21.png Graphic file (type png)
+<use img/cap5/ejemplo21.png>
+Package pdftex.def Info: img/cap5/ejemplo21.png  used on input line 1156.
+(pdftex.def)             Requested size: 354.32289pt x 236.38254pt.
+LaTeX Info: Redefining \. on input line 1156.
+LaTeX Info: Redefining \% on input line 1156.
+ [30])
+LaTeX Info: Redefining \. on input line 232.
+LaTeX Info: Redefining \% on input line 232.
+ [31 <./img/cap5/ejemplo21.png>]
+\openout2 = `cap6.aux'.
+
+ (./cap6.tex)
+LaTeX Info: Redefining \. on input line 233.
+LaTeX Info: Redefining \% on input line 233.
+ [32
+
+
+
+] 
 AED: lastpage setting LastPage
 (build/apunteIIC2223.aux
-LaTeX Info: Redefining \. on input line 23.
-LaTeX Info: Redefining \% on input line 23.
- (build/cap5.aux)) ) 
+LaTeX Info: Redefining \. on input line 24.
+LaTeX Info: Redefining \% on input line 24.
+ (build/cap1.aux) (build/cap2.aux) (build/cap3.aux) (build/cap4.aux) (build/cap5.aux) (build/cap6.aux)) ) 
 Here is how much of TeX's memory you used:
- 32251 strings out of 474971
- 635197 string characters out of 5780114
- 1030221 words of memory out of 5000000
- 53176 multiletter control sequences out of 15000+600000
- 476307 words of font info for 53 fonts, out of 8000000 for 9000
+ 34168 strings out of 474971
+ 666997 string characters out of 5780114
+ 1063050 words of memory out of 5000000
+ 54846 multiletter control sequences out of 15000+600000
+ 484883 words of font info for 88 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 90i,19n,99p,811b,958s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxsl10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
-Output written on build/apunteIIC2223.pdf (11 pages, 627500 bytes).
+ 90i,23n,99p,812b,967s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxsl10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsltt10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2022/texmf-dist/fonts/type1/public/stmaryrd/stmary10.pfb>
+Output written on build/apunteIIC2223.pdf (33 pages, 1209259 bytes).
 PDF statistics:
- 302 PDF objects out of 1000 (max. 8388607)
- 212 compressed objects within 3 object streams
- 60 named destinations out of 1000 (max. 500000)
- 256 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 792 PDF objects out of 1000 (max. 8388607)
+ 634 compressed objects within 7 object streams
+ 210 named destinations out of 1000 (max. 500000)
+ 617 words of extra memory for PDF output out of 10000 (max. 10000000)
 
