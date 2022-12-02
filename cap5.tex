@@ -495,7 +495,7 @@ Definimos la $k$-\textbf{concatenación} $\odot_k$ entre strings $u,v \in \Sigma
 
 Extendemos estas operaciones para lenguajes $L,L_1,L_2 \subseteq \Sigma^*$ como:
 \alignformula{
-    L_k &=\left\{\left.w\right|_k \mid w \in L\right\} \\
+    L|_k &=\left\{\left.w\right|_k \mid w \in L\right\} \\
     L_1 \odot_k L_2 &=\left\{w_1 \odot_k w_2 \mid w_1 \in L_1 \text{ y } w_2 \in L_2\right\}
 }
 
@@ -718,16 +718,13 @@ Sea $\ca{G}=(V,\Sigma,P,S)$ una gramática libre de contexto y $k \ge 1$.
 entonces se cumple que $\gamma_1 = \gamma_2$. \medbreak
 
 Notar que la elección de $Y\to \gamma$ depende de $Y$, $v|_k$ y $u$.
-\ejemplo{Gramática $\gll(1)$}{}{
+\ejemplo{Gramáticas $\gll(1)$}{}{
     \img{img/cap5/ejemplo11.png}{0.4}
     \begin{itemize}
         \item Si $v_1|_1 = v_2|_1 = n$, entonces $\gamma_1 = \gamma_2 = n$.
         \item Si $v_1|_1 = v_2|_1 = ($, entonces $\gamma_1 = \gamma_2 = (S)$.
     \end{itemize}
     En ambos casos, tenemos que $\gamma_1 = \gamma_2$ y $\ca{G}_1$ es una gramática $\gll(1)$.
-}
-
-\ejemplo{Gramática $\gll(1)$}{}{
     \img{img/cap5/ejemplo12.png}{0.4}
     \begin{itemize}
         \item Si $v_1|_1 = v_2|_1 = ($ o `$n$', entonces $\gamma_1 = \gamma_2 = SX$.
@@ -735,6 +732,10 @@ Notar que la elección de $Y\to \gamma$ depende de $Y$, $v|_k$ y $u$.
     \end{itemize}
     Por lo tanto, tenemos que $\gamma_1 = \gamma_2$ y $\ca{G}_2$ es \textbf{también} una gramática $\gll(1)$.
 }
+
+% \ejemplo{Gramática $\gll(1)$}{}{
+
+% }
 
 \ejemplo{Gramática NO $\gll(1)$ pero si $\gll(2)$}{}{
     \begin{figure}[H]
@@ -883,273 +884,273 @@ $(\Leftarrow)$ Por contrapositivo (de nuevo), supongamos que $\ca{G}$ no es $\gl
 
     ¿Es esta gramática del tipo $\gll(1)$? Podemos ver que $\first_1(\gamma_1 \beta) = \{c\}$ y $\first_1(\gamma_2 \beta) = \{c\}$, con $\gamma_1 = Xa$, $\gamma_2 = Xb$ y $\beta = \epsilon$. Por lo tanto su intersección no es vacía y entonces $\ca{G}$ no es $\gll(1)$. ¿Podemos establecer una solución para este problema?
 
-    \paragraph{Factorización.} En general, si tenemos una regla:
-    $$
-        X \to \gamma\alpha_1 \mid \gamma \alpha_2
-    $$
-    siempre podemos ``\textbf{factorizar}'' la regla manteniendo la semántica, como:
-    \begin{align*}
-        X  & \to \gamma X'              \\
-        X' & \to \alpha_1 \mid \alpha_2
-    \end{align*}
+\paragraph{Factorización.} En general, si tenemos una regla:
+$$
+    X \to \gamma\alpha_1 \mid \gamma \alpha_2
+$$
+siempre podemos ``\textbf{factorizar}'' la regla manteniendo la semántica, como:
+\begin{align*}
+    X  & \to \gamma X'              \\
+    X' & \to \alpha_1 \mid \alpha_2
+\end{align*}
 
-    Considere ahora la siguiente gramática $\ca{G}$:
-    $$
-        E \to E * E \mid n
-    $$
+Considere ahora la siguiente gramática $\ca{G}$:
+$$
+    E \to E * E \mid n
+$$
 
-    ¿Es esta gramática del tipo $\gll(1)$? ¿$\gll(k)$? Pues no es ninguna. El problema con esta gramática es su recursividad, en específico, por la izquierda.
+¿Es esta gramática del tipo $\gll(1)$? ¿$\gll(k)$? Pues no es ninguna. El problema con esta gramática es su recursividad, en específico, por la izquierda.
 
-    \paragraph{Definición.} Una gramática $\ca{G}$ se dice \textbf{recursiva por la izquirrda} si existe $X \in V$ tal que:
-    \alignformula{
-        X \overunder{\Rightarrow}{}{+} X\gamma \quad \text{para algún }\gamma \in (V \cup \Sigma)^*
-    }
+\paragraph{Definición.} Una gramática $\ca{G}$ se dice \textbf{recursiva por la izquirrda} si existe $X \in V$ tal que:
+\alignformula{
+    X \overunder{\Rightarrow}{}{+} X\gamma \quad \text{para algún }\gamma \in (V \cup \Sigma)^*
+}
 
-    \teorema{}{}{
-        Si $\ca{G}=(V,\Sigma,P,S)$ es una gramática reducida y recursiva por la izquierda, entonces $\ca{G}$ NO es $\gll(k)$ para todo $k \ge 1$.
-    }
-    \paragraph{Demostración.} Por simplicidad, suponga que $X \to X\beta \in P$ y $X \to w \in P$. \medbreak
+\teorema{}{}{
+    Si $\ca{G}=(V,\Sigma,P,S)$ es una gramática reducida y recursiva por la izquierda, entonces $\ca{G}$ NO es $\gll(k)$ para todo $k \ge 1$.
+}
+\paragraph{Demostración.} Por simplicidad, suponga que $X \to X\beta \in P$ y $X \to w \in P$. \medbreak
 
-    Como $\ca{G}$ es reducida, entonces existe una derivación $S \overunder{\Rightarrow}{\mathrm{lm}}{*} uX\gamma$:
-    $$
-        S \ \overunder{\Rightarrow}{\mathrm{lm}}{*} \ uX\gamma \ \overunder{\Rightarrow}{\mathrm{lm}}{} \ \overset{n\text{-veces}}{\cdots}\ \overunder{\Rightarrow}{\mathrm{lm}}{} \ uX \beta^n\gamma
-    $$
-    Por \textbf{contradicción}, suponga que $\ca{G}$ es $\gll(k)$. Por lo tanto:
-    $$
-        \first_k(X\beta^{n+1}\gamma) \ \cap \ \first_k(w \beta^n \gamma) = \varnothing
-    $$
-    Suponga que $\beta \overunder{\Rightarrow}{}{*} v \in \Sigma^*$ y $\gamma \overunder{\Rightarrow}{}{*} v' \in \Sigma^*$. Con $n = k$, tendremos que
-    $$
-        (wv^k v')|_k \quad \in \quad \first_k(X\beta^{k+1}\gamma) \ \cap \ \first_k(w \beta^k\gamma) \quad \rightarrow\leftarrow \text{ (¡contradicción! el conjunto no es vacío)}
-    $$
-    \hfill $\blacksquare$ \bigbreak
+Como $\ca{G}$ es reducida, entonces existe una derivación $S \overunder{\Rightarrow}{\mathrm{lm}}{*} uX\gamma$:
+$$
+    S \ \overunder{\Rightarrow}{\mathrm{lm}}{*} \ uX\gamma \ \overunder{\Rightarrow}{\mathrm{lm}}{} \ \overset{n\text{-veces}}{\cdots}\ \overunder{\Rightarrow}{\mathrm{lm}}{} \ uX \beta^n\gamma
+$$
+Por \textbf{contradicción}, suponga que $\ca{G}$ es $\gll(k)$. Por lo tanto:
+$$
+    \first_k(X\beta^{n+1}\gamma) \ \cap \ \first_k(w \beta^n \gamma) = \varnothing
+$$
+Suponga que $\beta \overunder{\Rightarrow}{}{*} v \in \Sigma^*$ y $\gamma \overunder{\Rightarrow}{}{*} v' \in \Sigma^*$. Con $n = k$, tendremos que
+$$
+    (wv^k v')|_k \quad \in \quad \first_k(X\beta^{k+1}\gamma) \ \cap \ \first_k(w \beta^k\gamma) \quad \rightarrow\leftarrow \text{ (¡contradicción! el conjunto no es vacío)}
+$$
+\hfill $\blacksquare$ \bigbreak
 
-    Hablemos de recursión \textbf{inmediata} por la izquierda. Suponga que existe $X \in V$ tal que:
+Hablemos de recursión \textbf{inmediata} por la izquierda. Suponga que existe $X \in V$ tal que:
+$$
+    X \to X \alpha_1 \mid \cdots \mid X \alpha_m \mid \beta_1 \mid \cdots \mid \beta_n
+$$
+¿Cómo podemos \textbf{eliminar} la recursión inmediata por la izquierda? Consideramos la misma gramática pero \textbf{cambiando} las reglas de $X$ por:
+\begin{align*}
+    X  & \to \beta_1 X' \mid \cdots \mid \beta_n X'                 \\
+    X' & \to \alpha_1 X' \mid \cdots \mid \alpha_m X' \mid \epsilon
+\end{align*}
+\ejemplo{Eliminando recursión inmediata}{}{
+    \img{img/cap5/ejemplo19.png}{0.4}
+}
+
+\teorema{}{}{
+    Sea $\ca{G}$ una gramática tal que existe $X \in V$:
     $$
         X \to X \alpha_1 \mid \cdots \mid X \alpha_m \mid \beta_1 \mid \cdots \mid \beta_n
     $$
-    ¿Cómo podemos \textbf{eliminar} la recursión inmediata por la izquierda? Consideramos la misma gramática pero \textbf{cambiando} las reglas de $X$ por:
+    Sea $\ca{G}'$ la misma gramática $\ca{G}$ pero cambiando las reglas de $X$ por:
     \begin{align*}
         X  & \to \beta_1 X' \mid \cdots \mid \beta_n X'                 \\
         X' & \to \alpha_1 X' \mid \cdots \mid \alpha_m X' \mid \epsilon
     \end{align*}
-    \ejemplo{Eliminando recursión inmediata}{}{
-        \img{img/cap5/ejemplo19.png}{0.4}
-    }
+    Entonces $\ca{L}(\ca{G})=\ca{L}(\ca{G}')$
+}
 
-    \teorema{}{}{
-        Sea $\ca{G}$ una gramática tal que existe $X \in V$:
-        $$
-            X \to X \alpha_1 \mid \cdots \mid X \alpha_m \mid \beta_1 \mid \cdots \mid \beta_n
-        $$
-        Sea $\ca{G}'$ la misma gramática $\ca{G}$ pero cambiando las reglas de $X$ por:
-        \begin{align*}
-            X  & \to \beta_1 X' \mid \cdots \mid \beta_n X'                 \\
-            X' & \to \alpha_1 X' \mid \cdots \mid \alpha_m X' \mid \epsilon
-        \end{align*}
-        Entonces $\ca{L}(\ca{G})=\ca{L}(\ca{G}')$
-    }
+\paragraph{Demostración.} Una derivación por la izquierda de $X$ en $\ca{G}$:
+$$
+    X \ \underset{\mathrm{lm}}{\Rightarrow} \ X \alpha_{i_1} \ \underset{\mathrm{lm}}{\Rightarrow} \ X \alpha_{i_2} \alpha_{i_1} \ \underset{\mathrm{lm}}{\Rightarrow} \ \cdots \ \underset{\mathrm{lm}}{\Rightarrow}\ X \alpha_{i_p} \alpha_{i_{p-1}} \cdots \alpha_{i_1} \ \underset{\mathrm{lm}}{\Rightarrow} \ \beta_j \alpha_{i_p} \alpha_{i_{p-1}} \cdots \alpha_{i_1}
+$$
+Una derivación por la derecha de $X$ en $\ca{G}'$ \textbf{equivalente}:
+$$
+    X \ \underset{\mathrm{rm}}{\Rightarrow} \ \beta_j X' \ \underset{\mathrm{rm}}{\Rightarrow} \ \beta_j \alpha_{i_p} X' \ \underset{\mathrm{rm}}{\Rightarrow} \ \cdots \ \underset{\mathrm{rm}}{\Rightarrow}\ \beta_j \alpha_{i_p} \cdots \alpha_{i_2} \alpha_{i_1} X' \ \underset{\mathrm{rm}}{\Rightarrow} \ \beta_j \alpha_{i_p} \alpha_{i_{p-1}} \cdots \alpha_{i_1}
+$$
+\hfill $\blacksquare$ \bigbreak
 
-    \paragraph{Demostración.} Una derivación por la izquierda de $X$ en $\ca{G}$:
-    $$
-        X \ \underset{\mathrm{lm}}{\Rightarrow} \ X \alpha_{i_1} \ \underset{\mathrm{lm}}{\Rightarrow} \ X \alpha_{i_2} \alpha_{i_1} \ \underset{\mathrm{lm}}{\Rightarrow} \ \cdots \ \underset{\mathrm{lm}}{\Rightarrow}\ X \alpha_{i_p} \alpha_{i_{p-1}} \cdots \alpha_{i_1} \ \underset{\mathrm{lm}}{\Rightarrow} \ \beta_j \alpha_{i_p} \alpha_{i_{p-1}} \cdots \alpha_{i_1}
-    $$
-    Una derivación por la derecha de $X$ en $\ca{G}'$ \textbf{equivalente}:
-    $$
-        X \ \underset{\mathrm{rm}}{\Rightarrow} \ \beta_j X' \ \underset{\mathrm{rm}}{\Rightarrow} \ \beta_j \alpha_{i_p} X' \ \underset{\mathrm{rm}}{\Rightarrow} \ \cdots \ \underset{\mathrm{rm}}{\Rightarrow}\ \beta_j \alpha_{i_p} \cdots \alpha_{i_2} \alpha_{i_1} X' \ \underset{\mathrm{rm}}{\Rightarrow} \ \beta_j \alpha_{i_p} \alpha_{i_{p-1}} \cdots \alpha_{i_1}
-    $$
-    \hfill $\blacksquare$ \bigbreak
+Ahora, ¿qué pasa si la recursión por la izquierda es \textbf{no-inmediata}? Considere la siguiente gramática \textbf{recursiva por la izquierda}:
+\begin{align*}
+    S & \to Xa \mid b \\
+    X & \to Yc        \\
+    Y & \to Xd \mid e
+\end{align*}
 
-    Ahora, ¿qué pasa si la recursión por la izquierda es \textbf{no-inmediata}? Considere la siguiente gramática \textbf{recursiva por la izquierda}:
-    \begin{align*}
-        S & \to Xa \mid b \\
-        X & \to Yc        \\
-        Y & \to Xd \mid e
-    \end{align*}
+¿Cómo eliminamos la recursión por la izquierda no-inmediata?
+\paragraph{Estrategia.} Dado $V = \{X_1,\ldots,X_n\}$, removemos la recursión inductivamente en $n$, tal que, en cada paso $i$ de la inducción, se cumplira que para todo $i,j\leq n$:
+$$
+    \text{si } X_i \to X_j \alpha, \text{ entonces } i < j
+$$
 
-    ¿Cómo eliminamos la recursión por la izquierda no-inmediata?
-    \paragraph{Estrategia.} Dado $V = \{X_1,\ldots,X_n\}$, removemos la recursión inductivamente en $n$, tal que, en cada paso $i$ de la inducción, se cumplira que para todo $i,j\leq n$:
-    $$
-        \text{si } X_i \to X_j \alpha, \text{ entonces } i < j
-    $$
+\vspace{-15pt}
+\begin{algorithm}[hbt!]
+    % \caption*{An algorithm with caption}\label{alg:two}
+    \setstretch{1.25}
+    \DontPrintSemicolon
+    \SetKwFunction{FEliminarRecursion}{EliminarRecursion}
+    \SetKwProg{Fn}{Function}{:}{}
+    \SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+    \Input{Gramática $\ca{G}=(V,\Sigma,P,S)$ y $V=\{X_1,\ldots,X_n\}$}
+    \Output{Gramática $\ca{G}$ sin recursión por la izquierda}
+    \Fn{\FEliminarRecursion{$\ca{G}$}}{
+        $P':=P$
 
-    \vspace{-15pt}
-    \begin{algorithm}[hbt!]
-        % \caption*{An algorithm with caption}\label{alg:two}
-        \setstretch{1.25}
-        \DontPrintSemicolon
-        \SetKwFunction{FEliminarRecursion}{EliminarRecursion}
-        \SetKwProg{Fn}{Function}{:}{}
-        \SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
-        \Input{Gramática $\ca{G}=(V,\Sigma,P,S)$ y $V=\{X_1,\ldots,X_n\}$}
-        \Output{Gramática $\ca{G}$ sin recursión por la izquierda}
-        \Fn{\FEliminarRecursion{$\ca{G}$}}{
-            $P':=P$
-
-            \For{$i=1$ \KwTo $n$}{
-                \For{$j=1$ \KwTo $i-1$}{
-                    \ForEach{$X_i \to X_j \gamma \in P'$}{
-                        \ForEach{$X_j \to \alpha \in P'$}{
-                            $P' := P' \cup \{X_i \to \alpha\gamma\}$
-                        }
-                        $P' := P' - \{X_i \to X_j \gamma\}$
+        \For{$i=1$ \KwTo $n$}{
+            \For{$j=1$ \KwTo $i-1$}{
+                \ForEach{$X_i \to X_j \gamma \in P'$}{
+                    \ForEach{$X_j \to \alpha \in P'$}{
+                        $P' := P' \cup \{X_i \to \alpha\gamma\}$
                     }
+                    $P' := P' - \{X_i \to X_j \gamma\}$
                 }
-                Remover recursión inmediata para $X_i$ en $P'$ (si existe)
             }
-            $V' := \{X_1,\ldots,X_n\} \cup \{X_1',\ldots,X_n'\}$
-
-            \Return{$(V',\Sigma,P',S)$}
+            Remover recursión inmediata para $X_i$ en $P'$ (si existe)
         }
-    \end{algorithm}
+        $V' := \{X_1,\ldots,X_n\} \cup \{X_1',\ldots,X_n'\}$
 
-    Queda como ejercicio propuesto al lector demostrar la correctitud del algoritmo.
-
-    \ejemplo{Eliminando recursión}{}{
-        \begin{align*}
-            E & \to E + T \mid T \\
-            T & \to T * F \mid F \\
-            F & \to (E) \mid n
-        \end{align*}
-        Eliminando la \textbf{recursión inmediata} de $E$:
-        \begin{align*}
-            E  & \to TE'                \\
-            E' & \to +TE' \mid \epsilon \\
-            T  & \to T * F \mid F       \\
-            F  & \to (E) \mid n
-        \end{align*}
-        Eliminando la \textbf{recusión inmediata} de $T$:
-        \begin{align*}
-            E  & \to TE'                \\
-            E' & \to +TE' \mid \epsilon \\
-            T  & \to FT'                \\
-            T' & \to *FT' \mid \epsilon \\
-            F  & \to (E) \mid n
-        \end{align*}
+        \Return{$(V',\Sigma,P',S)$}
     }
-    \vspace{-10pt}
-    \paragraph{Conclusión.} Es \textbf{posible eliminar} la recursividad por la izquierda, pero esto \textbf{NO asegura} que el resultado sea una gramática $\gll(k)$ para algún $k$.
+\end{algorithm}
 
-    \subsubsection[Parsing de LL(k)]{Parsing de $\gll(k)$}
-    \fig{img/cap5/parsing_llk.png}{0.4}{Máquina de parsing}
+Queda como ejercicio propuesto al lector demostrar la correctitud del algoritmo.
 
-    \paragraph{Definición.} Sea $\Sigma$ un alfabeto finito. Se definen los siguientes conjuntos de palabras:
-    \begin{itemize}
-        \item $\dot{\Sigma}= \Sigma^* \times \Sigma^*$
-        \item $\dot{\Sigma}^{\le k} = \{ (u,v) \in \dot{\Sigma} \mid |uv| \le k \}$
-        \item $\dot{\Sigma}_{\#}^{\le k} = \{ (u,v) \in \dot{\Sigma} \mid |uv| \le k \} \cup \{ (u,v\#) \mid (u,v) \in \dot{\Sigma} \mid |uv| < k \}$
-    \end{itemize}
+\ejemplo{Eliminando recursión}{}{
+    \begin{align*}
+        E & \to E + T \mid T \\
+        T & \to T * F \mid F \\
+        F & \to (E) \mid n
+    \end{align*}
+    Eliminando la \textbf{recursión inmediata} de $E$:
+    \begin{align*}
+        E  & \to TE'                \\
+        E' & \to +TE' \mid \epsilon \\
+        T  & \to T * F \mid F       \\
+        F  & \to (E) \mid n
+    \end{align*}
+    Eliminando la \textbf{recusión inmediata} de $T$:
+    \begin{align*}
+        E  & \to TE'                \\
+        E' & \to +TE' \mid \epsilon \\
+        T  & \to FT'                \\
+        T' & \to *FT' \mid \epsilon \\
+        F  & \to (E) \mid n
+    \end{align*}
+}
+\vspace{-10pt}
+\paragraph{Conclusión.} Es \textbf{posible eliminar} la recursividad por la izquierda, pero esto \textbf{NO asegura} que el resultado sea una gramática $\gll(k)$ para algún $k$.
 
-    \paragraph{Notación.} En vez de usar $(u,v) \in \dot{\Sigma}_{\#}^{\le k}$, escribiremos $u.v \in \dot{\Sigma}_{\#}^{\le k}$. El par $\epsilon.\epsilon$ lo denotaremos solamente por $\epsilon$.
+\subsubsection[Parsing de LL(k)]{Parsing de $\gll(k)$}
+\fig{img/cap5/parsing_llk.png}{0.4}{Máquina de parsing}
 
-    \paragraph{Definición.} Un transductor apilador con $k$-lookahead ($k$-PDT) es una tupla:
-    \alignformula{
-        \ca{T} = (Q, \Sigma, \Omega, \Delta, q_0, F)
-    }
+\paragraph{Definición.} Sea $\Sigma$ un alfabeto finito. Se definen los siguientes conjuntos de palabras:
+\begin{itemize}
+    \item $\dot{\Sigma}= \Sigma^* \times \Sigma^*$
+    \item $\dot{\Sigma}^{\le k} = \{ (u,v) \in \dot{\Sigma} \mid |uv| \le k \}$
+    \item $\dot{\Sigma}_{\#}^{\le k} = \{ (u,v) \in \dot{\Sigma} \mid |uv| \le k \} \cup \{ (u,v\#) \mid (u,v) \in \dot{\Sigma} \mid |uv| < k \}$
+\end{itemize}
 
-    \begin{itemize}
-        \item $Q$ es un conjunto finito de estados.
-        \item $\Sigma$ es el alfabeto de input.
-        \item $\Omega$ es el alfabeto de output.
-        \item $\Delta \subseteq Q^{+} \times \dot{\Sigma}_{\#}^{\leq k} \times(\Omega \cup\{\epsilon\}) \times Q^*$ es la relación de transición.
-        \item $q_0 \in Q$ es un conjunto de estados iniciales.
-        \item $F \subseteq Q$ es el conjunto de estados finales.
-    \end{itemize}
+\paragraph{Notación.} En vez de usar $(u,v) \in \dot{\Sigma}_{\#}^{\le k}$, escribiremos $u.v \in \dot{\Sigma}_{\#}^{\le k}$. El par $\epsilon.\epsilon$ lo denotaremos solamente por $\epsilon$.
 
-    \paragraph{Definición.} Una \textbf{configuración} de $\ca{T}$ es una tupla:
-    \alignformula{
-        \left(q_1 \ldots q_k, w, o\right) \in\left(Q^{+}, \Sigma^* \cdot\{\#\}, \Omega^*\right)
-    }
-    \begin{itemize}
-        \item $q_1\ldots q_k$ es el contenido del stack con $q_1$ el tope del stack.
-        \item $w$ es el contenido del input.
-        \item $o$ es el contenidod el output.
-    \end{itemize}
-    Decimos que una configuración:
-    \begin{itemize}
-        \item $(q_0, w\#, \epsilon)$ es \textbf{inicial} y
-        \item $(q_f, \#, o)$ es $final$ si $q_f \in F$.
-    \end{itemize}
+\paragraph{Definición.} Un transductor apilador con $k$-lookahead ($k$-PDT) es una tupla:
+\alignformula{
+    \ca{T} = (Q, \Sigma, \Omega, \Delta, q_0, F)
+}
 
-    \paragraph{Definición.} Se define la relación $\vdash_{\ca{T}}$ de \textbf{siguiente-paso} entre configuraciones de $\ca{T}$:
-    \alignformula{
-        \left(\gamma_1, w_1, o_1\right)\ \vdash_\mathcal{T}\ \left(\gamma_2, w_2, o_2\right)
-    }
-    si, y sólo si, existe $(\alpha,u.v,a,\beta) \in \Delta$, $\gamma \in \Gamma^*$ y $w \in \Sigma^* \cdot \{\#\}$ tal que:
-    \begin{itemize}
-        \item \textbf{Stack:} $\gamma_1 = \alpha \cdot \gamma$ y $\gamma_2 = \beta \cdot \gamma$
-        \item \textbf{Look-ahead:} $w_1 = u \cdot v \cdot w$ y $w_2 = v \cdot w$
-        \item \textbf{Output:} $o_2 = o_1 \cdot a$
-    \end{itemize}
-    Se define $\vdash_{\ca{T}}^*$ como la clausura \textbf{refleja} y \textbf{transitiva} de $\vdash_{\ca{T}}$.
+\begin{itemize}
+    \item $Q$ es un conjunto finito de estados.
+    \item $\Sigma$ es el alfabeto de input.
+    \item $\Omega$ es el alfabeto de output.
+    \item $\Delta \subseteq Q^{+} \times \dot{\Sigma}_{\#}^{\leq k} \times(\Omega \cup\{\epsilon\}) \times Q^*$ es la relación de transición.
+    \item $q_0 \in Q$ es un conjunto de estados iniciales.
+    \item $F \subseteq Q$ es el conjunto de estados finales.
+\end{itemize}
 
-    \paragraph{Definición.} $\ca{T}$ \textbf{entrega} $o$ con \textbf{input} $w$ si existe una configuración inicial $(q_0, w\cdot \#, \epsilon)$ y una configuración final $(q_f, \#, o)$ tal que:
-    $$
-        \left(q_0, w \cdot \#, \epsilon\right) \vdash_{\mathcal{T}}^*\left(q_f, \#, o\right)
-    $$
-    Se define la función $\llbracket \ca{T} \rrbracket: \Sigma^* \to 2^{\Omega^*}$:
-    \alignformula{
-        \llbracket \mathcal{T} \rrbracket(w)=\left\{o \in \Omega^* \mid \mathcal{T} \text { entrega } o \text { con input } w\right\}
-    }
+\paragraph{Definición.} Una \textbf{configuración} de $\ca{T}$ es una tupla:
+\alignformula{
+    \left(q_1 \ldots q_k, w, o\right) \in\left(Q^{+}, \Sigma^* \cdot\{\#\}, \Omega^*\right)
+}
+\begin{itemize}
+    \item $q_1\ldots q_k$ es el contenido del stack con $q_1$ el tope del stack.
+    \item $w$ es el contenido del input.
+    \item $o$ es el contenido del output.
+\end{itemize}
+Decimos que una configuración:
+\begin{itemize}
+    \item $(q_0, w\#, \epsilon)$ es \textbf{inicial} y
+    \item $(q_f, \#, o)$ es \textbf{final} si $q_f \in F$.
+\end{itemize}
 
-    \paragraph{Definición.} $\ca{T}$ es \textbf{determinista} si para todo $\left(\alpha_1, u_1.v_1, a_1, \beta_1\right),\left(\alpha_2, u_2.v_2, a_2, \beta_2\right) \in \Delta$ con \\
+\paragraph{Definición.} Se define la relación $\vdash_{\ca{T}}$ de \textbf{siguiente-paso} entre configuraciones de $\ca{T}$:
+\alignformula{
+    \left(\gamma_1, w_1, o_1\right)\ \vdash_\mathcal{T}\ \left(\gamma_2, w_2, o_2\right)
+}
+si, y sólo si, existe $(\alpha,u.v,a,\beta) \in \Delta$, $\gamma \in \Gamma^*$ y $w \in \Sigma^* \cdot \{\#\}$ tal que:
+\begin{itemize}
+    \item \textbf{Stack:} $\gamma_1 = \alpha \cdot \gamma$ y $\gamma_2 = \beta \cdot \gamma$
+    \item \textbf{Look-ahead:} $w_1 = u \cdot v \cdot w$ y $w_2 = v \cdot w$
+    \item \textbf{Output:} $o_2 = o_1 \cdot a$
+\end{itemize}
+Se define $\vdash_{\ca{T}}^*$ como la clausura \textbf{refleja} y \textbf{transitiva} de $\vdash_{\ca{T}}$.
+
+\paragraph{Definición.} $\ca{T}$ \textbf{entrega} $o$ con \textbf{input} $w$ si existe una configuración inicial $(q_0, w\cdot \#, \epsilon)$ y una configuración final $(q_f, \#, o)$ tal que:
+$$
+    \left(q_0, w \cdot \#, \epsilon\right) \vdash_{\mathcal{T}}^*\left(q_f, \#, o\right)
+$$
+Se define la función $\llbracket \ca{T} \rrbracket: \Sigma^* \to 2^{\Omega^*}$:
+\alignformula{
+    \llbracket \mathcal{T} \rrbracket(w)=\left\{o \in \Omega^* \mid \mathcal{T} \text { entrega } o \text { con input } w\right\}
+}
+
+\paragraph{Definición.} $\ca{T}$ es \textbf{determinista} si para todo $\left(\alpha_1, u_1.v_1, a_1, \beta_1\right),\left(\alpha_2, u_2.v_2, a_2, \beta_2\right) \in \Delta$ con \\
 $\left(\alpha_1, u_1.v_1, a_1, \beta_1\right) \neq\left(\alpha_2, u_2.v_2, a_2, \beta_2\right)$ se cumple que
-    \alignformula{
-        \alpha_1 \text { NO es prefijo de } \alpha_2 \quad \text{o} \quad u_1 v_1 \text { NO es prefijo de } u_2 v_2 \text {. }
-    }
-    \textit{``Para cualquier configuración $(\gamma, w, o)$ existe \textbf{a lo más} una configuración $(\gamma', w', o)$ tal que $(\gamma,w,o) \vdash_{\ca{T}}^* (\gamma',w', o')$''} \medbreak
+\alignformula{
+    \alpha_1 \text { NO es prefijo de } \alpha_2 \quad \text{o} \quad u_1 v_1 \text { NO es prefijo de } u_2 v_2 \text {. }
+}
+\textit{``Para cualquier configuración $(\gamma, w, o)$ existe \textbf{a lo más} una configuración $(\gamma', w', o)$ tal que $(\gamma,w,o) \vdash_{\ca{T}}^* (\gamma',w', o')$''} \medbreak
 
-    La \textbf{ventaja} de un $k$-PDT determinista es que nos aseguramos de que siempre obtenemos un solo output para cada input (el no-determinismo nos podría generar muchos outputs distintos).
+La \textbf{ventaja} de un $k$-PDT determinista es que nos aseguramos de que siempre obtenemos un solo output para cada input (el no-determinismo nos podría generar muchos outputs distintos).
 
-    \paragraph{Construcción del parser.} Sea $\ca{G}=(V,\Sigma, P, S)$ una gramática $\gll(k)$ fuerte. Se define el $k$-PDT para $\ca{G}$:
-    \alignformula{
-        \ca{T}[\ca{G}]= \Big( V\cup \Sigma \cup \{q_0,q_f\},\Sigma, \underbrace{P}_\Omega, \Delta, q_0, \{q_f\} \Big)
-    }
-    La relación de transición $\Delta$ de define como:
-    \begin{table}[H]
-        \centering
-        \begin{tabular}{rl}
-            \textbf{Inicio:}   & $(q_0, \epsilon., \epsilon, S\cdot q_f)$                                                \\
-            \textbf{Reducir:}  & $(a, a., \epsilon, \epsilon)$ para cada $a \in \Sigma$                                  \\
-            \textbf{Expandir:} & $(X, .u, p, \gamma)$                                                                    \\
-                               & para cada $p:=(X\to\gamma) \in P$ tal que $u \in \first_k(\gamma) \odot_k \follow_k(X)$
-        \end{tabular}
-    \end{table}
+\paragraph{Construcción del parser.} Sea $\ca{G}=(V,\Sigma, P, S)$ una gramática $\gll(k)$ fuerte. Se define el $k$-PDT para $\ca{G}$:
+\alignformula{
+    \ca{T}[\ca{G}]= \Big( V\cup \Sigma \cup \{q_0,q_f\},\Sigma, \underbrace{P}_\Omega, \Delta, q_0, \{q_f\} \Big)
+}
+La relación de transición $\Delta$ de define como:
+\begin{table}[H]
+    \centering
+    \begin{tabular}{rl}
+        \textbf{Inicio:}   & $(q_0, \epsilon., \epsilon, S\cdot q_f)$                                                \\
+        \textbf{Reducir:}  & $(a, a., \epsilon, \epsilon)$ para cada $a \in \Sigma$                                  \\
+        \textbf{Expandir:} & $(X, .u, p, \gamma)$                                                                    \\
+                           & para cada $p:=(X\to\gamma) \in P$ tal que $u \in \first_k(\gamma) \odot_k \follow_k(X)$
+    \end{tabular}
+\end{table}
 
-    \paragraph{Propiedades.} $\ca{T}[\ca{G}]$ tiene las siguientes propiedades:
-    \begin{enumerate}
-        \item $\ca{T}[\ca{G}]$ es un $k$-PDT \textbf{determinista} si, y sólo si, $\ca{G}$ es $\gll{k}$ fuerte.
-        \item Si $w \notin \ca{L}(\ca{G})$ entonces $\llbracket \ca{T} \rrbracket (w) = \varnothing$.
-        \item Si $w \in \ca{L}(\ca{G})$ entonces $\llbracket \ca{T} \rrbracket(w) = \{r_1 \ldots r_m\}$ es una derivación por la izquierda de $\ca{G}$ sobre $w$.
-    \end{enumerate}
+\paragraph{Propiedades.} $\ca{T}[\ca{G}]$ tiene las siguientes propiedades:
+\begin{enumerate}
+    \item $\ca{T}[\ca{G}]$ es un $k$-PDT \textbf{determinista} si, y sólo si, $\ca{G}$ es $\gll{k}$ fuerte.
+    \item Si $w \notin \ca{L}(\ca{G})$ entonces $\llbracket \ca{T} \rrbracket (w) = \varnothing$.
+    \item Si $w \in \ca{L}(\ca{G})$ entonces $\llbracket \ca{T} \rrbracket(w) = \{r_1 \ldots r_m\}$ es una derivación por la izquierda de $\ca{G}$ sobre $w$.
+\end{enumerate}
 
-    \paragraph{Algoritmo.} Para una gramática $\gll(k)$ $\ca{G}$ y una palabra $w \in \Sigma^*$:
-    \begin{enumerate}
-        \item Construya el $k$-PDT determinista $\ca{T}[\ca{G}]$ a partir de $\ca{G}$.
-        \item Ejecute $\ca{T}[\ca[G]]$ sobre $w$.
-    \end{enumerate}
+\paragraph{Algoritmo.} Para una gramática $\gll(k)$ $\ca{G}$ y una palabra $w \in \Sigma^*$:
+\begin{enumerate}
+    \item Construya el $k$-PDT determinista $\ca{T}[\ca{G}]$ a partir de $\ca{G}$.
+    \item Ejecute $\ca{T}[\ca[G]]$ sobre $w$.
+\end{enumerate}
 
-    Como $\ca{T}[\ca{G}]$ es determinista, entonces el algoritmo toma \textbf{tiempo lineal} en $w$.
+Como $\ca{T}[\ca{G}]$ es determinista, entonces el algoritmo toma \textbf{tiempo lineal} en $w$.
 
-    \paragraph{Tabla predictiva para $\gll(k)$ fuerte.} Sea $\ca{G}=(V,\Sigma, P, S)$ una gramática $\gll(k)$ fuerte. Para cada $u \in \Sigma^k \cup \Sigma^{<k}\cdot \{\#\}$, se define $M[X,u] \in (V\cup \Sigma)^* \cup \{\texttt{ERROR}\}$:
+\paragraph{Tabla predictiva para $\gll(k)$ fuerte.} Sea $\ca{G}=(V,\Sigma, P, S)$ una gramática $\gll(k)$ fuerte. Para cada $u \in \Sigma^k \cup \Sigma^{<k}\cdot \{\#\}$, se define $M[X,u] \in (V\cup \Sigma)^* \cup \{\texttt{ERROR}\}$:
 
-    \alignformula{
-        M[X, u]= \begin{cases}
-            \quad\gamma       & \text { si } X \rightarrow \gamma \in P \text { y } u \in \first_k(\gamma) \odot_k \follow_k(X) \\
-            \texttt { ERROR } & \text { en otro caso. }
-        \end{cases}
-    }
-    El computo de la tabla predictiva puede tomar \textbf{tiempo exponencial} en $|\ca{G}|$ y $k$.
+\alignformula{
+    M[X, u]= \begin{cases}
+        \quad\gamma       & \text { si } X \rightarrow \gamma \in P \text { y } u \in \first_k(\gamma) \odot_k \follow_k(X) \\
+        \texttt { ERROR } & \text { en otro caso. }
+    \end{cases}
+}
+El computo de la tabla predictiva puede tomar \textbf{tiempo exponencial} en $|\ca{G}|$ y $k$.
 
-    \paragraph{Caso especial: tabla predictiva para $\gll(1)$.} Sea $\ca{G}=(V,\Sigma, P, S)$ una gramática $\gll(1)$ fuerte. Para cada $a \in \Sigma \cup \{\#\}$, se define $M[x,a] \in (V \cup \Sigma)^* \cup \{\texttt{ERROR}\}$:
-    \alignformula{
-        M[X, a]= \begin{cases}
-            \quad \gamma    & \text { si } X \rightarrow \gamma \in P \text { y } a \in \first_1(\gamma)                            \\
-            \quad \gamma    & \text { si } X \rightarrow \gamma \in P, \epsilon \in \first_1(\gamma) \text { y } a \in \follow_1(X) \\
-            \text { ERROR } & \text { en otro caso. }
-        \end{cases}
-    }
-    Este cálculo se puede hacer en tiempo $\ca{O}(|V|\cdot|P|)$.
+\paragraph{Caso especial: tabla predictiva para $\gll(1)$.} Sea $\ca{G}=(V,\Sigma, P, S)$ una gramática $\gll(1)$ fuerte. Para cada $a \in \Sigma \cup \{\#\}$, se define $M[x,a] \in (V \cup \Sigma)^* \cup \{\texttt{ERROR}\}$:
+\alignformula{
+    M[X, a]= \begin{cases}
+        \quad \gamma    & \text { si } X \rightarrow \gamma \in P \text { y } a \in \first_1(\gamma)                            \\
+        \quad \gamma    & \text { si } X \rightarrow \gamma \in P, \epsilon \in \first_1(\gamma) \text { y } a \in \follow_1(X) \\
+        \text { ERROR } & \text { en otro caso. }
+    \end{cases}
+}
+Este cálculo se puede hacer en tiempo $\ca{O}(|V|\cdot|P|)$.
 
 \ejemplo{Tabla predictiva}{}{
     \img{img/cap5/ejemplo21.png}{0.5}

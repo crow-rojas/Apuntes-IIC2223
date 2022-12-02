@@ -30,6 +30,7 @@
 \usepackage[noend]{algorithm2e}
 \usepackage{setspace}
 \usepackage{stmaryrd}
+\usepackage{ntheorem}
 
 \definecolor{autogray}{RGB}{235,235,235}
 
@@ -83,7 +84,8 @@ sharp corners
 \setlength{\shadowsize}{2pt}
 \setlength{\fboxsep}{5pt}
 \setlength\parindent{0pt}
-\setlength{\headheight}{13.07225pt}
+\setlength{\headheight}{19.77605pt}
+\addtolength{\topmargin}{-4.77605pt}
 \bookmarksetup{numbered}
 \setlist[itemize]{leftmargin=*}
 \setlist[enumerate]{leftmargin=*}
@@ -124,8 +126,8 @@ sharp corners
         \end{figure}
 }
 \newcommand{\enlace}[3]{\textcolor{#3}{\textbf{\href{#1}{#2}}}}
-\newcommand{\ejemplo}[3]{\vspace{5pt}\begin{ejem}{#1}{#2}#3\end{ejem}\vspace{5pt}}
-\newcommand{\teorema}[3]{\vspace{5pt}\begin{theo}{#1}{#2}#3\end{theo}\vspace{5pt}}
+\newcommand{\ejemplo}[3]{\begin{ejem}{#1}{#2}#3\end{ejem}\vspace{1pt}}
+\newcommand{\teorema}[3]{\begin{theo}{#1}{#2}#3\end{theo}\vspace{1pt}}
 \newcommand{\li}[2]{\displaystyle{\lim_{#1 \to #2}}}
 \newcommand{\ca}[1]{\mathcal{#1}}
 \newcommand{\first}{\texttt{first}}

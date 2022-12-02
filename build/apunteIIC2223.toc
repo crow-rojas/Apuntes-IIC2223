@@ -1,84 +1,118 @@
 \babel@toc {spanish}{}\relax 
-\contentsline {section}{\numberline {1}Lenguajes regulares}{2}{section.1}%
-\contentsline {subsection}{\numberline {1.1}Palabras y autómatas}{2}{subsection.1.1}%
-\contentsline {subsection}{\numberline {1.2}Construcciones de autómatas}{2}{subsection.1.2}%
-\contentsline {subsection}{\numberline {1.3}No-determinismo}{2}{subsection.1.3}%
-\contentsline {subsection}{\numberline {1.4}Expresiones regulares}{2}{subsection.1.4}%
-\contentsline {subsection}{\numberline {1.5}Autómatas con transiciones sin lectura}{2}{subsection.1.5}%
-\contentsline {subsection}{\numberline {1.6}Teorema de Kleene}{2}{subsection.1.6}%
-\contentsline {section}{\numberline {2}Propiedades de lenguajes regulares}{3}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Lema de bombeo}{3}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Minimización de autómatas}{3}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Teorema de Myhill-Nerode}{3}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Autómatas en dos direcciones}{3}{subsection.2.4}%
-\contentsline {section}{\numberline {3}Algoritmos para lenguajes regulares}{4}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Evaluación de expresiones regulares}{4}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Transductores}{4}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Análisis léxico}{4}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Algoritmo de Knuth-Morris-Prat}{4}{subsection.3.4}%
-\contentsline {section}{\numberline {4}Lenguajes libres de contexto}{5}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Gramáticas libres de contexto}{5}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Simplificación de gramáticas}{5}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Forma normal de Chomsky}{5}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Lema de bombeo para lenguajes libres de contexto}{5}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Algoritmo CKY}{5}{subsection.4.5}%
-\contentsline {section}{\numberline {5}Algoritmos para lenguajes libres de contexto}{6}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Autómatas apiladores}{6}{subsection.5.1}%
-\contentsline {subsubsection}{\numberline {5.1.1}Versión normal}{6}{subsubsection.5.1.1}%
-\contentsline {subsubsection}{\numberline {5.1.2}Versión alternativa}{8}{subsubsection.5.1.2}%
-\contentsline {subsection}{\numberline {5.2}Autómatas apiladores vs gramáticas libres de contexto}{10}{subsection.5.2}%
-\contentsline {subsubsection}{\numberline {5.2.1}Desde CFG a PDA}{11}{subsubsection.5.2.1}%
-\contentsline {paragraph}{Caso base: $h=1$.}{11}{section*.21}%
-\contentsline {subsubsection}{\numberline {5.2.2}Desde PDA a CFG}{12}{subsubsection.5.2.2}%
-\contentsline {paragraph}{Demostración $\mathcal {L}(\mathcal {P}) = \mathcal {L}(\mathcal {G})$.}{12}{section*.24}%
-\contentsline {paragraph}{Paso 1.}{12}{section*.25}%
-\contentsline {paragraph}{Hipótesis de inducción (en el número de pasos $n$).}{13}{section*.26}%
-\contentsline {paragraph}{Caso base: $n=1$.}{13}{section*.27}%
-\contentsline {paragraph}{Caso inductivo.}{13}{section*.28}%
-\contentsline {paragraph}{Paso 2.}{14}{section*.29}%
-\contentsline {subsection}{\numberline {5.3}Parsing: cómputo de First y Follow}{14}{subsection.5.3}%
-\contentsline {paragraph}{Recordatorio.}{14}{section*.30}%
-\contentsline {paragraph}{Problema de parsing.}{15}{section*.33}%
-\contentsline {subsubsection}{\numberline {5.3.1}Prefijos}{16}{subsubsection.5.3.1}%
-\contentsline {paragraph}{Definición.}{16}{section*.35}%
-\contentsline {paragraph}{Definición.}{16}{section*.36}%
-\contentsline {paragraph}{Propiedades.}{17}{section*.37}%
-\contentsline {subsubsection}{\numberline {5.3.2}First y Follow}{17}{subsubsection.5.3.2}%
-\contentsline {paragraph}{Definición.}{17}{section*.38}%
-\contentsline {paragraph}{Definición.}{17}{section*.39}%
-\contentsline {subsubsection}{\numberline {5.3.3}Calcular First}{18}{subsubsection.5.3.3}%
-\contentsline {paragraph}{Proposición.}{18}{section*.41}%
-\contentsline {paragraph}{Demostración.}{18}{section*.42}%
-\contentsline {paragraph}{Algoritmo.}{19}{section*.43}%
-\contentsline {subsubsection}{\numberline {5.3.4}Calcular Follow}{19}{subsubsection.5.3.4}%
-\contentsline {subsection}{\numberline {5.4}Gramáticas LL}{21}{subsection.5.4}%
-\contentsline {paragraph}{Estrategia (intuición).}{21}{section*.46}%
-\contentsline {subsubsection}{\numberline {5.4.1}Definición Gramáticas LL}{21}{subsubsection.5.4.1}%
-\contentsline {paragraph}{Definición.}{21}{section*.47}%
-\contentsline {subsubsection}{\numberline {5.4.2}Caracterización LL}{23}{subsubsection.5.4.2}%
-\contentsline {paragraph}{Demostración.}{23}{section*.54}%
-\contentsline {paragraph}{Definición.}{24}{section*.55}%
-\contentsline {subsection}{\numberline {5.5}Parsing con gramáticas LL(k)}{25}{subsection.5.5}%
-\contentsline {subsubsection}{\numberline {5.5.1}Algunas consideraciones}{25}{subsubsection.5.5.1}%
-\contentsline {paragraph}{Factorización.}{25}{section*.56}%
-\contentsline {paragraph}{Definición.}{26}{section*.57}%
-\contentsline {paragraph}{Demostración.}{26}{section*.58}%
-\contentsline {paragraph}{Demostración.}{27}{section*.60}%
-\contentsline {paragraph}{Estrategia.}{27}{section*.61}%
-\contentsline {paragraph}{Conclusión.}{28}{section*.63}%
-\contentsline {subsubsection}{\numberline {5.5.2}Parsing de LL(k)}{28}{subsubsection.5.5.2}%
-\contentsline {paragraph}{Definición.}{28}{section*.65}%
-\contentsline {paragraph}{Notación.}{29}{section*.66}%
-\contentsline {paragraph}{Definición.}{29}{section*.67}%
-\contentsline {paragraph}{Definición.}{29}{section*.68}%
-\contentsline {paragraph}{Definición.}{29}{section*.69}%
-\contentsline {paragraph}{Definición.}{29}{section*.70}%
-\contentsline {paragraph}{Definición.}{30}{section*.71}%
-\contentsline {paragraph}{Construcción del parser.}{30}{section*.72}%
-\contentsline {paragraph}{Propiedades.}{30}{section*.74}%
-\contentsline {paragraph}{Algoritmo.}{30}{section*.75}%
-\contentsline {paragraph}{Tabla predictiva para $\text {LL}(k)$ fuerte.}{30}{section*.76}%
-\contentsline {paragraph}{Caso especial: tabla predictiva para $\text {LL}(1)$.}{31}{section*.77}%
-\contentsline {section}{\numberline {6}Extracción de información}{32}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Extracción}{32}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Enumeración de resultados: Autómatas con anotaciones}{32}{subsection.6.2}%
+\contentsline {section}{\numberline {1}Lenguajes regulares}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Palabras y autómatas}{3}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}Palabras}{3}{subsubsection.1.1.1}%
+\contentsline {paragraph}{Definiciones.}{3}{section*.2}%
+\contentsline {paragraph}{Definición.}{3}{section*.3}%
+\contentsline {paragraph}{Propiedades de concatenación.}{4}{section*.4}%
+\contentsline {paragraph}{Definición.}{4}{section*.5}%
+\contentsline {paragraph}{Convenciones.}{4}{section*.6}%
+\contentsline {subsubsection}{\numberline {1.1.2}Autómatas}{4}{subsubsection.1.1.2}%
+\contentsline {paragraph}{Definición.}{4}{section*.7}%
+\contentsline {paragraph}{Ejecución.}{5}{section*.9}%
+\contentsline {paragraph}{Aceptación.}{6}{section*.11}%
+\contentsline {subsection}{\numberline {1.2}Construcciones de autómatas}{6}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}Autómatas con función parcial de transición}{6}{subsubsection.1.2.1}%
+\contentsline {paragraph}{Definición.}{6}{section*.12}%
+\contentsline {paragraph}{Ejecución.}{6}{section*.13}%
+\contentsline {paragraph}{Aceptación.}{6}{section*.14}%
+\contentsline {paragraph}{¿DFA $\not \equiv $ DFAp?}{7}{section*.16}%
+\contentsline {paragraph}{Demostración.}{7}{section*.17}%
+\contentsline {paragraph}{Dem. $\mathcal {L}(\mathcal {A}) \subseteq \mathcal {L}(\mathcal {A}')$.}{7}{section*.18}%
+\contentsline {paragraph}{Dem. $\mathcal {L}(\mathcal {A}') \subseteq \mathcal {L}(\mathcal {A})$.}{7}{section*.19}%
+\contentsline {paragraph}{Advertencia.}{7}{section*.20}%
+\contentsline {subsubsection}{\numberline {1.2.2}Operaciones de conjuntos}{7}{subsubsection.1.2.2}%
+\contentsline {paragraph}{Definiciones.}{7}{section*.21}%
+\contentsline {paragraph}{Construcción de $\mathcal {L}(\mathcal {A})^C$.}{8}{section*.22}%
+\contentsline {paragraph}{Producto de autómatas.}{8}{section*.23}%
+\contentsline {paragraph}{Demostración teorema 2.}{9}{section*.25}%
+\contentsline {paragraph}{Unión de autómatas.}{9}{section*.26}%
+\contentsline {subsection}{\numberline {1.3}No-determinismo}{9}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Definición de un NFA}{9}{subsubsection.1.3.1}%
+\contentsline {paragraph}{Definición.}{9}{section*.27}%
+\contentsline {paragraph}{Ejecución.}{10}{section*.29}%
+\contentsline {paragraph}{Aceptación.}{10}{section*.30}%
+\contentsline {paragraph}{Interpretación.}{10}{section*.31}%
+\contentsline {subsubsection}{\numberline {1.3.2}Comparación con DFA}{11}{subsubsection.1.3.2}%
+\contentsline {paragraph}{Idea.}{11}{section*.33}%
+\contentsline {paragraph}{Formalización.}{11}{section*.35}%
+\contentsline {paragraph}{Demostración teorema 3.}{12}{section*.36}%
+\contentsline {subsection}{\numberline {1.4}Expresiones regulares}{13}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Autómatas con transiciones sin lectura}{13}{subsection.1.5}%
+\contentsline {subsection}{\numberline {1.6}Teorema de Kleene}{13}{subsection.1.6}%
+\contentsline {section}{\numberline {2}Propiedades de lenguajes regulares}{14}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Lema de bombeo}{14}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Minimización de autómatas}{14}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Teorema de Myhill-Nerode}{14}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Autómatas en dos direcciones}{14}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Algoritmos para lenguajes regulares}{15}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Evaluación de expresiones regulares}{15}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Transductores}{15}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Análisis léxico}{15}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Algoritmo de Knuth-Morris-Prat}{15}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Lenguajes libres de contexto}{16}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Gramáticas libres de contexto}{16}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Simplificación de gramáticas}{16}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Forma normal de Chomsky}{16}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Lema de bombeo para lenguajes libres de contexto}{16}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Algoritmo CKY}{16}{subsection.4.5}%
+\contentsline {section}{\numberline {5}Algoritmos para lenguajes libres de contexto}{17}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Autómatas apiladores}{17}{subsection.5.1}%
+\contentsline {subsubsection}{\numberline {5.1.1}Versión normal}{17}{subsubsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.2}Versión alternativa}{19}{subsubsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.2}Autómatas apiladores vs gramáticas libres de contexto}{21}{subsection.5.2}%
+\contentsline {subsubsection}{\numberline {5.2.1}Desde CFG a PDA}{22}{subsubsection.5.2.1}%
+\contentsline {paragraph}{Caso base: $h=1$.}{22}{section*.56}%
+\contentsline {subsubsection}{\numberline {5.2.2}Desde PDA a CFG}{23}{subsubsection.5.2.2}%
+\contentsline {paragraph}{Demostración $\mathcal {L}(\mathcal {P}) = \mathcal {L}(\mathcal {G})$.}{23}{section*.59}%
+\contentsline {paragraph}{Paso 1.}{23}{section*.60}%
+\contentsline {paragraph}{Hipótesis de inducción (en el número de pasos $n$).}{24}{section*.61}%
+\contentsline {paragraph}{Caso base: $n=1$.}{24}{section*.62}%
+\contentsline {paragraph}{Caso inductivo.}{24}{section*.63}%
+\contentsline {paragraph}{Paso 2.}{25}{section*.64}%
+\contentsline {subsection}{\numberline {5.3}Parsing: cómputo de First y Follow}{25}{subsection.5.3}%
+\contentsline {paragraph}{Recordatorio.}{25}{section*.65}%
+\contentsline {paragraph}{Problema de parsing.}{26}{section*.68}%
+\contentsline {subsubsection}{\numberline {5.3.1}Prefijos}{27}{subsubsection.5.3.1}%
+\contentsline {paragraph}{Definición.}{27}{section*.70}%
+\contentsline {paragraph}{Definición.}{27}{section*.71}%
+\contentsline {paragraph}{Propiedades.}{28}{section*.72}%
+\contentsline {subsubsection}{\numberline {5.3.2}First y Follow}{28}{subsubsection.5.3.2}%
+\contentsline {paragraph}{Definición.}{28}{section*.73}%
+\contentsline {paragraph}{Definición.}{28}{section*.74}%
+\contentsline {subsubsection}{\numberline {5.3.3}Calcular First}{29}{subsubsection.5.3.3}%
+\contentsline {paragraph}{Proposición.}{29}{section*.76}%
+\contentsline {paragraph}{Demostración.}{29}{section*.77}%
+\contentsline {paragraph}{Algoritmo.}{29}{section*.78}%
+\contentsline {subsubsection}{\numberline {5.3.4}Calcular Follow}{30}{subsubsection.5.3.4}%
+\contentsline {subsection}{\numberline {5.4}Gramáticas LL}{31}{subsection.5.4}%
+\contentsline {paragraph}{Estrategia (intuición).}{31}{section*.81}%
+\contentsline {subsubsection}{\numberline {5.4.1}Definición Gramáticas LL}{32}{subsubsection.5.4.1}%
+\contentsline {paragraph}{Definición.}{32}{section*.82}%
+\contentsline {subsubsection}{\numberline {5.4.2}Caracterización LL}{34}{subsubsection.5.4.2}%
+\contentsline {paragraph}{Demostración.}{34}{section*.89}%
+\contentsline {paragraph}{Definición.}{34}{section*.90}%
+\contentsline {subsection}{\numberline {5.5}Parsing con gramáticas LL(k)}{36}{subsection.5.5}%
+\contentsline {subsubsection}{\numberline {5.5.1}Algunas consideraciones}{36}{subsubsection.5.5.1}%
+\contentsline {paragraph}{Factorización.}{36}{section*.91}%
+\contentsline {paragraph}{Definición.}{36}{section*.92}%
+\contentsline {paragraph}{Demostración.}{37}{section*.93}%
+\contentsline {paragraph}{Demostración.}{37}{section*.95}%
+\contentsline {paragraph}{Estrategia.}{38}{section*.96}%
+\contentsline {paragraph}{Conclusión.}{39}{section*.98}%
+\contentsline {subsubsection}{\numberline {5.5.2}Parsing de LL(k)}{39}{subsubsection.5.5.2}%
+\contentsline {paragraph}{Definición.}{39}{section*.100}%
+\contentsline {paragraph}{Notación.}{39}{section*.101}%
+\contentsline {paragraph}{Definición.}{39}{section*.102}%
+\contentsline {paragraph}{Definición.}{40}{section*.103}%
+\contentsline {paragraph}{Definición.}{40}{section*.104}%
+\contentsline {paragraph}{Definición.}{40}{section*.105}%
+\contentsline {paragraph}{Definición.}{40}{section*.106}%
+\contentsline {paragraph}{Construcción del parser.}{41}{section*.107}%
+\contentsline {paragraph}{Propiedades.}{41}{section*.109}%
+\contentsline {paragraph}{Algoritmo.}{41}{section*.110}%
+\contentsline {paragraph}{Tabla predictiva para $\text {LL}(k)$ fuerte.}{41}{section*.111}%
+\contentsline {paragraph}{Caso especial: tabla predictiva para $\text {LL}(1)$.}{41}{section*.112}%
+\contentsline {section}{\numberline {6}Extracción de información}{43}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Extracción}{43}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Enumeración de resultados: Autómatas con anotaciones}{43}{subsection.6.2}%
