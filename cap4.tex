@@ -1,6 +1,134 @@
 \section{Lenguajes libres de contexto}
 
 \subsection{Gramáticas libres de contexto}
+
+\subsubsection{Gramáticas}
+
+\paragraph{Definición.} Una \textbf{gramática libre de contexto} (CFG) es una tupla:
+\alignformula{
+    \ca{G} = (V, \Sigma, P, S)
+}
+\begin{itemize}
+    \item $V$ es un conjunto finito de \textbf{variables} o \textbf{no-terminales}.
+    \item $\Sigma$ es el alfabeto finito (o \textbf{terminales}) tal que $\Sigma \cap V = \varnothing$.
+    \item $P \subseteq V \times(V \cup \Sigma)^*$ es un subconjunto finito de \textbf{reglas} o \textbf{producciones}.
+    \item $S \in V$ es la \textbf{variable inicial}.
+\end{itemize}
+
+\ejemplo{}{}{
+    Considere la gramática $\ca{G} = (V, \Sigma, P, S)$ tal que:
+    \begin{itemize}
+        \item $V = \{X, Y\}$
+        \item $\Sigma = \{a,b\}$
+        \item $\{(X, aXb), (X, Y), (Y, \epsilon)\}$
+        \item $S = X$
+              \begin{align*}
+                  \ca{G}: \quad  X & \to aXb      \\
+                  X                & \to Y        \\
+                  Y                & \to \epsilon
+              \end{align*}
+    \end{itemize}
+}
+
+\paragraph{Notación.} En este texto:
+\begin{itemize}
+    \item Para las \textbf{variables} en una gramática usaremos letras mayúsculas: $X,Y,Z,A,B,C,\ldots$
+    \item Para los \textbf{terminales} en una gramática usaremos letras minúsculas: $a,b,c,\ldots$
+    \item Para palabras en $(V \cup \Sigma)^*$ usaremos símbolos: $\alpha, \beta, \gamma, \ldots$
+    \item Para una producción $(A,\alpha) \in P$ la escribimos como: $A \to \alpha$
+\end{itemize}
+
+\paragraph{Simplificación.} Si tenemos un conjunto de reglas de la forma:
+$$
+    \begin{array}{lll}
+        X & \rightarrow & \alpha_1 \\
+        X & \rightarrow & \alpha_2 \\
+          & \cdots      &          \\
+        X & \rightarrow & \alpha_n
+    \end{array}
+$$
+entonces escribimos estas reglas \textbf{sucintamente} como
+$$
+    X \to \alpha_1 \mid \alpha_2 \mid \cdots \mid \alpha_n
+$$
+Recordando que $\alpha_1, \alpha_2, \ldots, \alpha_n \in (V \cup \Sigma)^*$.
+
+\ejemplo{}{}{
+    La gramática del ejemplo anterior:
+    \begin{align*}
+        \ca{G}: \quad  X & \to aXb      \\
+        X                & \to Y        \\
+        Y                & \to \epsilon
+    \end{align*}
+    Podemos escribirla en notación \textbf{sucinta} como:
+    \begin{align*}
+        \ca{G}: \quad X & \to aXb \mid Y \\
+        Y               & \to \epsilon
+    \end{align*}
+}
+
+\paragraph{Producciones.} Sea $\ca{G}$ una CFG. Definimos la relación $\Rightarrow \subseteq(V \cup \Sigma)^* \times(V \cup \Sigma)^*$ de \textbf{producción} tal que:
+\alignformula{
+    \alpha \cdot X \cdot \beta \Rightarrow \alpha \cdot \gamma \cdot \beta \quad \text { si, y solo si, } \quad(X \rightarrow \gamma) \in P
+}
+para todo $X \in V$ y $\alpha, \beta, \gamma \in(V \cup \Sigma)^*$. \medbreak
+
+Si $\alpha X \beta \Rightarrow \alpha \gamma \beta$ entonces decimos que:
+\begin{itemize}
+    \item $\alpha X \beta$ \textbf{produce} $\alpha \gamma \beta$ o
+    \item $\alpha \gamma \beta$ \textbf{es producible} desde $\alpha X \beta$.
+    \item $\alpha X \beta \Rightarrow \alpha \gamma \beta$ es \textbf{reemplazar} $\gamma$ en $X$ en la palabra $\alpha X \beta$.
+\end{itemize}
+
+\paragraph{Derivaciones.} Sea $\ca{G}$ una CFG. Dadas dos palabras $\alpha, \beta \in(V \cup \Sigma)^*$ decimos que $\alpha$ \textbf{deriva} $\beta$:
+\alignformula{
+    \alpha \overunder{\Rightarrow}{}{*} \beta
+}
+si existe $\alpha_1, \alpha_2, \ldots, \alpha_n \in(V \cup \Sigma)^*$ tal que: $\alpha \Rightarrow \alpha_1 \Rightarrow \alpha_2 \Rightarrow \ldots \Rightarrow \beta$, con $\overunder{\Rightarrow}{}{*}$ la \textbf{clausura refleja y transitiva} de $\Rightarrow$, esto es:
+\begin{enumerate}
+    \item $\alpha \overunder{\Rightarrow}{}{*} \alpha$
+    \item $\alpha \overunder{\Rightarrow}{}{*} \beta$ si, y sólo si, existe $\gamma$ tal que $\alpha \overunder{\Rightarrow}{}{*} \gamma$ y $\gamma \Rightarrow \beta$.
+\end{enumerate}
+para todo $\alpha, \beta \in (V \cup \Sigma)^*$. Notemos que $\Rightarrow$ y $\overunder{\Rightarrow}{}{*}$ son relaciones entre palabras en $(V \cup \Sigma)^*$.
+
+\paragraph{Lenguaje.} Sea $\ca{G}$ una CFG. El \textbf{lenguaje} de una gramática $\ca{G}$ se define como:
+\alignformula{
+    \mathcal{L}(\mathcal{G})=\left\{w \in \Sigma^* \mid S \stackrel{\star}{\Rightarrow} w\right\}
+}
+
+$\ca{L}(\ca{G})$ son todas las palabras en $\Sigma^*$ que se pueden derivar desde $S$.
+
+\ejemplo{}{}{
+    Sea $\ca{G}$ una CFG tal que:
+    \begin{align*}
+        \ca{G}: \quad X & \to aXb \mid Y \\
+        Y               & \to \epsilon
+    \end{align*}
+    \begin{itemize}
+        \item Como $X \overunder{\Rightarrow}{}{*} aaabbb$, entonces $aaabbb \in \ca{L}(\ca{G})$.
+        \item En general, uno puede demostrar por \textbf{inducción} que:
+              $$
+                  \mathcal{L}(\mathcal{G})=\left\{a^n b^n \mid n \geq 0\right\}
+              $$
+    \end{itemize}
+}
+
+\paragraph{Lenguaje libre de contexto.} Diremos que $L \subseteq \Sigma^*$ es un \textbf{lenguaje libre de contexto} si, y sólo si, existe una gramática libre de contexto $\ca{G}$ tal que:
+\alignformula{
+    L = \ca{L}(\ca{G})
+}
+
+\ejemplo{}{}{
+    Los siguientes son lenguajes libres de contexto:
+    \begin{itemize}
+        \item $L=\left\{a^n b^n \mid n \geq 0\right\}$
+        \item $\text{Par}=\left\{w \in\{a, b\}^* \mid w \text { tiene largo par }\right\}$
+        \item $\text{Pal}=\left\{w \in\{a, b\}^* \mid w=w^{\mathrm{rev}}\right\}$
+    \end{itemize}
+}
+
+\subsubsection{Árboles y derivaciones}
+
 \subsection{Simplificación de gramáticas}
 \subsection{Forma normal de Chomsky}
 \subsection{Lema de bombeo para lenguajes libres de contexto}

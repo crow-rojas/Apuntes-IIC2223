@@ -386,7 +386,7 @@ Del punto 3 al 1, si $\equiv_L$ tiene una cantidad \textbf{finita} de clases de 
 \paragraph{Demostración punto 3.} Sea $\ca{A} = (Q,\Sigma,\delta,q_0,F)$ un autómata que acepta $L$ ya \textbf{minimizado}:
 $$
     \begin{aligned}
-        u \equiv_L v \quad & \Leftrightarrow \quad(u \cdot w \in L \Leftrightarrow v \cdot w \in L) \quad \forall w \in \Sigma^*                                                                                                          \\
+        u \equiv_L v \quad & \Leftrightarrow \quad(u \cdot w \in L \Leftrightarrow v \cdot w \in L) \quad \forall w \in \Sigma^*                                                                                                                \\
                            & \Leftrightarrow \quad\left(\hat{\delta}\left(q_0, u \cdot w\right) \in F \Leftrightarrow \hat{\delta}\left(q_0, v \cdot w\right) \in F\right) \quad \forall w \in \Sigma^*                                         \\
                            & \Leftrightarrow \quad\left(\hat{\delta}\left(\hat{\delta}\left(q_0, u\right), w\right) \in F \Leftrightarrow \hat{\delta}\left(\hat{\delta}\left(q_0, v\right), w\right) \in F\right) \quad \forall w \in \Sigma^* \\
                            & \Leftrightarrow \quad \hat{\delta}\left(q_0, u\right) \approx_\mathcal{A} \hat{\delta}\left(q_0, v\right)                                                                                                          \\
@@ -397,3 +397,141 @@ $$
 \hfill $\blacksquare$
 
 \subsection{Autómatas en dos direcciones}
+
+\subsubsection{Definición de un 2DFA}
+
+\fig{img/cap2/2dfa.png}{0.2}{Representación de un 2DFA}
+
+\paragraph{Definición.} Un autómata finito determinista en 2 direcciones (2DFA) es una estructura:
+\alignformula{
+    \mathcal{A}=\left(Q, \Sigma, \vdash, \dashv, \delta, q_0, q_f\right)
+}
+\begin{itemize}
+    \item $Q$ es un conjunto finito de estados.
+    \item $\Sigma$ es el alfabeto del input.
+    \item $\vdash$ y $\dashv$ son las marcas (símbolos) iniciales y finales.
+    \item $\delta: Q \times(\Sigma \cup\{\vdash, \dashv\}) \rightarrow Q \times\{\leftarrow, \rightarrow\}$ es la \textbf{función parcial de transición}.
+    \item $q_0$ es el estado inicial.
+    \item $q_f$ es el estado final.
+\end{itemize}
+
+\ejemplo{}{}{
+    \img{img/cap2/ejemplo7.png}{0.225}
+}
+
+\paragraph{Configuración.} Sea $\ca{A}$ un 2DFA y $w = a_1 \ldots a_n \in \Sigma^*$ un input. Definimos $a_0 =\ \vdash$ y $a_{n+1} =\ \dashv$ tal que el input se define como:
+\alignformula{
+    a_0 a_1 \ldots a_n a_{n+1} =\ \vdash \cdot\ w\ \cdot\ \dashv
+}
+Una \textbf{configuración} de $\ca{A}$ sobre $w$ viene dado por un par:
+\alignformula{
+    (q, i) \in Q \times\{0, \ldots, n+1\}
+}
+\begin{itemize}
+    \item $q$ es el \textbf{estado actual} del autómata.
+    \item $i$ es la \textbf{posición actual} de la cabeza lectora.
+\end{itemize}
+
+Se define la relación de \textbf{siguiente configuración} $\stackrel{\mathcal{A}}{\longmapsto}$ de $\ca{A}$ sobre $w$ como:
+\alignformula{
+    (p, i) \stackrel{\mathcal{A}}{\longmapsto}(q, j)
+}
+tal que:
+\begin{itemize}
+    \item Si $\delta(p, a_i) = (q, \rightarrow)$, entonces $(p, i) \stackrel{\mathcal{A}}{\longmapsto}(q, i+1)$.
+    \item Si $\delta\left(p, a_i\right)=(q, \leftarrow)$, entonces $(p, i) \stackrel{\mathcal{A}}{\longmapsto}(q, i-1)$.
+\end{itemize}
+
+\paragraph{Ejecución.} Una ejecución (o \textit{run}) $\rho$ de $\ca{A}$ sobre $w$ es una secuencia de configuraciones:
+\alignformula{
+    \rho:\left(p_0, i_0\right) \rightarrow\left(p_1, i_1\right) \rightarrow \ldots \rightarrow\left(p_m, i_m\right)
+}
+donde $p_0 = q_0$ y $i_0 = 0$. Además, $\left(p_j, i_j\right) \stackrel{\mathcal{A}}{\longmapsto}\left(p_{j+1}, i_{j+1}\right) \quad \forall j \in[0, m-1]$. \medbreak
+
+Una ejecución $\rho$ de $\ca{A}$ sobre $w$ es de \textbf{aceptación} si:
+\alignformula{
+    p_m=q_f \quad y \quad i_m=n+1
+}
+
+\paragraph{Aceptación.} Decimos que $\ca{A}$ \textbf{acepta} $w$ si hay una ejecución de $\ca{A}$ sobre $w$ que es de \textbf{aceptación}. Así, el \textbf{lenguaje aceptado} por $\ca{A}$ se define como:
+\alignformula{
+    \mathcal{L}(\mathcal{A})=\left\{w \in \Sigma^* \mid \mathcal{A} \text { acepta } w\right\}
+}
+
+\textbf{Ojo:} Notemos que un 2DFA puede pasar por error o NO parar nunca.
+
+\subsubsection{2DFA vs DFA}
+
+Para todo lenguaje regular $L$ existe un 2DFA $\ca{A}$:
+\alignformula{
+    L = \ca{L}(\ca{A})
+}
+En otras palabras, DFA $\subseteq$ 2DFA. \bigbreak
+
+¿Son los 2DFA más poderosos que los DFA? En esta sección, demostraremos que no, es decir, pueden representar al mismo conjunto de lenguajes.
+
+\paragraph{¿Cuánta información puede almacenar un 2DFA?} Veamos la siguiente figura:
+\begin{multicols}{2}
+    \img{img/cap2/2dfa_1.png}{0.2}
+
+    \textit{``Cada vez que $\ca{A}$ cruce de $w$ a $u$ en el estado $p$, $\ca{A}$ cruzará de regreso en el estado $q$''}. \medbreak
+
+    Este comportamiento solo depende de $u$, y no de $w$:
+    \img{img/cap2/2dfa_2.png}{0.175}
+\end{multicols}
+
+Para cada $u \in \Sigma^*$, definimos la función $T_u: Q \cup\{\bullet\} \rightarrow Q \cup\{\perp\}$ tal que:
+\begin{itemize}
+    \item $T_u(p) = q \quad$ si, y sólo si, $\quad$ desde $(p, |u|)$ cruza en la configuración $(q, |u|+1)$.
+    \item $T_u(p) = \perp \quad$ si, y sólo si, $\quad$ desde $(p, |u|)$ nunca cruza de $u$.
+    \item $T_u(\bullet) = q \quad$ si, y sólo si, $\quad$ desde $(q_0,0)$ cruza por primera vez con $(q, |u| + 1)$.
+    \item $T_u(\bullet) = q \quad$ si, y sólo si, $\quad$ desde $(q_0,0)$ cruza por primera vez con $(q, |u| + 1)$.
+    \item $T_u(\bullet) = \perp \quad$ si, y sólo si, $\quad$ desde $(q_0,0)$ nunca cruza de $u$.
+\end{itemize}
+
+\begin{multicols}{2}
+Suponga que ahora tenemos una palabra $v$ tal que:
+$$
+    T_v = T_u
+$$
+\img{img/cap2/2dfa_3.png}{0.2}
+
+Entonces, $v$ es \textbf{indistingible} de $u$ según $\ca{A}$. En otras palabras:
+$$
+    u \cdot w \in \mathcal{L}(\mathcal{A}) \Leftrightarrow v \cdot w \in \mathcal{L}(\mathcal{A}) \quad \text { para todo } w \in \Sigma^*
+$$
+Lo anterior tiene conexión con las relaciones de Myhill-Nerode, que vimos en una sección anterior.
+\end{multicols}
+Luego, respecto a la función $T_u$ podemos decir que:
+\begin{enumerate}
+    \item Definimos la relación $\equiv_T$ entre palabras en $\Sigma^*$ tal que:
+    $$
+    u \equiv T v \text { si, y solo si, } \quad T_u=T_v
+    $$
+    es una \textbf{relación de equivalencia}.
+    \item $\equiv_T$ es una \textbf{congruencia por la derecha}:
+    $$
+    u \equiv_T v \Rightarrow \forall w \cdot u \cdot w \equiv_T v \cdot w
+    $$
+    \item $\equiv_T$ \textbf{refina} a $\ca{L}(\ca{A})$:
+    $$
+    u \equiv T v \Rightarrow(u \in L \Leftrightarrow v \in L)
+    $$
+    \item La relación $\equiv_T$ tiene una \textbf{cantidad finita} de clases de equivalencia:
+    $$
+    T: Q \cup\{\bullet\} \rightarrow Q \cup\{\perp\}
+    $$
+    Así, $\equiv_{\ca{L}(\ca{A})}$ también tiene una cantidad \textbf{finita} de \textbf{clases de equivalencia}.
+\end{enumerate}
+
+\teorema{}{}{
+    Para todo 2DFA $\ca{A}$ existe un DFA $\ca{A}'$ tal que:
+    $$
+    \ca{L}(\ca{A}) = \ca{L}(\ca{A}')
+    $$
+    En otras palabras, 2DFA $\equiv$ DFA.
+}
+
+El DFA del teorema anterior se construye usando el Teorema de Myhill-Nerode a partir de las funciones $T_u$. \medbreak
+
+La demostración del teorema y la construcción queda como ejercicio propuesto para el lector.
