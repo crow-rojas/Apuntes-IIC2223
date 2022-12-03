@@ -2,8 +2,398 @@
 
 \subsection{Lema de bombeo}
 
+Supongamos que deseamos aceptar el siguiente lenguaje:
+$$
+    L =\left\{a^i b^i \mid i \geq 0\right\} = \{\epsilon, ab, aabb, aaabbb, aaaaabbbb, \ldots\}
+$$
+
+con un \textbf{autómata finito determinista}. ¿Es posible? La respuesta es que no, ya que nuestros autómatas no tienen la capacidad de ``contar''. Por ende, $L$ sería un lenguaje NO regular ya que no podría ser definido por un autómata.
+
+\paragraph{Enunciado.} Sea $L \subseteq \Sigma^*$. Si $L$ es \textbf{regular}, entonces:
+\alignformula{
+    \text{(LB)} \quad   &\text{existe un }  N>0 \text{ tal que} \\
+    &\text{para toda palabra } x \cdot y \cdot z \in L \text{ con } |y| \geq N \\
+    &\text{existen palabras } u \cdot v \cdot w=y \text{ con } v \neq \epsilon \text{ tal que} \\
+    &\text{para todo } i \geq 0, \quad x \cdot u \cdot v^i \cdot w \cdot z \in L.
+}
+
+El contrapositivo del lema de bombeo nos servirá para demostrar que un lenguaje $L$ NO es regular. \medbreak
+
+Sea $L \subseteq \Sigma^*$. Si:
+
+\alignformula{
+    \text{(}\neg\text{LB)} \quad   &\text{para todo }  N>0 \\
+    &\text{existe una palabra } x \cdot y \cdot z \in L \text{ con } |y| \geq N \text{ tal que}\\
+    &\text{para todo } u \cdot v \cdot w=y \text{ con } v \neq \epsilon \\
+    &\text{existe un } i \geq 0, \quad x \cdot u \cdot v^i \cdot w \cdot z \notin L. \\
+    &\text{entonces } L \text{ NO es regular.}
+}
+\img{img/cap2/demonio.png}{0.3}
+
+\paragraph{LB versión juego.} \textit{``Dado un lenguaje $L \subseteq \Sigma^*$, si \textbf{UNO} tiene una estrategia ganadora en el juego ($\neg$LB) para toda estrategia posible del demonio, entonces L \textbf{NO es} regular''.} Con \textbf{estrategia}, nos referimos a todas las movidas posibles que podría ejecutar el \textbf{demonio} (considerar todos los casos posibles de sus elecciones).
+
+
+\ejemplo{}{}{
+    Considere el lenguaje $L = \{a^i b^i \mid i \geq 0\}$:
+    \img{img/cap2/ejemplo1.png}{0.175}
+
+    Ganamos el juego ya que con $i = 2$ estaremos bombeando más $b$-letras y entonces la palabra no tendrá la misma cantidad de $a$-letras que de $b$-letras ($i \neq j$), por ende, $L$ NO es regular.
+}
+
+
+\ejemplo{}{}{
+    Considere el lenguaje $L = \{a^n b^m \mid n \geq m\}$:
+    \img{img/cap2/ejemplo2.png}{0.175}
+
+    Ganamos el juego ya que, nuevamente, con $i = 2$, estaremos bombeando más $b$-letras y entonces la palabra puede tener más $b$-letras que $a$-letras ($n < m$), y así $L$ NO es regular.
+}
+
+\newpage
+
+\ejemplo{}{}{
+    Considere el lenguaje $L = \{w \cdot w \mid w \in \{a,b\}^*\}$
+    \img{img/cap2/ejemplo3.png}{0.175}
+
+    Ganamos el juego ya que con la elección de $i = 0$ estamos haciendo que una de las mitades de la palabra sea distinta a su otra mitad, por ende, $L$ NO es regular.
+}
+
+\ejemplo{}{}{
+    Considere el lenguaje $L = \{a^{2^n} \mid n > 0\}$
+    \img{img/cap2/ejemplo4.png}{0.175}
+
+    Ganamos el juego ya que con la elección de $i = 2$, tenemos que en la elección de $y$ tendremos una mayor cantidad de $a$-letras bombeadas y se romperá el equilibrio $2^N - N + N$, por ende, $L$ NO es regular.
+}
+
+\newpage
+
 \subsection{Minimización de autómatas}
 
+¿Cómo minimizamos un autómata finito?
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{img/cap2/min.png}
+    \includegraphics[scale=0.1755]{img/cap2/min_2.png}
+    \includegraphics[scale=0.35]{img/cap2/min_3.png}
+    \caption{Idea de minimización}
+\end{figure}
+
+\begin{enumerate}
+    \item Eliminar estados inaccesibles.
+          \begin{itemize}
+              \item Fácil de realizar y no cambia el lenguaje del autómata finito.
+          \end{itemize}
+    \item Colapsar estados ``equivalentes''.
+          \begin{itemize}
+              \item ¿Cómo sabemos cuáles estados colapsar y cúales no?
+          \end{itemize}
+\end{enumerate}
+
+\ejemplo{}{}{
+    Considere el siguiente autómata:
+    \img{img/cap2/ejemplo5_1.png}{0.4}
+    Podemos:
+    \begin{itemize}
+        \item Colapsar estados 1 y 2.
+        \item Colapsar estados 3 y 4.
+    \end{itemize}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.1755]{img/cap2/ejemplo5_2.png}
+        \includegraphics[scale=0.4]{img/cap2/ejemplo5_3.png}
+    \end{figure}
+}
+
+\ejemplo{}{}{
+    Considere el siguiente autómata:
+    \img{img/cap2/ejemplo6_1.png}{0.4}
+    Podemos:
+    \begin{itemize}
+        \item Colapsar estados 1 y 2.
+        \item Colapsar estados 3, 4 y 5.
+    \end{itemize}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.1755]{img/cap2/ejemplo6_2.png}
+        \includegraphics[scale=0.4]{img/cap2/ejemplo6_3.png}
+    \end{figure}
+}
+
+\subsubsection{Colapsar estados}
+
+\paragraph{Definición.} Sea $\ca{A} = (Q, \Sigma, \delta, q_0, F)$ un DFA.
+
+Se define la \textbf{función de transición extendida} $\hat{\delta}: Q \times \Sigma^* \rightarrow Q$ inductivamente como:
+\alignformula{
+    \begin{array}{rll}
+        \hat{\delta}(q, \epsilon)  & \stackrel{\text { def }}{\equiv} & q                             \\
+        \hat{\delta}(q, w \cdot a) & \stackrel{\text { def }}{\equiv} & \delta(\hat{\delta}(q, w), a)
+    \end{array}
+}
+
+\paragraph{Definición.} Decimos que $p$ y $q$ son \textbf{indistingibles} ($p \approx_\ca{A} q$) si:
+\alignformula{
+    p \approx_\mathcal{A} q \quad \text { ssi } \quad(\hat{\delta}(p, w) \in F \Leftrightarrow \hat{\delta}(q, w) \in F), \text { para todo } w \in \Sigma^* .
+}
+Decimos que $p$ y $q$ son \textbf{distingibles} si NO son indistingibles ($p \not\approx_\ca{A} q$).
+
+\paragraph{Recordatorio relaciones de equivalencia.} Una relación $\approx_R$ sobre un conjunto $X$ se dice de \textbf{equivalencia} si es:
+\begin{itemize}
+    \item \textbf{Refleja:} $\forall p \in X.\ p \approx_R p$
+    \item \textbf{Simétrica:}  $\forall p,q \in X.$ si $p \approx_R q$ entonces $q \approx_R p$.
+    \item \textbf{Transitiva:} $\forall p,q,r \in X.$ si $p \approx_R q$ y $q \approx_R r$, entonces $p \approx_R r$.
+\end{itemize}
+
+Para un elemento $p \in X$ se define su \textbf{clase de equivalencia} según $\approx_R$ como:
+$$
+    [p]_{\approx_R} = \{q \mid q \approx_R p\}
+$$
+Una función $f: X \to X$ se dice \textbf{bien definida} sobre $\approx_R$ si:
+$$
+    p \approx_R q \quad \text{entonces} \quad f(p) \approx_R f(q)
+$$
+
+\paragraph{Propiedades de $\approx_\ca{A}$.} Tenemos que:
+\begin{itemize}
+    \item $\approx_\ca{A}$ es una \textbf{relación de equivalencia}, es decir, es refleja, simétrica y transitiva.
+    \item Cada estado $p \in Q$ esta en exactamente una clase de equivalencia:
+          $$
+              [p]_{\approx_\ca{A}} = \{q \mid q \approx_\ca{A} p\}
+          $$
+    \item Para todo $a \in \Sigma$ la función $\delta(\cdot, a): Q \to Q$ esta \textbf{bien definida} sobre $\approx_\ca{A}$:
+          $$
+              p \approx_\ca{A} q \quad \text{entonces} \quad \delta(p,a) \approx_\ca{A} \delta(q,a)
+          $$
+\end{itemize}
+
+\paragraph{El autómata cuociente.} Para un DFA $\ca{A} = (Q,\Sigma,\delta,q_0,F)$ se define el DFA:
+\alignformula{
+    \ca{A} / \approx \;= (Q_\approx, \Sigma, \delta_\approx, q_\approx, F_\approx)
+}
+\begin{itemize}
+    \item $Q_{\approx}=\left\{[p]_{\approx_\mathcal{A}} \mid p \in Q\right\}$
+    \item $\delta_{\approx}\left([p]_{\approx_\mathcal{A}}, a\right)=[\delta(p, a)]_{\approx_\mathcal{A}}$
+    \item $q_{\approx}=\left[q_0\right]_{\approx_\mathcal{A}}$
+    \item $F_{\approx}=\left\{[p]_{\approx_\mathcal{A}} \mid p \in F\right\}$
+\end{itemize}
+
+\teorema{}{}{
+    Para todo autómata finito determinista $\ca{A}$ se cumple que:
+    $$
+        \ca{L}(\ca{A}) = \ca{L}(\ca{A} / \approx)
+    $$
+}
+
+\paragraph{Demostración.} PENDIENTE. Pero se invita al lector a hacerla $<$3.
+
+\subsubsection{Algoritmo de minimización}
+
+El objetivo es buscar los pares de estados que son \textbf{distingibles}:
+\begin{enumerate}
+    \item Construya una tabla con los pares $\{p,q\}$ inicialmente sin marcar.
+    \item Marque $\{p,q\}$ si $p \in F$ y $q \notin F$ o viceversa.
+    \item Repita este paso hasta que no hayan más cambios:
+          \begin{itemize}
+              \item Si $\{p,q\}$ no están marcados y $\{\delta(p,a),\delta(q,a)\}$ estan marcados para algún $a \in \Sigma$, entonces marque $\{p,q\}$.
+          \end{itemize}
+    \item Al terminar, $p \not\approx_\ca{A}$ si, y sólo si, la entrada $\{p,q\}$ está marcada.
+\end{enumerate}
+
+Veamos como funciona el algoritmo. Considere el siguiente autómata y una tabla que relacione todos los pares de estados:
+
+\img{img/cap2/amin1.png}{0.175}
+
+\begin{multicols}{2}
+    \begin{enumerate}
+
+        \item Construya una tabla con los pares $\{p,q\}$ inicialmente sin marcar.
+              \img{img/cap2/amin2.png}{0.175}
+
+        \item Marque $\{p,q\}$ si $p \in F$ y $q \not\in F$ o viceversa.
+              \img{img/cap2/amin3.png}{0.175}
+    \end{enumerate}
+\end{multicols}
+
+\begin{enumerate}
+    \item[3.] Repita este paso hasta que no hayan más cambios:
+        \begin{itemize}
+            \item Si $\{p,q\}$ no están marcados y $\{\delta(p,a), \delta(q,a)\}$ estan marcados para algún $a \in \Sigma$, entonces marque $\{p,q\}$.
+        \end{itemize}
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.175]{img/cap2/amin4.png}
+            \includegraphics[scale=0.175]{img/cap2/amin5.png}
+            \includegraphics[scale=0.175]{img/cap2/amin6.png}
+            \includegraphics[scale=0.175]{img/cap2/amin7.png}
+            \includegraphics[scale=0.175]{img/cap2/amin8.png}
+            \includegraphics[scale=0.175]{img/cap2/amin9.png}
+        \end{figure}
+\end{enumerate}
+
+\begin{enumerate}
+    \item[4.] Al terminar, $p \not\approx_\ca{A}$ si, y sólo si, la entrada $\{p,q\}$ está marcada.
+\end{enumerate}
+
+Así, vemos que los pares indistingibles son todas las entradas \textbf{NO} marcadas.
+
 \subsection{Teorema de Myhill-Nerode}
+
+La sección anterior deja muchas incógnitas:
+\begin{enumerate}
+    \item ¿Cómo sabemos si el autómata del algoritmo es un \textbf{mínimo}?
+    \item Dado $L$, ¿existe un \textbf{único} autómata mínimo?
+    \item Dado un $\ca{A}$, ¿es posible \textbf{construir} un autómata mínimo equivalente?
+\end{enumerate}
+
+En esta sección, demostraremos que:
+\begin{itemize}
+    \item El autómata con el mínimo de estados es \textbf{único}.
+    \item El algoritmo de minimización \textbf{siempre} construye el autómata mínimo.
+\end{itemize}
+
+\paragraph{Estrategia.} Para demostrar lo dicho anteriormente, seguimos los siguientes pasos:
+\begin{enumerate}
+    \item Desde un DFA $\ca{A}$, definiremos una relación de equivalencia (RE) $\equiv_\ca{A}$ entre palabras en $\Sigma^*$.
+    \item Desde una RE $\equiv$ entre palabras, construiremos un DFA $\ca{A}_\equiv$.
+    \item A partir de un lenguaje $L$, definiremos una RE $\equiv_L$.
+    \item $\ca{A}_{\equiv_L}$ define el autómata con la \textbf{menor cantidad de estados}.
+    \item $\ca{A}_{\equiv_L}$ es equivalente al resultado de nuestro \textbf{algoritmo de minimización}.
+\end{enumerate}
+
+\subsubsection{Relaciones de Myhill-Nerode}
+
+Sea $L \subseteq \Sigma^*$ cualquier lenguaje.
+
+\paragraph{Definición.} Una relación de equivalencia $\equiv$ en $\Sigma^*$ es de \textbf{Myhill-Nerode} para $L$ si:
+\begin{enumerate}
+    \item $\equiv$ es una \textbf{congruencia por la derecha}.
+    \item $\equiv$ \textbf{refina} $L$.
+    \item El número de clases de equivalencia de $\equiv$ es \textbf{finita}.
+\end{enumerate}
+
+A partir de una relación $\equiv$ de Myhill-Nerode podemos construir un DFA $\ca{A}_\equiv$.
+\alignformula{
+    \ca{A} \quad &\Rightarrow \quad \equiv_\ca{A} \\
+    \equiv \quad &\Rightarrow \quad \ca{A}_\equiv
+}
+
+\paragraph{Construcción del DFA $\ca{A}_\equiv$.} Dada una relación de Myhill-Nerode $\equiv$ para $L \subseteq \Sigma^*$, definimos el autómata:
+\alignformula{
+    \ca{A}_\equiv = (Q_\equiv, \Sigma, \delta_\equiv, q_\equiv, F_\equiv)
+}
+\begin{itemize}
+    \item $Q_{\equiv}=\left\{[w]_{\equiv} \mid w \in \Sigma^*\right\}$
+    \item $q_{\equiv}=[\epsilon]_{\equiv}$
+    \item $F_{\equiv}=\left\{[w]_{\equiv} \mid w \in L\right\}$
+    \item $\delta_{\equiv}\left([w]_{\equiv}, a\right)=[w a]_{\equiv}$
+\end{itemize}
+
+\teorema{}{}{
+    Cada cualquier $L \subseteq \Sigma^*$, tenemos que
+    $$
+        \ca{L}(\ca{A}_\equiv) = L
+    $$
+}
+
+Podemos establecer que $\ca{A} \; \Rightarrow \; \equiv_\ca{A}$ y $\equiv \; \Rightarrow \; \ca{A}_\equiv$ son procesos inversos, conclusión que se ilustra en el siguiente teorema.
+
+\teorema{}{}{
+    \begin{enumerate}
+        \item Si $\ca{A}$ es un DFA que acepta $L$ y si construimos:
+              $$
+                  \ca{A} \quad \Rightarrow \quad \equiv_\ca{A} \quad \Rightarrow \quad \ca{A}_{\equiv_\ca{A}}
+              $$
+              entonces $\ca{A}$ es \textbf{isomorfo} (``equivalente'') a $\ca{A}_{\equiv_\ca{A}}$.
+
+        \item Si $\equiv$ es una relación de Myhill-Nerode para $L$ y si construimos:
+              $$
+                  \equiv \quad \Rightarrow \quad \ca{A}_\equiv \quad \Rightarrow \quad \equiv_{\ca{A}_\equiv}
+              $$
+              entonces la relación $\equiv$ es \textbf{equivalente} a $\equiv_{\ca{A}_\equiv}$.
+    \end{enumerate}
+}
+
+La demostración de ambos teoremas queda propuesto como ejercicio al lector.
+
+\subsubsection{Camino al teorema}
+Antes de enunciar el Teorema de Myhill-Nerode, debemos aún mencionar algunas definiciones.
+
+\paragraph{Definición.} Dado un lenguaje $L \subseteq \Sigma^*$, se define la relación de equivalencia $\equiv_L$ como:
+\alignformula{
+    u \equiv_L v \quad \text{ssi} \quad(u \cdot w \in L \Leftrightarrow v \cdot w \in L) \quad \forall w \in \Sigma^*
+}
+
+\ejemplo{}{}{
+    Sea $L = (ab)^*$. Algunas clases de equivalencia para $L$ son:
+    \begin{itemize}
+        \item $[\epsilon]_{\equiv_L}=\{\epsilon, a b, a b a b, a b a b a b, \ldots\}$.
+        \item $[a]_{\equiv_L}=\{a, a b a, a b a b a, a b a b a b a, \ldots\}$.
+        \item $[b]_{\equiv_L}=\{b, b b, b a, a b b, \ldots\}$
+    \end{itemize}
+}
+
+\paragraph{Propiedades.} $\equiv_L$ se caracteriza por:
+\begin{enumerate}
+    \item Ser una \textbf{congruencia por la derecha}:
+          $$
+              u \equiv_L v \text { entonces } u \cdot w \equiv_L v \cdot w \quad \forall w \in \Sigma^*
+          $$
+    \item Refinar a $L$:
+          $$
+              u \equiv_L v \text { entonces }(u \in L \Leftrightarrow v \in L)
+          $$
+    \item Si $\equiv$ es una congruencia por la derecha y refina $L$, entonces $\equiv$ \textbf{refina} a $\equiv_L$:
+          $$
+              u \equiv v \text { entonces } u \equiv_L v
+          $$
+\end{enumerate}
+
+Con todo lo anterior, estamos en condiciones de enunciar el teorema.
+
+\teorema{}{}{
+    Sea $L \subseteq \Sigma^*$. Las siguientes propiedades son equivalentes:
+    \begin{enumerate}
+        \item $L$ es \textbf{regular}.
+        \item Existe una \textbf{relación de Myhill-Nerode} para $L$.
+        \item La relación $\equiv_L$ tiene una cantidad \textbf{finita} de clases de equivalencia.
+    \end{enumerate}
+}
+
+\paragraph{Demostración teorema 10.} Del punto 1 al 2, tenemos que si $L$ es regular, entonces:
+\begin{itemize}
+    \item existe un autómata finito $\ca{A}$ tal que $L = \ca{L}(\ca{A})$.
+    \item $\equiv_\ca{A}$ es una relación de Myhill-Nerode para $L$.
+\end{itemize}
+
+Del punto 2 al 3, sea $\equiv$ una relación de Myhill-Nerode para $L$, entonces:
+\begin{itemize}
+    \item $\equiv$ tiene una cantidad finita de clases de equivalencia.
+    \item $\equiv_L$ tiene una cantidad finita de clases de equivalencia.
+\end{itemize}
+
+Del punto 3 al 1, si $\equiv_L$ tiene una cantidad \textbf{finita} de clases de equivalencia, entonces:
+\begin{itemize}
+    \item $\equiv_L$ es una relación de Myhill-Nerode para L.
+    \item $\ca{A}_{\equiv_L}$ es un autómata finito para $L$. \hfill $\blacksquare$
+\end{itemize}
+
+\paragraph{Conclusiones del teorema.} Tenemos que:
+\begin{enumerate}
+    \item $\equiv_L \; \Rightarrow \; \ca{A}_{\equiv_L}$ produce el autómata con la menor cantidad de estados.
+    \item Todo autómata $\ca{A}$ tal que $\equiv_\ca{A} = \equiv_L$ son \textbf{isomorfos} (``equivalentes'').
+    \item El \textbf{algoritmo de minimización} produce un autómata isomorfo $\ca{A}_{\equiv_L}$.
+\end{enumerate}
+
+\paragraph{Demostración punto 3.} Sea $\ca{A} = (Q,\Sigma,\delta,q_0,F)$ un autómata que acepta $L$ ya \textbf{minimizado}:
+$$
+    \begin{aligned}
+        u \equiv_L v \quad & \Leftrightarrow \quad(u \cdot w \in L \Leftrightarrow v \cdot w \in L) \quad \forall w \in \Sigma^*                                                                                                          \\
+                           & \Leftrightarrow \quad\left(\hat{\delta}\left(q_0, u \cdot w\right) \in F \Leftrightarrow \hat{\delta}\left(q_0, v \cdot w\right) \in F\right) \quad \forall w \in \Sigma^*                                         \\
+                           & \Leftrightarrow \quad\left(\hat{\delta}\left(\hat{\delta}\left(q_0, u\right), w\right) \in F \Leftrightarrow \hat{\delta}\left(\hat{\delta}\left(q_0, v\right), w\right) \in F\right) \quad \forall w \in \Sigma^* \\
+                           & \Leftrightarrow \quad \hat{\delta}\left(q_0, u\right) \approx_\mathcal{A} \hat{\delta}\left(q_0, v\right)                                                                                                          \\
+                           & \Leftrightarrow \quad \hat{\delta}\left(q_0, u\right)=\hat{\delta}\left(q_0, v\right)                                                                                                                              \\
+                           & \Leftrightarrow \quad u \equiv_\mathcal{A} v
+    \end{aligned}
+$$
+\hfill $\blacksquare$
 
 \subsection{Autómatas en dos direcciones}

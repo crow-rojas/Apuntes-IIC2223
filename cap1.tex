@@ -434,7 +434,7 @@ Por \textbf{inducción} sobre $i$, tenemos que:
               \item $\delta^\text{det}(S_i,a_{i+1})=S_{i+1} = \{q \in Q \mid \exists p \in S_i.\ (p,a,q) \in \Delta \}$ y
               \item $(p_i,a_{i+1},p_{i+1}) \in \Delta$
           \end{itemize}
-          Entonces $p_{i+1} \in S_{i+1}$, ya que, si estamos en $p_i$ leyendo $a_{i+1}$, la transición nos dice que pasaremos a al estado $p_{i+1}$ que pertenece a $S_{i+1}$ por la hipótesis de inducción.
+          Entonces $p_{i+1} \in S_{i+1}$, ya que, si estamos en $p_i$ leyendo $a_{i+1}$, la transición nos dice que pasaremos al estado $p_{i+1}$ que pertenece a $S_{i+1}$ por la hipótesis de inducción.
 \end{itemize}
 Luego, como $p_n \in S_n$, entonces $S_n \cap F \neq \varnothing$ y así $S_n \in F^\text{det}$. Por lo tanto, $w \in \ca{L}(\ca{A}^\text{det})$. \medbreak
 
@@ -462,12 +462,504 @@ Por hipótesis de inducción, existe $\rho: p_0 \stackrel{a_1}{\rightarrow} p_1 
 
 Por lo tanto, $\rho^{\prime}: p_0 \stackrel{a_1}{\rightarrow} p_1 \stackrel{a_2}{\rightarrow} \ldots \stackrel{a_i}{\rightarrow} p_i \stackrel{a_{i+1}}{\rightarrow} q$ también satisface 1. y 2. \medbreak
 
-Como lo anterior queda demostrado y como $S_n \cap F \neq \varnothing$, para $p \in S_n \cap F$ existe una ejecución de aceptación de $\ca{A}$ sobte $w$. Por lo tanto, $w \in \ca{L}(\ca{A})$. \hfill $\blacksquare$
-
-
+Como lo anterior queda demostrado y como $S_n \cap F \neq \varnothing$, para $p \in S_n \cap F$ existe una ejecución de aceptación de $\ca{A}$ sobre $w$. Por lo tanto, $w \in \ca{L}(\ca{A})$. \hfill $\blacksquare$
 
 \subsection{Expresiones regulares}
 
+\paragraph{Definición.} $R$ es una \textbf{expresión regular} sobre $\Sigma$ si $R$ es igual a:
+\begin{enumerate}
+    \item $a$, para alguna letra $a \in \Sigma$.
+    \item $\epsilon$
+    \item $\varnothing$
+    \item $(R_1 + R_2)$, donde $R_1$ y $R_2$ son expresiones regulares.
+    \item $(R_1 \cdot R_2)$, donde $R_1$ y $R_2$ son expresiones regulares.
+    \item $(R_1^*)$, donde $R_1$ es una expresión regular. Esta expresión se conoce como \textbf{clausura de Kleene}.
+\end{enumerate}
+
+Denotaremos como ExpReg el conjunto de \textbf{todas las expresiones regulares} sobre $\Sigma$.
+
+\ejemplo{}{}{
+    Las siguientes son expresiones regulares sobre $\Sigma=\{a,b\}$:
+    \begin{itemize}
+        \item $(a+b)$
+        \item $((a\cdot b) \cdot c)$
+        \item $(a^*)$
+        \item $(b \cdot (a^*))$
+        \item $((a+b)^*)$
+        \item $((a \cdot ((b\cdot a)^*))+\epsilon)$
+        \item $((a \cdot ((b\cdot a)^*))+\varnothing)$
+    \end{itemize}
+}
+
+Para reducir la cantidad de paréntesis, se define el \textbf{orden de precendencia}:
+\begin{enumerate}
+    \item estrella $(\cdot)^*$
+    \item concanetación $\cdot$
+    \item unión $+$
+\end{enumerate}
+
+\paragraph{Semántica.} Para una expresión regular $R$ cualquiera, se define el lenguaje $\ca{L}(R) \subseteq \Sigma^*$ \textbf{inductivamente} como:
+\begin{enumerate}
+    \item $\ca{L}(a) = \{a\}$, para toda letra $a \in \Sigma$.
+    \item $\ca{L}(\epsilon) = \{e\}$.
+    \item $\ca{L}(\varnothing) = \varnothing$.
+    \item $\ca{L}(R_1 + R_2) = \ca{L}(R_1) \cup \ca{L}(R_2)$, donde $R_1$ y $R_2$ son expresiones regulares.
+    \item $\ca{L}(R_1 \cdot R_2) = \ca{L}(R_1)\cdot \ca{L}(R_2)$, donde $R_1$ y $R_2$ son expresiones regulares.
+    \item $\ca{L}(R_1^*)=\displaystyle\bigcup_{k=0}^\infty \ca{L}(R_1)^k$, donde $R_1$ es una expresión regular.
+\end{enumerate}
+
+Para el punto 5. y 6., definimos para dos lenguajes $L_1,L_2 \subseteq \Sigma^*$ el \textbf{producto} de $L_1$ y $L_2$:
+\alignformula{
+    L_1 \cdot L_2 = \{ w_1 \cdot w_2 \mid w_1 \in L_1 \wedge w_2 \in L_2 \}
+}
+Además, para un lenguaje $L\subseteq \Sigma^*$ se define la \textbf{potencia} a la $n \ge 0$:
+\alignformula{
+    L^n = \{ w_1 \cdot w_2 \ldots w_n \mid \forall i\leq n.\ w_i \in L \}
+}
+La \textbf{potencia} a la $0$ se define como $L^0 = \{\epsilon\}$.
+
+\ejemplo{}{}{
+    Se muestran a continuación lenguajes definidos por algunas ExpReg:
+    \begin{itemize}
+        \item $\ca{L}((a+b)^*) = \{a,b\}^*$
+        \item $\ca{L}((a\cdot b)\cdot (b\cdot a)) = \{abba\}$
+        \item $\ca{L}(a \cdot (b\cdot a) + b\cdot a + (a\cdot b)\cdot a) = \{aba,ba\}$
+    \end{itemize}
+}
+
+\paragraph{Definición.} Decimos que $R_1$ es \textbf{equivalente} a $R_2$ si, y sólo si, $\ca{L}(R_1) = \ca{L}(R_2)$. Si $R_1$ es equivalente a $R_2$, escribiremos $R_1 \equiv R_2$.
+
+\paragraph{Lema.} Los operadores de unión $+$ y producto $\cdot$ son \textbf{asociativos}.
+\alignformula{
+    (R_1 + R_2) + R_3 &\equiv R_1 + (R_2 + R_3)\\
+    (R_1 \cdot R_2) \cdot R_3 &\equiv R_1 \cdot (R_2 \cdot R_3)
+}
+
+La demostración de este lema queda como ejercicio propuesto al lector.
+
+\ejemplo{}{}{
+    Más lenguajes definidos por algunas ExpReg:
+    \begin{itemize}
+        \item $\ca{L}(a^* \cdot b \cdot a^*) =$ todas las palabras con una sola $b$.
+        \item $\ca{L}((a+b)^* \cdot b \cdot (a+b)^* ) =$ todas las palabras con una o más $b's$.
+    \end{itemize}
+}
+
+\paragraph{Definición.} Usamos las siguientes \textbf{abreviaciones} de expresiones regulares:
+\alignformula{
+    R^+ &\equiv R \cdot R^* \\
+    R^k &\equiv R \cdot \overset{k}{\cdots}\cdot R \\
+    R^? &\equiv R + \epsilon \\
+    \Sigma &\equiv a_1 + \ldots + a_n
+}
+para $R \in \text{ExpRegs}$ y $\Sigma = \{a_1,\ldots,a_n\}$.
+
+\ejemplo{}{}{
+    Más lenguajes definidos por algunas ExpReg:
+    \begin{itemize}
+        \item $\ca{L}(\Sigma^* \cdot b \cdot \Sigma^*) =$ todas las palabras con una sola $b$.
+        \item $\ca{L}(b^* \cdot (a\cdot b)^5) =$ todas las palabras con $5$ $a$'s.
+        \item $\ca{L}(a^* \cdot (b + c)^?)=$ todas las palabras de $a$'s y terminadas en $b$ o $c$.
+        \item $\ca{L}((a\cdot b^+)^+)=$ todas las palabras que empiezan con $a$ y donde cada $a$ esta seguida de al menos una $b$.
+    \end{itemize}
+}
+
 \subsection{Autómatas con transiciones sin lectura}
+Hasta ahora, hemos visto lo siguiente:
+\fig{img/cap1/mapa1.png}{0.25}{Mapa actual de nuestros modelos de computación}
+
+Podemos demostrar que ExpReg $\subseteq$ NFA, pero para eso necesitamos un nuevo modelo.
+
+\subsubsection[e-NFA]{$\epsilon$-NFA}
+
+Lo nuevo de este autómata:
+\begin{enumerate}
+    \item tiene transiciones no deterministas y
+    \item tiene transiciones leyendo la palabra vacía $\epsilon$:
+          $$
+              p \overunder{\to}{}{\epsilon} q
+          $$
+\end{enumerate}
+
+La importancia de un $\epsilon$-NFA es que es un modelo \textbf{muy útil} para construir nuevos autómatas y NO agrega más poder de computación a los NFA.
+
+\paragraph{Definición.} Un autómata finito no-determinista con $\epsilon$-transiciones ($\epsilon$-NFA) es una tupla:
+\alignformula{
+    \ca{A} = (Q, \Sigma, \Delta, I, F)
+}
+
+\begin{itemize}
+    \item $Q$ es un conjunto finito de estados.
+    \item $\Sigma$ es el alfabeto del input.
+    \item $I \subseteq Q$ es un conjunto de estados iniciales.
+    \item $F \subseteq Q$ es el conjunto de estados finales (o aceptación).
+    \item $\Delta \subseteq Q \times (\Sigma \cup \{\epsilon\}) \times Q$ es la relación de transición.
+\end{itemize}
+
+\ejemplo{}{}{
+    Algunos ejemplos de $\epsilon$-NFA's:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.35]{img/cap1/ejemplo15_1.png}
+        \includegraphics[scale=0.35]{img/cap1/ejemplo15_2.png}
+    \end{figure}
+}
+
+Para $\epsilon$-NFA veremos una \textbf{forma alternativa} para definir las nociones de ejecución y aceptación.
+
+\paragraph{Ejecución.} Sea $\ca{A} = (Q,\Sigma,\Delta, I, F)$ un $\epsilon$-NFA. Definimos:
+\begin{itemize}
+    \item Un par $(q,w) \in Q \times \Sigma^*$ es una \textbf{configuración} de $\ca{A}$.
+    \item Una configuración $(q,w)$ es \textbf{inicial} si $q \in I$.
+    \item Una configuración $(q,w)$ es \textbf{final} si $q \in F$ y $w = \epsilon$.
+\end{itemize}
+
+\textit{``Intuitivamente, una configuración $(q, aw)$ representa que $\ca{A}$ se encuentra en el estado $q$ procesando la palabra $aw$ y leyendo $a$''.}
+\begin{itemize}
+    \item Se define la relación $\vdash_\ca{A}\ \subseteq (Q \times \Sigma^*) \times (Q \times \Sigma^*)$ de \textbf{siguiente-paso} entre configuraciones de $\ca{A}$:
+          \alignformula{
+              (p, u) \vdash_\ca{A} (q,v)
+          }
+          si, y sólo si, existe $(p,c,q) \in \Delta$ con $c \in \Sigma \cup \{\epsilon\}$ tal que $u = c \cdot v$.
+    \item Se define $\vdash_\ca{A}^*$ como la clausura \textbf{refleja} y \textbf{transitiva} de $\vdash_\ca{A}$:
+          \alignformula{
+              \text{para toda configuración } (q,w): \qquad &(q,w) \vdash_\ca{A}^* (q,w) \\
+              \text{si } (p, u) \vdash_\ca{A} (p',w) \text{ y } (p',w) \vdash_\ca{A}^* (q,v): \qquad &(p, u) \vdash_\ca{A}^* (q,v)
+          }
+          Decimos que $(p,u) \vdash_\ca{A}^* (q,v)$ si uno puede ir de $(p, u)$ a $(q,v)$ en \textbf{0 o más pasos}.
+\end{itemize}
+
+\ejemplo{}{}{
+    \img{img/cap1/ejemplo16.png}{0.4}
+}
+
+\paragraph{Aceptación.} Sea $\ca{A} = (Q,\Sigma,\Delta, I, F)$ un $\epsilon$-NFA y $w \in \Sigma^*$. Decimos que $\ca{A}$ \textbf{acepta} $w$ si existe una configuración \textbf{inicial} $(q_0, w)$ y una configuración \textbf{final} $(q_f, \epsilon)$ tal que:
+\alignformula{
+    (q_0, w) \vdash_\ca{A}^* (q_f, \epsilon)
+}
+
+Además, el \textbf{lenguaje aceptado} por $\ca{A}$ se define como:
+\alignformula{
+    \ca{L}(\ca{A}) = \{ w \in \Sigma^* \mid \ca{A} \text{ acepta } w \}
+}
+
+\textbf{Nota.} Si $\ca{A}$ no tiene $\epsilon$-transiciones o no-determinismo, esta es una forma \textbf{alternativa} para definir ejecución y aceptación para NFA y DFA.
+
+\subsubsection[NFA versus e-NFA]{NFA versus $\epsilon$-NFA}
+Partimos enunciado el siguiente teorema:
+
+\teorema{}{}{
+    Para todo autómata finito no-determinista con $\epsilon$-transiciones $\ca{A}$, existe un autómata no-determinista $\ca{A}'$ tal que:
+    $$
+        \ca{L}(\ca{A}) = \ca{L}(\ca{A}')
+    $$
+    En otras palabras, NFA $\equiv$ $\epsilon$-NFA.
+}
+
+Para demostrar este teorema, mostraremos como construir un autómata no-determinista a partir de un $\epsilon$-NFA removiendo las $\epsilon$-transiciones.
+
+\paragraph{Construcción desde $\epsilon$-NFA a NFA.} Dado un $\epsilon$-NFA $\ca{A} = (Q, \Sigma, \Delta, I, F)$ se define el NFA:
+$$
+    \ca{A}^{\not\epsilon} =  (Q, \Sigma, \Delta^{\not\epsilon}, I, F^{\not\epsilon})
+$$
+\begin{multicols}{2}
+    \begin{itemize}
+        \item para todo $p,q \in Q$, $(p,a,q) \in \Delta^{\not\epsilon}$ si, y sólo si, existe $p' \in Q$ tal que:
+              \begin{itemize}
+                  \item $(p,\epsilon) \vdash_\ca{A}^* (p', \epsilon)$ y
+                  \item $(p', a, q) \in \Delta$.
+              \end{itemize}
+              \img{img/cap1/demenfa1.png}{0.2}
+        \item $F^{\not\epsilon} = \{ p \in Q \mid \exists q \in F.\ (p, \epsilon) \vdash_\ca{A}^* (q, \epsilon)\}$
+              \img{img/cap1/demenfa2.png}{0.2}
+    \end{itemize}
+\end{multicols}
+Por definición, si $(p, a, q) \in \Delta$, entonces $(p, a, q) \in \Delta^{\not\epsilon}$ para todo $a \in \Sigma$.
+
+\teorema{}{}{
+    Dado un $\epsilon$-NFA $\ca{A} = (Q, \Sigma, \Delta, I, F)$ se tiene que:
+    $$
+        \ca{L}(\ca{A}) = \ca{L}(\ca{A}^{\not\epsilon})
+    $$
+}
+\paragraph{Demostración teorema 5.} Demostrar el teorema anterior es equivalente a demostrar que para todo $p \in Q$ y $w \in \Sigma^*$:
+$$
+    \exists q \in F.\ (p,w) \vdash_\ca{A}^* (q, \epsilon) \quad \text{si, y sólo si,} \quad \exists q' \in F^{\not\epsilon}.\ (p, w) \vdash_{\ca{A}^{\not\epsilon}}^* (q', \epsilon)
+$$
+De aquí, podemos \textbf{concluir} que $\ca{A}$ acepta $w$ si, y sólo si, $\ca{A}^{\not\epsilon}$ acepta $w$. \medbreak
+
+Por \textbf{inducción} sobre el largo de $w$:
+\begin{itemize}
+    \item \textbf{Caso base:} Para $w = \epsilon$:
+
+          $(\Rightarrow)$ Sea $q \in F$ tal que $(p, \epsilon) \vdash_\ca{A}^* (q, \epsilon)$. Por definición de $F^{\not\epsilon}$, se tiene que $p \in F^{\not\epsilon}$. Por lo tanto, $(p,\epsilon) \vdash_{\ca{A}^{\not\epsilon}}^* (p, \epsilon)$.
+
+          $(\Leftarrow)$ Sea $q' \in F^{\not\epsilon}$ tal que $(p, \epsilon) \vdash_{\ca{A}^{\not\epsilon}}^* (q', \epsilon)$. Como $\ca{A}^{\not\epsilon}$ no tiene $\epsilon$-transiciones, entonces $p = q'$ y $p \in F^{\not\epsilon}$. Por definición de $F^{\not\epsilon}$, existe $q \in F$ tal que $(p, \epsilon) \vdash_\ca{A}^* (q, \epsilon)$.
+
+    \item \textbf{Caso inductivo:} Sea $w = a\cdot u$ y $p \in Q$:
+
+          $(\Leftarrow)$ Sea $q' \in F^{\not\epsilon}$ tal que $(p, au) \vdash_{\ca{A}^{\not\epsilon}}^* (q', \epsilon)$. Por definición de $\vdash_{\ca{A}^{\not\epsilon}}^*$ existen $p' \in Q$ tal que:
+          $$
+              (p, au) \overset{(1)}{\vdash_{\ca{A}^{\not\epsilon}}} (p', u) \overset{(2)}{\vdash_{\ca{A}^{\not\epsilon}}^*} (q', \epsilon)
+          $$
+          Por $(1)$ sabemos que $(p,au) \vdash_{\ca{A}}^* (p', u)$. \hfill $(3)$
+
+          Como $|u| < |au|$ y por $(2)$, por \textbf{HI} existe $q \in F$: $(p', u) \vdash_\ca{A}^* (q, \epsilon)$. \hfill $(4)$
+
+          Juntando $(3)$ y $(4)$, tenemos que $(p,au) \vdash_\ca{A}^* (q,\epsilon)$.
+
+          $(\Rightarrow)$ Sea $q \in F$ tal que $(p,au) \vdash_\ca{A}^* (q, \epsilon)$. Por definición de $\vdash_\ca{A}^*$ existen $p',p'' \in Q$ tal que:
+          $$
+              (p, au) \overset{(1)}{\vdash_\ca{A}^*} (p', au) \overset{(2)}{\vdash_\ca{A}} (p'', u) \overset{(3)}{\vdash_\ca{A}^*} (q, \epsilon)
+          $$
+
+          Por $(1)$ tenemos que $(p, \epsilon) \vdash_\ca{A}^* (p', \epsilon)$. \hfill $(4)$
+
+          Por $(2)$ tenemos que $(p', a, p'') \in \Delta.$ \hfill $(5)$
+
+          Por $(4)$ y $(5)$, sabemos que $(p, a, p'') \in \Delta^{\not\epsilon}$ y $(p, a \cdot u) \vdash_{\ca{A}^{\not\epsilon}} (p'', u)$. \hfill $(6)$
+
+          Como $|u| < |au|$ y $(3)$, \textbf{por HI} existe $q' \in F^{\not\epsilon}$: $(p'', u) \vdash_{\ca{A}^{\not\epsilon}}^* (q', \epsilon)$. \hfill $(7)$
+
+          Juntando $(6)$ y $(7)$, tenemos que $(p, au) \vdash_{\ca{A}^{\not\epsilon}}^* (q', \epsilon)$. \hfill $\blacksquare$
+\end{itemize}
+
+Con el teorema 5 demostrado, nuestro mapa de modelos se ve así:
+\fig{img/cap1/mapa2.png}{0.35}{Mapa actual de nuestros modelos de computación}
+
+En la siguiente sección mostraremos que todos definen el mismo conjunto de lenguajes.
+
+\newpage
 
 \subsection{Teorema de Kleene}
+
+\subsubsection{Desde Expresiones a Autómatas}
+
+Veremos a continuación que toda ExpReg se puede transformar en un autómata.
+
+\paragraph{Construcción inductiva.} Para cada $R \in$ ExpReg, construimos un $\epsilon$-NFA $\ca{A}_R$:
+\alignformula{
+    \ca{A}_R = (Q, \Sigma, \Delta, \{q_0\}, \{q_f\})
+}
+tal que $\ca{L}(R) = \ca{L}(\ca{A}_R)$.
+\paragraph{Casos bases.} Vemos primero los casos base de la construcción inductiva:
+\begin{multicols}{3}
+    \begin{enumerate}
+        \item si $R = a$,
+
+              para alguna letra $a \in \Sigma$:
+              \img{img/cap1/RtoA1.png}{0.3}
+
+        \item si $R = \epsilon$:
+              \img{img/cap1/RtoA2.png}{0.3}
+
+        \item si $R = \varnothing$:
+              \img{img/cap1/RtoA3.png}{0.3}
+    \end{enumerate}
+\end{multicols}
+\begin{enumerate}
+    \item[4.] si $R = (R_1 + R_2)$, donde $R_1$ y $R_2$ son expresiones regulares:
+        \img{img/cap1/RtoA4_2.png}{0.2}
+
+        Hacemos la construcción inductiva de $R = (R_1 + R_2)$ por \textbf{inducción}. Sea $\ca{A}_{R_1}$ y $\ca{A}_{R_2}$ los $\epsilon$-NFA para $R_1$ y $R_2$, respectivamente, tal que:
+        \begin{itemize}
+            \item $\ca{A}_{R_1} = (Q_1, \Sigma, \Delta_1, \{q_0^1\}, \{q_f^1\})$
+            \item $\ca{A}_{R_2} = (Q_2, \Sigma, \Delta_2, \{q_0^2\}, \{q_f^2\})$
+        \end{itemize}
+
+        Definimos el $\epsilon$-NFA $\ca{A}_{R_1 +R_2} = (Q, \Sigma, \Delta, \{q_0\}, \{q_f\})$ tal que:
+        \begin{itemize}
+            \item $Q=Q_1 \uplus Q_2 \uplus\left\{q_0, q_f\right\}$
+            \item $\Delta=\Delta_1 \uplus \Delta_2 \uplus\left\{\left(q_0, \epsilon, q_0^1\right),\left(q_0, \epsilon, q_0^2\right),\left(q_f^1, \epsilon, q_f\right),\left(q_f^2, \epsilon, q_f\right)\right\}$
+        \end{itemize}
+
+        \textbf{Proposición.} Si $R = (R_1 +R_2)$, entonces $\mathcal{L}\left(R_1+R_2\right)=\mathcal{L}\left(\mathcal{A}_{R_1+R_2}\right)$. \medbreak
+
+        La demostración de esta proposición queda como ejercicio propuesto para el lector.
+
+    \item[5.] si $R = (R_1 \cdot R_2)$, donde $R_1$ y $R_2$ son expresiones regulares:
+        \img{img/cap1/RtoA5_2.png}{0.2}
+
+        Hacemos la construcción inductiva de $R = (R_1 \cdot R_2)$ por \textbf{inducción}. Sea $\ca{A}_{R_1}$ y $\ca{A}_{R_2}$ los $\epsilon$-NFA para $R_1$ y $R_2$, respectivamente, tal que:
+        \begin{itemize}
+            \item $\ca{A}_{R_1} = (Q_1, \Sigma, \Delta_1, \{q_0^1\}, \{q_f^1\})$
+            \item $\ca{A}_{R_2} = (Q_2, \Sigma, \Delta_2, \{q_0^2\}, \{q_f^2\})$
+        \end{itemize}
+
+        Definimos el $\epsilon$-NFA $\ca{A}_{R_1 \cdot R_2} = (Q, \Sigma, \Delta, \{q_0^1\}, \{q_f^2\})$ tal que:
+        \begin{itemize}
+            \item $Q=Q_1 \uplus Q_2$
+            \item $\Delta=\Delta_1 \uplus \Delta_2 \uplus\left\{\left(q_f^1, \epsilon, q_0^2\right)\right\}$
+        \end{itemize}
+
+        \textbf{Proposición.} Si $R = (R_1 \cdot R_2)$, entonces $\mathcal{L}\left(R_1\cdot R_2\right)=\mathcal{L}\left(\mathcal{A}_{R_1\cdot R_2}\right)$. \medbreak
+
+        La demostración de esta proposición queda como ejercicio propuesto para el lector.
+
+    \item[6.] si $R = (R_1^*)$, donde $R_1$ es una expresión regular:
+        \img{img/cap1/RtoA6_2.png}{0.2}
+
+        Hacemos la construcción inductiva de $R = (R_1^*)$ por \textbf{inducción}. Sea $\ca{A}_{R_1}$ el $\epsilon$-NFA para $R_1$, tal que:
+        \begin{itemize}
+            \item $\ca{A}_{R_1} = (Q_1, \Sigma, \Delta_1, \{q_0^1\}, \{q_f^1\})$
+        \end{itemize}
+
+        Definimos el $\epsilon$-NFA $\ca{A}_{(R_1^*)} = (Q, \Sigma, \Delta, \{q_0\}, \{q_0\})$ tal que:
+        \begin{itemize}
+            \item $Q=Q_1 \uplus\left\{q_0\right\}$
+            \item $\Delta=\Delta_1 \biguplus\left\{\left(q_0, \epsilon, q_0^1\right),\left(q_f^1, \epsilon, q_0\right)\right\}$
+        \end{itemize}
+
+        \textbf{Proposición.} Si $R = (R_1^*)$, entonces $\mathcal{L}\left(R_1^*\right)=\mathcal{L}\left(\mathcal{A}_{(R_1^*)}\right)$. \medbreak
+
+        La demostración de esta proposición queda como ejercicio propuesto para el lector.
+\end{enumerate}
+
+\teorema{}{}{
+    Para todo $R \in$ ExpReg, existe un $\epsilon$-NFA $\ca{A}_R$ tal que:
+    $$
+        \ca{L}(R) = \ca{L}(\ca{A}_R)
+    $$
+    En otras palabras, ExpReg $\subseteq$ $\epsilon$-NFA.
+}
+
+\subsubsection{Desde Autómatas a Expresiones}
+
+Dado un autómata finito no-determinista (que, sin pérdida de generalidad, tiene un estado inicial):
+$$
+    \ca{A} = (Q, \Sigma, \Delta, q_0, F)
+$$
+Para $X \subseteq Q$ y $p,q \in Q$, considerar el conjunto:
+$$
+    \alpha_{p,q}^X \subseteq \Sigma^*
+$$
+tal que $w = a_1 \ldots a_n \in \alpha_{p,q}^X$ si, y sólo si, existe una \textbf{ejecución}:
+$$
+    \rho: p_0 \stackrel{a_1}{\rightarrow} p_1 \stackrel{a_2}{\rightarrow} \ldots \stackrel{a_n}{\rightarrow} p_n
+$$
+\begin{enumerate}
+    \item $\left(p_i, a_{i+1}, p_{i+1}\right) \in \Delta$ para todo $i \in [0,n-1]$,
+    \item $p_0 = p$,
+    \item $p_n = q$, y
+    \item $p_i \in X$ para todo $i \in [1,n-1]$.
+\end{enumerate}
+
+\textit{``Intuitivamente, $\alpha_{p,q}^X$ es el conjunto de todas las palabras $w$ tal que existe un \textbf{camino} (i.e. ejecución) desde $p$ a $q$ etiquetado por $w$ y \textbf{todos los estados} en este camino están en $X$, con la posible excepción de $p$ y $q$''.} \medbreak
+
+¿Cómo definimos $\ca{L}(\ca{A})$ en términos de $\alpha_{p,q}^X$? Establecemos el siguiente lema:
+$$
+    \ca{L}(\ca{A}) = \bigcup_{q \in F} \alpha_{q_0,p}^Q
+$$
+
+\paragraph{Estrategia.} Conocida como el algoritmo de McNaughton-Yamada:
+\begin{enumerate}
+    \item Para cada $\alpha_{p,q}^X$, definir \textbf{inductivamente} una expresión regular $R_{p,q}^X$:
+          $$
+              \ca{L}(R_{p,q}^X) = \alpha_{p,q}^X
+          $$
+
+    \item Para $F = \{p_1, \ldots, p_k\}$ definir la \textbf{expresión regular}:
+          $$
+              R_\ca{A} = R_{q_0, p_1}^Q+R_{q_0, p_2}^Q+\ldots+R_{q_0, p_k}^Q
+          $$
+
+    \item Demostrar que:
+          $$
+              \ca{L}(\ca{A}) = \ca{L}(R_\ca{A})
+          $$
+\end{enumerate}
+
+\paragraph{Definición inductiva de $R_{p,q}^X$.} Tenemos que:
+\begin{itemize}
+    \item \textbf{Caso base:} $X = \varnothing$
+
+          Sea $a_1,\ldots,a_k \in \Sigma$ todas las letras tal que:
+          $$
+              (p, a_i, q) \in \Delta
+          $$
+          \begin{itemize}
+              \item Si $p \neq q$, entonces:
+                    $$
+                        R_{p, q}^{\varnothing} \stackrel{\text { def }}{\equiv} \begin{cases}a_1+\cdots+a_k & \text { si } k \geq 1 \\ \varnothing & \text { si } k=0\end{cases}
+                    $$
+              \item Si $p = q$, entonces:
+                    $$
+                        R_{p, q}^{\varnothing} \stackrel{\text { def }}{\equiv} \begin{cases}a_1+\cdots+a_k+\epsilon & \text { si } k \geq 1 \\ \epsilon & \text { si } k=0\end{cases}
+                    $$
+          \end{itemize}
+
+    \item \textbf{Caso general:} $X \neq \varnothing$
+
+          Por \textbf{inducción}, suponemos que para todo $r,s \in Q$ y para todo $Y \subset X$, $R_{r,s}^Y$ es una expresión regular tal que:
+          $$
+              \ca{L}(R_{r,s}^Y) = \alpha_{r,s}^Y
+          $$
+          Demostramos la construcción para $R_{p,q}^X$ con $p,q \in Q$. Sea $r \in X$ cualquiera:
+          $$
+              R_{p, q}^X \stackrel{\text { def }}{\equiv} R_{p, q}^{X-\{r\}}+R_{p, r}^{X-\{r\}} \cdot\left(R_{r, r}^{X-\{r\}}\right)^* \cdot R_{r, q}^{X-\{r\}}
+          $$
+\end{itemize}
+\paragraph{Proposición.} Para todo $X \subseteq Q$ y $p,q \in Q$:
+$$
+    \mathcal{L}\left(R_{p, q}^X\right)=\alpha_{p, q}^X
+$$
+\paragraph{Corolario.} $\mathcal{L}(\mathcal{A})=\mathcal{L}\left(R_{\mathcal{A}}\right)$
+
+\ejemplo{Algoritmo MNY}{}{
+    Considere el autómata:
+    \vspace{-10pt}
+    \img{img/cap1/ejemplo17.png}{0.175}
+    \vspace{-10pt}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c|cc}
+            $R^{\varnothing}$ & 1     & 2          \\
+            \hline 1          & $a^?$ & $b$        \\
+            2                 & $a$   & $\epsilon$
+        \end{tabular}
+    \end{table}
+    \vspace{-20pt}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c|cc}
+            $R^{\{1\}}$ & $1$                                         & $2$                                          \\
+            \hline $1$  & $a^?+a^? \cdot\left(a^?\right)^* \cdot a^?$ & $b+a^? \cdot\left(a^?\right)^* \cdot b$      \\
+            $2$         & $a+a \cdot\left(a^?\right)^* \cdot a^?$     & $\epsilon+a \cdot\left(a^?\right)^* \cdot b$
+        \end{tabular}
+    \end{table}
+    \vspace{-20pt}
+    $$
+        \equiv
+    $$
+    \vspace{-20pt}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c|cc}
+            $R^{\{1\}}$ & 1       & 2                  \\
+            \hline 1    & $a^*$   & $a^* b$            \\
+            2           & $a^{+}$ & $\epsilon+a^{+} b$
+        \end{tabular}
+    \end{table}
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c|cc}
+            $R^{\{1,2\}}$ & 1 & 2 \\
+            \hline 1 & $a^*+a^* b\left(\epsilon+a^{+} b\right)^* a^{+}$ & $a^* b+a^* b\left(\epsilon+a^{+} b\right)^*\left(\epsilon+a^{+} b\right)$ \\
+            2 & $a^{+}+\left(\epsilon+a^{+} b\right)\left(\epsilon+a^{+} b\right)^* a^{+}$ & $\left(\epsilon+a^{+} b\right)+\left(\epsilon+a^{+} b\right)\left(\epsilon+a^{+} b\right)^*\left(\epsilon+a^{+} b\right)$
+            \end{tabular}
+    \end{table}
+    \vspace{-20pt}
+    $$
+        \equiv
+    $$
+    \vspace{-20pt}
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{c|cc}
+            $R^{\{1,2\}}$ & 1 & 2 \\
+            \hline 1 & $a^*\left(b a^{+}\right)^*$ & $\left(a^* b\right)\left(a^{+} b\right)^*$ \\
+            2 & $\left(a^{+} b\right)^* a^{+}$ & $\left(a^{+} b\right)^*$
+            \end{tabular}
+    \end{table}
+}
