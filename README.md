@@ -1,4 +1,4 @@
-# Apuntes IIC2233 | Teoría de Autómatas y Lenguajes Formales
+# Apuntes IIC2223 | Teoría de Autómatas y Lenguajes Formales
 
 Hecho por: Cristóbal Rojas | Correo: cristobalrojas@uc.cl
 
