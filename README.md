@@ -1,6 +1,6 @@
 # Apuntes IIC2233 | Teoría de Autómatas y Lenguajes Formales
 
-Hecho por: Cristóbal Rojas | Correo: cristobal@uc.cl
+Hecho por: Cristóbal Rojas | Correo: cristobalrojas@uc.cl
 
 Apuntes públicos para el ramo Teoría de Autómatas y Lenguajes Formales de la UC. 
 
