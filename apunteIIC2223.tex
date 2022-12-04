@@ -131,10 +131,23 @@ sharp corners
 \newcommand{\teorema}[3]{\begin{theo}{#1}{#2}#3\end{theo}\vspace{1pt}}
 \newcommand{\li}[2]{\displaystyle{\lim_{#1 \to #2}}}
 \newcommand{\ca}[1]{\mathcal{#1}}
+\newcommand{\mbb}[1]{\mathbf{#1}}
 \newcommand{\first}{\texttt{first}}
 \newcommand{\follow}{\texttt{follow}}
 \newcommand{\gll}{\text{LL}}
 \newcommand{\overunder}[3]{\underset{#2}{\overset{#3}{#1}} }
+
+\newcommand\vartextvisiblespace[1][.5em]{%
+  \makebox[#1]{%
+    \kern.07em
+    \vrule height.3ex
+    \hrulefill
+    \vrule height.3ex
+    \kern.07em
+  }% <-- don't forget this one!
+}
+
+\newcommand{\sbar}{\vartextvisiblespace}
 
 \usepackage{etoolbox}
 \apptocmd{\lim}{\limits}{}{}
