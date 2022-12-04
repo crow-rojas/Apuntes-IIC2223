@@ -267,7 +267,7 @@ Se define $\vdash_\ca{T}^*$ como la clausura \textbf{refleja} y \textbf{transiti
 
 Desde ahora, hablaremos de función o relación \textbf{indistintamente} y hablaremos de las \textbf{relaciones racionales} (definidas por un transductor).
 
-\paragraph{Lenguaje de input y ouput.} Para una relación $R \subseteq \Sigma^* \times \Omega^*$ se define:
+\paragraph{Lenguaje de input y output.} Para una relación $R \subseteq \Sigma^* \times \Omega^*$ se define:
 \begin{itemize}
     \item $\pi_1(R)=\left\{u \in \Sigma^* \mid \exists v \in \Omega^* .\ (u, v) \in R\right\}$.
     \item $\pi_2(R)=\left\{v \in \Omega^* \mid \exists u \in \Sigma^* .\ (u, v) \in R\right\}$.
@@ -286,9 +286,7 @@ y demuestre que $\ca{L}(\ca{A}_1) = \pi_1(\llbracket \mathcal{T} \rrbracket)$.
 \teorema{}{}{
     Sea $\ca{T}_1$ y $\ca{T}_2$ dos transductores con $\Sigma$ y $\Omega$ alfabetos de input y output. Las siguientes son \textbf{relaciones racionales}:
     \begin{enumerate}
-        \item $$
-                  \llbracket \mathcal{T}_1 \rrbracket \cup \llbracket \mathcal{T}_2 \rrbracket=\left\{(u, v) \in \Sigma^* \times \Omega^* \mid(u, v) \in \llbracket \mathcal{T}_1 \rrbracket \vee(u, v) \in \llbracket \mathcal{T}_2 \rrbracket\right\}
-              $$
+        \item $\llbracket \mathcal{T}_1 \rrbracket \cup \llbracket \mathcal{T}_2 \rrbracket=\left\{(u, v) \in \Sigma^* \times \Omega^* \mid(u, v) \in \llbracket \mathcal{T}_1 \rrbracket \vee(u, v) \in \llbracket \mathcal{T}_2 \rrbracket\right\}$
         \item $\llbracket \mathcal{T}_1 \rrbracket \cdot \llbracket \mathcal{T}_2 \rrbracket=\left\{\left(u_1 u_2, v_1 v_2\right) \in \Sigma^* \times \Omega^* \mid\left(u_1, v_1\right) \in \llbracket \mathcal{T}_1 \rrbracket \wedge\left(u_2, v_2\right) \in \llbracket \mathcal{T}_2 \rrbracket\right\}$
         \item $\llbracket \mathcal{T}_1 \rrbracket^*=\bigcup_{k=0}^{\infty} \llbracket \mathcal{T}_1 \rrbracket^k$
     \end{enumerate}
@@ -436,7 +434,7 @@ Por la ``propiedad'', concluimos que $i \in S$. \hfill $\blacksquare$
 
 \subsubsection[Autómata finito con k-lookahead]{Autómata finito con $k$-lookahead}
 
-\paragraph{Definición}. Se definen los siguientes conjuntos de palabras sobre un alfabeto finito $\Sigma$:
+\paragraph{Definición.} Se definen los siguientes conjuntos de palabras sobre un alfabeto finito $\Sigma$:
 \begin{itemize}
     \item $\Sigma_{\bullet}=\Sigma^* \times \Sigma^*$
     \item $\Sigma_{\bullet}^k=\left\{(u, v) \in \Sigma_{\bullet}\mid |uv| = k\right\}$
@@ -463,7 +461,7 @@ Por la ``propiedad'', concluimos que $i \in S$. \hfill $\blacksquare$
     \item $F \subseteq Q$ es el conjunto de estados iniciales.
     \item $\delta: Q \times(\Sigma \cup\{\mathbb{\$}\})_{\bullet}^k \rightarrow Q$ es una función parcial, tal que:
           $$
-              \text { para todo } p \in Q \text { y } w \in(\Sigma \cup\{\$\})^k:\quad  |\{u . v \mid \delta(p, u \cdot v)=q \text { y } u v=w\}| \leq 1
+              \text { para todo } p \in Q \text { y } w \in(\Sigma \cup\{\$\})^k:\quad  |\{u . v \mid \delta(p, u.v)=q \text { y } u v=w\}| \leq 1
           $$
 \end{itemize}
 \ejemplo{}{}{
@@ -481,7 +479,7 @@ Por la ``propiedad'', concluimos que $i \in S$. \hfill $\blacksquare$
     \item Una configuración $(q, \$^k)$ es \textbf{final} si $q \in F$.
 \end{itemize}
 
-El sufijo $\$^k$ nos sirve para marcar el finald el input (y simplificar la definición de lookahead al leer el final de la palabra). \medbreak
+El sufijo $\$^k$ nos sirve para marcar el final del input (y simplificar la definición de lookahead al leer el final de la palabra). \medbreak
 
 Se define la relación $\vdash_\ca{A}$ de \textbf{siguiente-paso} entre configuraciones de $\ca{A}$:
 \alignformula{
@@ -499,7 +497,7 @@ Decimos que $(p,u) \vdash_\ca{A}^* (q,v)$ si uno puede ir de $(p,u)$ a $(q,v)$ e
 
 \paragraph{Aceptación.} Decimos que $\ca{A}$ \textbf{acepta} $w$ si existe una configuración inicial $(q_0, w\$^k)$ y una configuración final $(q_f, \$^k)$ tal que:
 $$
-    \left(q_0, w \mathbb{S}^k\right) \vdash_{\mathcal{A}}^*\left(q_f, \mathbb{S}^k\right)
+    \left(q_0, w \#^k\right) \vdash_{\mathcal{A}}^*\left(q_f, \#^k\right)
 $$
 El \textbf{lenguaje aceptado} por $\ca{A}$ se define como:
 $$
@@ -533,7 +531,7 @@ En base a la propiedad anterior, se define el lazy autómata $\mathcal{A}_w^{\te
     \item para todo $a\neq w_1$: $\delta^{\text {lazy}}(\{0\}, a .)=\{0\}$.
     \item para todo $a \in \{w_1,\ldots, w_m\}$ y $i \in [0,m-1]$:
           \begin{itemize}
-              \item si $a = w_{i_1}$, entonces $\delta^{\text {lazy}}\left(S_i, a_{.}\right)=S_{i+1}$
+              \item si $a = w_{i_1}$, entonces $\delta^{\text {lazy}}\left(S_i, a.\right)=S_{i+1}$
               \item si $a \neq w_{i+1}$ y $i \neq 0$, entonces $\delta^{\text {lazy}}\left(S_i, . a\right)=S_i-\{i\}$.
           \end{itemize}
 \end{itemize}

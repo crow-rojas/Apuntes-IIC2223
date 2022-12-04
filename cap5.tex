@@ -1121,7 +1121,7 @@ La relación de transición $\Delta$ de define como:
 
 \paragraph{Propiedades.} $\ca{T}[\ca{G}]$ tiene las siguientes propiedades:
 \begin{enumerate}
-    \item $\ca{T}[\ca{G}]$ es un $k$-PDT \textbf{determinista} si, y sólo si, $\ca{G}$ es $\gll{k}$ fuerte.
+    \item $\ca{T}[\ca{G}]$ es un $k$-PDT \textbf{determinista} si, y sólo si, $\ca{G}$ es $\gll(k)$ fuerte.
     \item Si $w \notin \ca{L}(\ca{G})$ entonces $\llbracket \ca{T} \rrbracket (w) = \varnothing$.
     \item Si $w \in \ca{L}(\ca{G})$ entonces $\llbracket \ca{T} \rrbracket(w) = \{r_1 \ldots r_m\}$ es una derivación por la izquierda de $\ca{G}$ sobre $w$.
 \end{enumerate}
@@ -1129,7 +1129,7 @@ La relación de transición $\Delta$ de define como:
 \paragraph{Algoritmo.} Para una gramática $\gll(k)$ $\ca{G}$ y una palabra $w \in \Sigma^*$:
 \begin{enumerate}
     \item Construya el $k$-PDT determinista $\ca{T}[\ca{G}]$ a partir de $\ca{G}$.
-    \item Ejecute $\ca{T}[\ca[G]]$ sobre $w$.
+    \item Ejecute $\ca{T}[\ca{G}]$ sobre $w$.
 \end{enumerate}
 
 Como $\ca{T}[\ca{G}]$ es determinista, entonces el algoritmo toma \textbf{tiempo lineal} en $w$.
