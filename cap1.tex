@@ -217,7 +217,7 @@ donde $p_0 = q_0$, para todo $i \in \{0,\ldots,n-1\}$ está definido $\gamma(p_i
 $$
     \rho: p_0 \stackrel{a_1}{\rightarrow} p_1 \stackrel{a_2}{\rightarrow} p_2 \ldots \overset{a_n}{\rightarrow} p_n
 $$
-donde $p_0 = q_0$, para todo $i \in \{0,\ldots,n-1\}$ tenemos $\gamma'(p_i,a_{i+1}) = p_{i+1}$ y $p_n \in F$. Demostraremos que $p_i \neq q_s$ para todo $i \in \{0,\ldots, n\}$. Por \textbf{contradicción}, suponga que existe $i$ tal que $p_i = q_s$. entonces, tenemos que $p_{i+1} = q_s$. Por \textbf{inducción}, podemos demostrar que $p_j = q_s$ para todo $j \ge i$, y así, podemos concluir que $p_n = q_s$, llevándonos a una contradicción. Como $p_i \neq q_s$ para todo $i \in \{0, \ldots, n\}$, tenemos que:
+donde $p_0 = q_0$, para todo $i \in \{0,\ldots,n-1\}$ tenemos $\gamma'(p_i,a_{i+1}) = p_{i+1}$ y $p_n \in F$. Demostraremos que $p_i \neq q_s$ para todo $i \in \{0,\ldots, n\}$. Por \textbf{contradicción}, suponga que existe $i$ tal que $p_i = q_s$. Entonces, tenemos que $p_{i+1} = q_s$. Por \textbf{inducción}, podemos demostrar que $p_j = q_s$ para todo $j \ge i$, y así, podemos concluir que $p_n = q_s$, llevándonos a una contradicción. Como $p_i \neq q_s$ para todo $i \in \{0, \ldots, n\}$, tenemos que:
 $$
     \delta^{\prime}\left(p_i, a_{i+1}\right)=\gamma\left(p_i, a_{i+1}\right) \quad \forall i \in\{0,1, \ldots, n-1\}
 $$
@@ -501,7 +501,7 @@ Para reducir la cantidad de paréntesis, se define el \textbf{orden de precenden
 \paragraph{Semántica.} Para una expresión regular $R$ cualquiera, se define el lenguaje $\ca{L}(R) \subseteq \Sigma^*$ \textbf{inductivamente} como:
 \begin{enumerate}
     \item $\ca{L}(a) = \{a\}$, para toda letra $a \in \Sigma$.
-    \item $\ca{L}(\epsilon) = \{e\}$.
+    \item $\ca{L}(\epsilon) = \{\epsilon\}$.
     \item $\ca{L}(\varnothing) = \varnothing$.
     \item $\ca{L}(R_1 + R_2) = \ca{L}(R_1) \cup \ca{L}(R_2)$, donde $R_1$ y $R_2$ son expresiones regulares.
     \item $\ca{L}(R_1 \cdot R_2) = \ca{L}(R_1)\cdot \ca{L}(R_2)$, donde $R_1$ y $R_2$ son expresiones regulares.
@@ -548,11 +548,11 @@ La demostración de este lema queda como ejercicio propuesto al lector.
 \paragraph{Definición.} Usamos las siguientes \textbf{abreviaciones} de expresiones regulares:
 \alignformula{
     R^+ &\equiv R \cdot R^* \\
-    R^k &\equiv R \cdot \overset{k}{\cdots}\cdot R \\
+    R^k &\equiv R \cdot \ \overset{k}{\cdots} \ \cdot R \\
     R^? &\equiv R + \epsilon \\
     \Sigma &\equiv a_1 + \ldots + a_n
 }
-para $R \in \text{ExpRegs}$ y $\Sigma = \{a_1,\ldots,a_n\}$.
+para $R \in \text{ExpReg}$ y $\Sigma = \{a_1,\ldots,a_n\}$.
 
 \ejemplo{}{}{
     Más lenguajes definidos por algunas ExpReg:
@@ -719,7 +719,7 @@ Por \textbf{inducción} sobre el largo de $w$:
 
           Por $(4)$ y $(5)$, sabemos que $(p, a, p'') \in \Delta^{\not\epsilon}$ y $(p, a \cdot u) \vdash_{\ca{A}^{\not\epsilon}} (p'', u)$. \hfill $(6)$
 
-          Como $|u| < |au|$ y $(3)$, \textbf{por HI} existe $q' \in F^{\not\epsilon}$: $(p'', u) \vdash_{\ca{A}^{\not\epsilon}}^* (q', \epsilon)$. \hfill $(7)$
+          Como $|u| < |au|$ y $(3)$, por \textbf{HI} existe $q' \in F^{\not\epsilon}$: $(p'', u) \vdash_{\ca{A}^{\not\epsilon}}^* (q', \epsilon)$. \hfill $(7)$
 
           Juntando $(6)$ y $(7)$, tenemos que $(p, au) \vdash_{\ca{A}^{\not\epsilon}}^* (q', \epsilon)$. \hfill $\blacksquare$
 \end{itemize}

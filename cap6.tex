@@ -180,7 +180,7 @@ Se define el mapping $\mu = \, \perp$ como el \textbf{mapping vacío} donde $\te
     \item Dado una regex $R$ con $k$ variables, ¿de qué tamaño puede ser $|\llbracket R \rrbracket(d)|$ con respecto a $|d|$ y $k$ \textbf{en el peor caso}?
 \end{itemize}
 
-La respuesta es que el tamaño de $|\llbracket R \rrbracket(d)|$ puede crecer de manera exponencial. ¿Cómo podemos evaluar entonces una regex de $R$ \textbf{eficientemente}? Analizamos una herramienta para lograr esto a continuación/
+La respuesta es que el tamaño de $|\llbracket R \rrbracket(d)|$ puede crecer de manera exponencial. ¿Cómo podemos evaluar entonces una regex de $R$ \textbf{eficientemente}? Analizamos una herramienta para lograr esto a continuación.
 
 \subsubsection{Vset autómata}
 
@@ -199,7 +199,7 @@ Un \textbf{vset autómata} será nuestro primer modelo para \textbf{compilar reg
     \ca{A} = (Q, \Sigma, \ca{X}, \Delta, I, F)
 }
 \begin{itemize}
-    \item $Q$ es un conjunto fifnito de estados.
+    \item $Q$ es un conjunto finito de estados.
     \item $\Sigma$ es el alfabeto de input.
     \item $\ca{X}$ es un conjunto finito de variables.
     \item $\Delta \subseteq Q \times(\Sigma \cup\{\epsilon\} \cup\{\langle\mathbf{x}, \mathbf{x}\rangle \mid \mathbf{x} \in \mathcal{X}\}) \times Q$ es la relación de transición.
@@ -267,7 +267,7 @@ Si $\rho$ es \textbf{válida} se define el \textbf{mapping de} $\rho$ $\texttt{m
 \alignformula{
 [\texttt{map}(\rho)](\mathbf{x})=\left[i_{k_1}, i_{k_2}\right\rangle
 }
-para todo $\mbb{x} \in \ca{X}$ y $k_1,k_2 \leq m$ con $o_{k_1} = \langle \mbb{x}$ y $o_{k_2} = \mbb{x}\rangle$.
+para todo $\mbb{x} \in \ca{X}$ y $k_1,k_2 \leq m$ con $i_{k_1} = \langle \mbb{x}$ y $i_{k_2} = \mbb{x}\rangle$.
 
 \ejemplo{Mappings de $\rho$}{}{
 El mapping para las ejecuciones válidas del ejemplo anterior es:
@@ -344,7 +344,7 @@ Sea $d = a_0 \ldots a_{n-1}$, un conjunto de variables $\ca{X}$ y un mapping $\m
     \vspace{-10pt}
     \img{img/cap6/ejemplo10.png}{0.425}
     $$
-        \texttt{seq}(\mu)=(15,\{\langle\mathbf{x},\langle\mathbf{z}\})(20,\{\mathbf{x}\rangle\})(24,\{\langle\mathbf{y}\})(26,\{\mathbf{y}\rangle, \mathbf{z}\rangle\})
+        \texttt{seq}(\mu)=(15,\{\langle\mathbf{x},\langle\mathbf{z}\})\ (20,\{\mathbf{x}\rangle\})\ (24,\{\langle\mathbf{y}\})\ (26,\{\mathbf{y}\rangle, \mathbf{z}\rangle\})
     $$
 }
 
@@ -530,7 +530,7 @@ donde:
     $$
     \Delta^{\text{det}}(S, t)=\{q \in Q \mid \exists p \in S.\ (p, t, q) \in \Delta\}
     $$
-    \item $F^{\text{det}}=\left\{S \in 2^Q \mid S \cap F \neq \varnothing\right\}$.
+    \item $F^{\text{det}}=\left\{S \in 2^Q \mid S \cap F \neq \varnothing\right\}$. \hfill $\blacksquare$
 \end{itemize}
 
 

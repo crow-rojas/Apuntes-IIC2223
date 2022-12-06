@@ -183,7 +183,7 @@ $$
     $$
 }
 
-\paragraph{Demostración.} PENDIENTE. Pero se invita al lector a hacerla $<$3.
+\paragraph{Demostración.} Queda como ejercicio propuesto al lector.
 
 \subsubsection{Algoritmo de minimización}
 
@@ -195,7 +195,7 @@ El objetivo es buscar los pares de estados que son \textbf{distingibles}:
           \begin{itemize}
               \item Si $\{p,q\}$ no están marcados y $\{\delta(p,a),\delta(q,a)\}$ estan marcados para algún $a \in \Sigma$, entonces marque $\{p,q\}$.
           \end{itemize}
-    \item Al terminar, $p \not\approx_\ca{A}$ si, y sólo si, la entrada $\{p,q\}$ está marcada.
+    \item Al terminar, $p \not\approx_\ca{A} q$ si, y sólo si, la entrada $\{p,q\}$ está marcada.
 \end{enumerate}
 
 Veamos como funciona el algoritmo. Considere el siguiente autómata y una tabla que relacione todos los pares de estados:
@@ -230,7 +230,7 @@ Veamos como funciona el algoritmo. Considere el siguiente autómata y una tabla 
 \end{enumerate}
 
 \begin{enumerate}
-    \item[4.] Al terminar, $p \not\approx_\ca{A}$ si, y sólo si, la entrada $\{p,q\}$ está marcada.
+    \item[4.] Al terminar, $p \not\approx_\ca{A} q$ si, y sólo si, la entrada $\{p,q\}$ está marcada.
 \end{enumerate}
 
 Así, vemos que los pares indistingibles son todas las entradas \textbf{NO} marcadas.
@@ -506,7 +506,7 @@ Luego, respecto a la función $T_u$ podemos decir que:
 \begin{enumerate}
     \item Definimos la relación $\equiv_T$ entre palabras en $\Sigma^*$ tal que:
     $$
-    u \equiv T v \text { si, y solo si, } \quad T_u=T_v
+    u \equiv_T v \text { si, y solo si, } \quad T_u=T_v
     $$
     es una \textbf{relación de equivalencia}.
     \item $\equiv_T$ es una \textbf{congruencia por la derecha}:

@@ -216,7 +216,7 @@ $\overunder{\Rightarrow}{\mathrm{lm}}{}$ y $\overunder{\Rightarrow}{\mathrm{rm}}
     \img{img/cap4/ejemplo7.png}{0.4}
 }
 
-\paragraph{Proposicion.} Por cada árbol de derivación, existe una \textbf{única} derivación por la izquierda y una \textbf{única} derivación por la derecha. \medbreak
+\paragraph{Proposición.} Por cada árbol de derivación, existe una \textbf{única} derivación por la izquierda y una \textbf{única} derivación por la derecha. \medbreak
 
 Por lo tanto, desde ahora podemos hablar de \textbf{árbol de derivación y derivación (izquierda o derecha)} indistintamente.
 
@@ -231,7 +231,7 @@ Por lo tanto, desde ahora podemos hablar de \textbf{árbol de derivación y deri
 
 Defina la gramática $\ca{G}_\ca{A} = (Q, \Sigma, P_\ca{A}, q_0)$ tal que:
 \begin{itemize}
-    \item si $\delta(p,a) = q$, entonces $p \to aq \in P\ca{A}$
+    \item si $\delta(p,a) = q$, entonces $p \to aq \in P_\ca{A}$
     \item si $p \in F$, entonces $p \to \epsilon \in P_\ca{A}$
 \end{itemize}
 
@@ -381,11 +381,11 @@ $$
 
 Considere las siguientes propiedades de $\ca{G}$, $\ca{G}'$ y $\ca{G}''$:
 \begin{enumerate}
-    \item Para todo $\alpha \in (V \cup \Sigma)*$, si $\alpha \overunder{\Rightarrow}{\ca{G}}{*} w$ entonces $\alpha \overunder{\Rightarrow}{\ca{G}'}{*} w$.
+    \item Para todo $\alpha \in (V \cup \Sigma)^*$, si $\alpha \overunder{\Rightarrow}{\ca{G}}{*} w$ entonces $\alpha \overunder{\Rightarrow}{\ca{G}'}{*} w$.
 
-    \item Para todo $\alpha \in (V' \cup \Sigma)*$, si $S \overunder{\Rightarrow}{\ca{G}'}{*} \alpha$ entonces $S \overunder{\Rightarrow}{\ca{G}''}{*} \alpha$
+    \item Para todo $\alpha \in (V' \cup \Sigma)^*$, si $S \overunder{\Rightarrow}{\ca{G}'}{*} \alpha$ entonces $S \overunder{\Rightarrow}{\ca{G}''}{*} \alpha$
 
-    \item Para todo $\alpha \in (V'' \cup \Sigma)*$, si $\alpha \overunder{\Rightarrow}{\ca{G}'}{*} w$ entonces $\alpha \overunder{\Rightarrow}{\ca{G}''}{*} w$.
+    \item Para todo $\alpha \in (V'' \cup \Sigma)^*$, si $\alpha \overunder{\Rightarrow}{\ca{G}'}{*} w$ entonces $\alpha \overunder{\Rightarrow}{\ca{G}''}{*} w$.
 \end{enumerate}
 
 La demostración de estas propiedades queda como ejercicio propuesto al lector. \bigbreak
